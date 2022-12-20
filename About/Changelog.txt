@@ -1,0 +1,5 @@
+# Changelog for EasyUpgrades
+
+1.4.0 - First publish.
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+

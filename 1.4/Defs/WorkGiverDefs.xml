@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef>
+    <defName>UpgradeThing</defName>
+    <label>upgrade the designated item to its automated counterpart</label>
+    <giverClass>EasyUpgrades.WorkGiver_Upgrade</giverClass>
+    <workType>Construction</workType>
+    <verb>upgrade</verb>
+    <gerund>upgrading</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>100</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+  <WorkGiverDef>
+    <defName>DowngradeThing</defName>
+    <label>downgrade the designated item to its un-automated counterpart</label>
+    <giverClass>EasyUpgrades.WorkGiver_Downgrade</giverClass>
+    <workType>Construction</workType>
+    <verb>downgrade</verb>
+    <gerund>downgrading</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>100</priorityInType>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+  <WorkGiverDef>
+    <defName>IncreaseQuality_Building</defName>
+    <label>attempt to increase the quality of this item</label>
+    <giverClass>EasyUpgrades.WorkGiver_IncreaseBuildingQuality</giverClass>
+    <workType>Construction</workType>
+    <verb>increase quality</verb>
+    <gerund>increasing quality for</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>100</priorityInType>
+  </WorkGiverDef>
+  <WorkGiverDef>
+    <defName>IncreaseQuality_Apparel</defName>
+    <label>attempt to increase the quality of this item</label>
+    <giverClass>EasyUpgrades.WorkGiver_IncreaseApparelQuality</giverClass>
+    <workType>Tailoring</workType>
+    <verb>increase quality</verb>
+    <gerund>increasing quality for</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>100</priorityInType>
+  </WorkGiverDef>
+  <WorkGiverDef>
+    <defName>IncreaseQuality_Item</defName>
+    <label>attempt to increase the quality of this item</label>
+    <giverClass>EasyUpgrades.WorkGiver_IncreaseItemQuality</giverClass>
+    <workType>Crafting</workType>
+    <verb>increase quality</verb>
+    <gerund>increasing quality for</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>100</priorityInType>
+  </WorkGiverDef>
+  <WorkGiverDef>
+    <defName>IncreaseQuality_Art</defName>
+    <label>attempt to increase the quality of this item</label>
+    <giverClass>EasyUpgrades.WorkGiver_IncreaseArtQuality</giverClass>
+    <workType>Art</workType>
+    <verb>increase quality</verb>
+    <gerund>increasing quality for</gerund>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <priorityInType>100</priorityInType>
+  </WorkGiverDef>
+</Defs>

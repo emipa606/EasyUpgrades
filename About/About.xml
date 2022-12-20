@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Easy Upgrades (Continued)</name>
+  <packageId>Mlie.EasyUpgrades</packageId>
+  <author>ToyWalrus</author>
+  <url>https://github.com/emipa606/EasyUpgrades</url>
+  <supportedVersions>
+    <li>1.1</li>
+    <li>1.2</li>
+    <li>1.3</li>
+    <li>1.4</li>
+  </supportedVersions>
+  <modDependencies />
+  <loadAfter />
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
+Update of ToyWalruss mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
+
+[img]https://i.imgur.com/pufA0kM.png[/img]
+
+[table]
+    [tr]
+        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/EasyUpgrades][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+    [/tr]
+    [tr]
+        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
+        [td][img]https://i.imgur.com/h5VwTNL.png[/img][/td]
+    [/tr]
+[/table]
+	
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
+[h1]Note: this mod is no longer under active development. I'll potentially come back to this in the future but for now I have my time filled with other things. Thank you for your understanding![/h1]
+
+(Thanks to @Mlie for the 1.3 update!)
+
+[h1]What it do??[/h1]
+(a horrible misuse of the colloquial phrase, I know)
+
+[h2]With this mod, you can:[/h2][olist]
+[*] Easily upgrade or downgrade buildings without needing to deconstruct them first. The resource cost remains the same. (e.g. a fueled stove normally takes 80 steel, while an electric stove takes 80 steel plus 2 components. So in order to upgrade from a fueled stove to an electric stove, all you need is the difference, which in this case is 2 components.) When downgrading a building, it refunds the difference. Additionally, if there's any remaining fuel left in a building when you upgrade it, that fuel will also be refunded.
+[*] Attempt to increase the quality of items, apparel, and sculptures. This will depend on the pawn's skill level in the given category. With every attempt there's a chance of success, failure, and nothing happening. These chance values can be modified in the mod settings. To increase the quality of weapons and apparel, the item must be on the ground. Simply click on the item and an option to upgrade the quality will appear. To upgrade sculpture quality the sculpture must be uninstalled before the option to upgrade its quality will appear as well.[/olist]
+
+[h2]What you can upgrade/downgrade[/h2][list]
+[*] Fueled stove -- Electric stove
+[*] Fueled smithy -- Electric smithy
+[*] Hand tailoring bench -- Electric tailoring bench
+[*] Wood generator -- Chemfuel generator
+[*] Door -- Autodoor
+[*] Possibly more in the future...[/list]
+
+[h2]Things you can increase quality for[/h2][list]
+[*] Weapons
+[*] Apparel
+[*] Sculptures
+[*] Buildings (like beds) that have a quality to them[/list]
+
+[h2]Known bugs[/h2][list]
+[*] Sometimes when increasing the quality of an item, the resources used don't actually get used. (I like to think of this as a "happy accident")[/list]
+	
+[img]https://i.imgur.com/PwoNOj4.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]</description>
+</ModMetaData>

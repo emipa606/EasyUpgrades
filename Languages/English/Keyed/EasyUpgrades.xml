@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <EU.Upgrade>Upgrade</EU.Upgrade>
+  <EU.Downgrade>Downgrade</EU.Downgrade>
+  <EU.IncreaseQuality>Increase quality</EU.IncreaseQuality>
+  <EU.TryIncreaseQualityTooltip>Attempt to increase the quality of this item</EU.TryIncreaseQualityTooltip>
+  <EU.CannotIncreaseLegendaryQuality>Cannot increase the quality of a legendary item!</EU.CannotIncreaseLegendaryQuality>
+  <EU.TryIncreaseQualityTooltipWithChance>Attempt to increase the quality of this item ({0}% chance)</EU.TryIncreaseQualityTooltipWithChance>
+  <EU.LackingQualityResource>missing resource ({0})</EU.LackingQualityResource>
+  <EU.MissingWorkStation>missing required work station ({0})</EU.MissingWorkStation>
+  <EU.WorkTypeDisabled>will never do {0}</EU.WorkTypeDisabled>
+  <EU.WorkTypeNotAssigned>not assigned to {0}</EU.WorkTypeNotAssigned>
+  <EU.IncreaseQualityMessage_Success>{0} succeeded and increased the quality of a {1}! ({2} success chance)</EU.IncreaseQualityMessage_Success>
+  <EU.IncreaseQualityMessage_Fail>{0} messed up and lowered the quality of a {1}! ({2} success chance)</EU.IncreaseQualityMessage_Fail>
+  <EU.IncreaseQualityMessage_Neutral>{0} tried to increase the quality of a {1}, but only succeeded in repairing it a little. ({2} success chance)</EU.IncreaseQualityMessage_Neutral>
+  <EU.UnresearchedError>You don't have the required research completed for this action ({0})</EU.UnresearchedError>
+  <EU.LackingResourcesError_1>missing required resources to upgrade ({0})</EU.LackingResourcesError_1>
+  <EU.LackingResourcesError_2>missing required resources to upgrade ({0}, {1})</EU.LackingResourcesError_2>
+  <EU.UpgradeStove>Upgrade this to an electric stove</EU.UpgradeStove>
+  <EU.DowngradeStove>Downgrade this to a fueled stove</EU.DowngradeStove>
+  <EU.UpgradeSmithy>Upgrade this to an electric smithy</EU.UpgradeSmithy>
+  <EU.DowngradeSmithy>Downgrade this to a fueled smithy</EU.DowngradeSmithy>
+  <EU.UpgradeTailoringBench>Upgrade this to an electric eailoring bench</EU.UpgradeTailoringBench>
+  <EU.DowngradeTailoringBench>Downgrade this to a hand tailoring bench</EU.DowngradeTailoringBench>
+  <EU.UpgradeGenerator>Upgrade this to a chemfuel powered generator</EU.UpgradeGenerator>
+  <EU.DowngradeGenerator>Downgrade this to a wood fired generator</EU.DowngradeGenerator>
+  <EU.UpgradeDoor>Upgrade this to an autodoor</EU.UpgradeDoor>
+  <EU.DowngradeDoor>Downgrade this to a regular door</EU.DowngradeDoor>
+  <EU.Settings.CurrentModVersion>Installed mod-version: {0}</EU.Settings.CurrentModVersion>
+  <EU.Settings.Title>Easy Upgrades Settings</EU.Settings.Title>
+  <EU.Settings.SuccessTitle>Base Success Chance</EU.Settings.SuccessTitle>
+  <EU.Settings.FailTitle>Base Fail Chance</EU.Settings.FailTitle>
+  <EU.Settings.MaterialsTitle>Materials Multiplier</EU.Settings.MaterialsTitle>
+  <EU.Settings.IncreaseItemQualityTooltip>The base chance to increase an item's quality from {0} to {1}.\n\nThis is modified by the pawn's skill - at skill level {2} this will be the success chance; below level {2} the chance will be lower, if above it'll be higher.</EU.Settings.IncreaseItemQualityTooltip>
+  <EU.Settings.DecreaseItemQualityTooltip>The base chance to decrease an item's quality from {0} to {1}.\n\nThis is modified by the pawn's skill.</EU.Settings.DecreaseItemQualityTooltip>
+  <EU.Settings.XtoY>{0} to {1}: {2}</EU.Settings.XtoY>
+  <EU.Settings.MaterialsNeededFor>for {0} quality: {1}</EU.Settings.MaterialsNeededFor>
+  <EU.Settings.MaterialsNeededTooltip>The amount of material needed to be gathered in relation to the item's original resource cost.\n\nFor example, if an item took 100 wood to craft and this value was .1, then 10 wood would be used for the quality increase task at the item's current quality level.</EU.Settings.MaterialsNeededTooltip>
+</LanguageData>

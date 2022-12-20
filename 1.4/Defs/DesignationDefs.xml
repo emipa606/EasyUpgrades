@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <DesignationDef>
+    <defName>Upgrade</defName>
+    <texturePath>UI/DesUp</texturePath>
+    <targetType>Thing</targetType>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>Downgrade</defName>
+    <texturePath>UI/DesDown</texturePath>
+    <targetType>Thing</targetType>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>IncreaseQuality_Building</defName>
+    <texturePath>UI/DesQualityUp</texturePath>
+    <targetType>Thing</targetType>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>IncreaseQuality_Apparel</defName>
+    <texturePath>UI/DesQualityUp</texturePath>
+    <targetType>Thing</targetType>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>IncreaseQuality_Art</defName>
+    <texturePath>UI/DesQualityUp</texturePath>
+    <targetType>Thing</targetType>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>IncreaseQuality_Item</defName>
+    <texturePath>UI/DesQualityUp</texturePath>
+    <targetType>Thing</targetType>
+  </DesignationDef>
+</Defs>
