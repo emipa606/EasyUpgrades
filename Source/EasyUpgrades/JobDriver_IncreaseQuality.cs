@@ -84,7 +84,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
         return num && pawn.Reserve(TargetB, job, 1, -1, null, errorOnFailed);
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         resourcesPlaced = new List<Thing>();
         var enumerable = IsCraftingJob ? MakeToilsForCrafting() : MakeToilsForBuilding();
@@ -294,6 +294,9 @@ internal class JobDriver_IncreaseQuality : JobDriver
             thing.TryGetComp<CompQuality>().SetQuality(qc + 1, ArtGenerationContext.Colony);
             thing.HitPoints = thing.MaxHitPoints;
             def = MessageTypeDefOf.PositiveEvent;
+            thing.graphicInt = null;
+            thing.styleGraphicInt = null;
+            thing.DirtyMapMesh(thing.Map);
         }
         else if (num < successChance + failChance)
         {
@@ -302,6 +305,9 @@ internal class JobDriver_IncreaseQuality : JobDriver
             thing.TryGetComp<CompQuality>().SetQuality(qc - 1, ArtGenerationContext.Colony);
             thing.HitPoints -= Mathf.RoundToInt(thing.MaxHitPoints / 10f);
             def = MessageTypeDefOf.NegativeEvent;
+            thing.graphicInt = null;
+            thing.styleGraphicInt = null;
+            thing.DirtyMapMesh(thing.Map);
         }
         else
         {

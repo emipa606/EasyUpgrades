@@ -5,7 +5,7 @@ namespace EasyUpgrades;
 
 internal class JobDriver_DowngradeThing : JobDriver_ModifyThing
 {
-    protected override DesignationDef Designation => EasyUpgradesDesignationDefOf.Downgrade;
+    public override DesignationDef Designation => EasyUpgradesDesignationDefOf.Downgrade;
 
     protected override ThingDef getModifyToThing(Thing t)
     {

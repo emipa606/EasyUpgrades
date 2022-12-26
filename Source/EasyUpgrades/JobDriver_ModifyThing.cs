@@ -14,7 +14,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
 
     private float workLeft;
 
-    protected override float TotalNeededWork =>
+    public override float TotalNeededWork =>
         Mathf.Clamp(Building.GetStatValue(StatDefOf.WorkToBuild), 20f, 3000f);
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)
@@ -22,7 +22,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         return pawn.Reserve(TargetA, job, 1, -1, null, errorOnFailed);
     }
 
-    protected override IEnumerable<Toil> MakeNewToils()
+    public override IEnumerable<Toil> MakeNewToils()
     {
         if (getModifyToThing(Target) == null)
         {
