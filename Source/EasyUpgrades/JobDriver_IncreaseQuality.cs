@@ -311,9 +311,21 @@ internal class JobDriver_IncreaseQuality : JobDriver
         }
         else
         {
-            key = "EU.IncreaseQualityMessage_Neutral";
             xp = (int)qc * 50f;
-            thing.HitPoints += Mathf.RoundToInt(thing.MaxHitPoints / 10f);
+            if (thing.HitPoints >= thing.MaxHitPoints)
+            {
+                key = "EU.IncreaseQualityMessage_Neutral_NoRepair";
+            }
+            else
+            {
+                key = "EU.IncreaseQualityMessage_Neutral";
+                thing.HitPoints += Mathf.RoundToInt(thing.MaxHitPoints / 10f);
+                if (thing.HitPoints > thing.MaxHitPoints)
+                {
+                    thing.HitPoints = thing.MaxHitPoints;
+                }
+            }
+
             def = MessageTypeDefOf.NeutralEvent;
         }
 

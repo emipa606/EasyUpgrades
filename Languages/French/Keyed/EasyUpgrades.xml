@@ -37,4 +37,5 @@
   <EU.Settings.XtoY>{0} à {1} : {2}</EU.Settings.XtoY>
   <EU.Settings.MaterialsNeededFor>pour {0} qualité : {1}</EU.Settings.MaterialsNeededFor>
   <EU.Settings.MaterialsNeededTooltip>Par exemple, si la fabrication d'un objet nécessite 100 bois et que cette valeur est de 0,1, 10 bois seront utilisés pour la tâche d'amélioration de la qualité au niveau de qualité actuel de l'objet.</EU.Settings.MaterialsNeededTooltip>
+  <EU.IncreaseQualityMessage_Neutral_NoRepair>{0} a essayé d'augmenter la qualité d'un {1} mais a échoué. ({2} chances de succès)</EU.IncreaseQualityMessage_Neutral_NoRepair>
 </LanguageData>

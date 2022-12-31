@@ -5,6 +5,8 @@
 Update of ToyWalruss mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 
+- Should now update graphics on update or downgrade to better work with mods like https://steamcommunity.com/sharedfiles/filedetails/?id=2101676323]Quality Of Building
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 	
@@ -62,4 +64,5 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2022-12-26
+
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2022-12-31

@@ -37,4 +37,5 @@
   <EU.Settings.XtoY>{0} - {1}: {2}</EU.Settings.XtoY>
   <EU.Settings.MaterialsNeededFor>для {0} качества: {1}</EU.Settings.MaterialsNeededFor>
   <EU.Settings.MaterialsNeededTooltip>Например, если для изготовления предмета требуется 100 дерева, а это значение равно .1, то для задания повышения качества при текущем уровне качества предмета будет использовано 10 дерева.</EU.Settings.MaterialsNeededTooltip>
+  <EU.IncreaseQualityMessage_Neutral_NoRepair>{0} попытался повысить качество {1}, но потерпел неудачу. ({2} шанс успеха)</EU.IncreaseQualityMessage_Neutral_NoRepair>
 </LanguageData>

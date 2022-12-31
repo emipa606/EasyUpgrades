@@ -37,4 +37,5 @@
   <EU.Settings.XtoY>{0}到{1}。{2}</EU.Settings.XtoY>
   <EU.Settings.MaterialsNeededFor>为{0}质量：{1}。</EU.Settings.MaterialsNeededFor>
   <EU.Settings.MaterialsNeededTooltip>与物品的原始资源成本相比，需要收集的材料数量。例如，如果一个物品需要100根木头来制作，而这个值是0.1，那么在物品当前的质量水平上，10根木头将被用于质量提高任务。</EU.Settings.MaterialsNeededTooltip>
+  <EU.IncreaseQualityMessage_Neutral_NoRepair>{0}试图提高一个{1}的质量，但失败了。({2}的成功机会)</EU.IncreaseQualityMessage_Neutral_NoRepair>
 </LanguageData>

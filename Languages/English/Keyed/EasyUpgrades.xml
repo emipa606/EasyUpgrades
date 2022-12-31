@@ -13,6 +13,7 @@
   <EU.IncreaseQualityMessage_Success>{0} succeeded and increased the quality of a {1}! ({2} success chance)</EU.IncreaseQualityMessage_Success>
   <EU.IncreaseQualityMessage_Fail>{0} messed up and lowered the quality of a {1}! ({2} success chance)</EU.IncreaseQualityMessage_Fail>
   <EU.IncreaseQualityMessage_Neutral>{0} tried to increase the quality of a {1}, but only succeeded in repairing it a little. ({2} success chance)</EU.IncreaseQualityMessage_Neutral>
+  <EU.IncreaseQualityMessage_Neutral_NoRepair>{0} tried to increase the quality of a {1} but failed. ({2} success chance)</EU.IncreaseQualityMessage_Neutral_NoRepair>
   <EU.UnresearchedError>You don't have the required research completed for this action ({0})</EU.UnresearchedError>
   <EU.LackingResourcesError_1>missing required resources to upgrade ({0})</EU.LackingResourcesError_1>
   <EU.LackingResourcesError_2>missing required resources to upgrade ({0}, {1})</EU.LackingResourcesError_2>
