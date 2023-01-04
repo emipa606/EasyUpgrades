@@ -30,10 +30,25 @@ internal class CompUpgrade : ThingComp
         }
 
         var disabled = false;
-        if (Props.researchPrerequisite != null)
+        var unfinishedRequirements = new List<string>();
+        if (Props.researchPrerequisite is { IsFinished: false })
         {
-            disabled = Find.ResearchManager.GetProgress(Props.researchPrerequisite) <
-                       Props.researchPrerequisite.baseCost;
+            disabled = true;
+            unfinishedRequirements.Add(Props.researchPrerequisite.LabelCap);
+        }
+
+        if (!disabled && Props.researchPrerequisites?.Any() == true)
+        {
+            foreach (var propsResearchPrerequisite in Props.researchPrerequisites)
+            {
+                if (propsResearchPrerequisite.IsFinished)
+                {
+                    continue;
+                }
+
+                unfinishedRequirements.Add(propsResearchPrerequisite.LabelCap);
+                disabled = true;
+            }
         }
 
         yield return new Command_ModifyThing
@@ -42,7 +57,7 @@ internal class CompUpgrade : ThingComp
             defaultLabel = "EU.Upgrade".Translate(),
             defaultDesc = Props.keyedTooltipString.Translate(),
             disabled = disabled,
-            disabledReason = "EU.UnresearchedError".Translate(Props.researchPrerequisite?.label),
+            disabledReason = "EU.UnresearchedError".Translate(string.Join(", ", unfinishedRequirements)),
             currentThing = parent,
             def = EasyUpgradesDesignationDefOf.Upgrade
         };

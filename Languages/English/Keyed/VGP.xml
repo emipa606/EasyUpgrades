@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <EU.UpgradeLoom>Upgrade this to an electric loom</EU.UpgradeLoom>
+  <EU.UpgradeOven>Upgrade this to an electric oven</EU.UpgradeOven>
+  <EU.UpgradePrepTable>Upgrade this to an electric prep table</EU.UpgradePrepTable>
+  <EU.UpgradeCandyTable>Upgrade this to an electric sweets table</EU.UpgradeCandyTable>
+  <EU.UpgradeGrindStone>Upgrade this to an electric grindstone</EU.UpgradeGrindStone>
+  <EU.DowngradeLoom>Downgrade this to a manual loom</EU.DowngradeLoom>
+  <EU.DowngradeOven>Downgrade this to a fueled oven</EU.DowngradeOven>
+  <EU.DowngradePrepTable>Downgrade this to a fueled prep table</EU.DowngradePrepTable>
+  <EU.DowngradeCandyTable>Downgrade this to a fueled sweets table</EU.DowngradeCandyTable>
+  <EU.DowngradeGrindStone>Downgrade this to a manual grindstone</EU.DowngradeGrindStone>
+</LanguageData>
