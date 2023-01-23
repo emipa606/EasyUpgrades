@@ -77,9 +77,18 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
 
     protected Building GetClosestNeededCraftingBuilding(Pawn pawn, Thing t)
     {
-        var defNames = t is MinifiedThing thing
-            ? thing.InnerThing.def.recipeMaker.recipeUsers.ConvertAll(thingDef => thingDef.defName)
-            : t.def.recipeMaker.recipeUsers.ConvertAll(thingDef => thingDef.defName);
+        var actualThing = t;
+        if (t is MinifiedThing thing)
+        {
+            actualThing = thing.InnerThing;
+        }
+
+        var defNames = actualThing.def.recipeMaker?.recipeUsers?.ConvertAll(thingDef => thingDef.defName);
+
+        if (defNames == null)
+        {
+            return null;
+        }
 
         return (from b in pawn.Map.listerBuildings.allBuildingsColonist
             where defNames.Contains(b.def.defName) && !b.IsForbidden(pawn) && !b.IsBurning()

@@ -10,9 +10,9 @@ namespace EasyUpgrades;
 public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
 {
     private List<Thing> resourcesPlaced;
-    private float totalNeededWork;
+    private new float totalNeededWork;
 
-    private float workLeft;
+    private new float workLeft;
 
     public override float TotalNeededWork =>
         Mathf.Clamp(Building.GetStatValue(StatDefOf.WorkToBuild), 20f, 3000f);
