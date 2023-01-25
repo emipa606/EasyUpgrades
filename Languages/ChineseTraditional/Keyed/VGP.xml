@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <EU.UpgradeLoom>升級:電動織機</EU.UpgradeLoom>
+  <EU.UpgradeOven>升級:電烤箱</EU.UpgradeOven>
+  <EU.UpgradePrepTable>升級:電動準備桌</EU.UpgradePrepTable>
+  <EU.UpgradeCandyTable>升級:電動糖果桌</EU.UpgradeCandyTable>
+  <EU.UpgradeGrindStone>升級:電動磨石</EU.UpgradeGrindStone>
+  <EU.DowngradeLoom>降級:手動織機</EU.DowngradeLoom>
+  <EU.DowngradeOven>降級:燃料烤箱</EU.DowngradeOven>
+  <EU.DowngradePrepTable>降級:燃料準備桌</EU.DowngradePrepTable>
+  <EU.DowngradeCandyTable>降級:燃料糖果桌</EU.DowngradeCandyTable>
+  <EU.DowngradeGrindStone>降級:手動磨石</EU.DowngradeGrindStone>
+
+</LanguageData>

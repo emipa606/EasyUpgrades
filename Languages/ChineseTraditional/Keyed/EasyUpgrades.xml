@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <EU.Upgrade>升級</EU.Upgrade>
+  <EU.Downgrade>降級</EU.Downgrade>
+  <EU.IncreaseQuality>提升品質</EU.IncreaseQuality>
+  <EU.TryIncreaseQualityTooltip>嘗試提升該物品的品質</EU.TryIncreaseQualityTooltip>
+  <EU.CannotIncreaseLegendaryQuality>已達傳奇，不須提升！</EU.CannotIncreaseLegendaryQuality>
+  <EU.TryIncreaseQualityTooltipWithChance>嘗試提升該物品的品質（{0}% 機率）</EU.TryIncreaseQualityTooltipWithChance>
+  <EU.LackingQualityResource>缺少資源 ({0})</EU.LackingQualityResource>
+  <EU.MissingWorkStation>缺少所需工作桌 ({0})</EU.MissingWorkStation>
+  <EU.WorkTypeDisabled> 無法執行 {0}</EU.WorkTypeDisabled>
+  <EU.WorkTypeNotAssigned>未分配給{0}</EU.WorkTypeNotAssigned>
+  <EU.IncreaseQualityMessage_Success>{0} 成功並提升了 {1} 的品質！ （{2}%成功機率）</EU.IncreaseQualityMessage_Success>
+  <EU.IncreaseQualityMessage_Fail>{0} 搞砸了並降低了 {1} 的品質！ （{2}%成功機率）</EU.IncreaseQualityMessage_Fail>
+  <EU.IncreaseQualityMessage_Neutral>{0}試圖提升{1}的品質，但只成功修復了一點點。 （{2}%成功機率）</EU.IncreaseQualityMessage_Neutral>
+  <EU.IncreaseQualityMessage_Neutral_NoRepair>{0}試圖提升{1}的品質但失敗了。 （{2}%成功機率）</EU.IncreaseQualityMessage_Neutral_NoRepair>
+  <EU.UnresearchedError>此項目無法升級，您尚未研究 ({0})</EU.UnresearchedError>
+  <EU.LackingResourcesError_1>缺少升級所需資源 ({0})</EU.LackingResourcesError_1>
+  <EU.LackingResourcesError_2>缺少升級所需資源（{0}、{1}）</EU.LackingResourcesError_2>
+  <EU.UpgradeStove>升級:電子料理桌</EU.UpgradeStove>
+  <EU.DowngradeStove>降級:爐灶</EU.DowngradeStove>
+  <EU.UpgradeSmithy>升級:電力鍛造桌</EU.UpgradeSmithy>
+  <EU.DowngradeSmithy>降級:燃料鍛造桌</EU.DowngradeSmithy>
+  <EU.UpgradeTailoringBench>升級:電力裁縫桌</EU.UpgradeTailoringBench>
+  <EU.DowngradeTailoringBench>降級:裁縫桌</EU.DowngradeTailoringBench>
+  <EU.UpgradeGenerator>升級:化合燃料發電機</EU.UpgradeGenerator>
+  <EU.DowngradeGenerator>降級:燃木發電機</EU.DowngradeGenerator>
+  <EU.UpgradeDoor>升級:自動門</EU.UpgradeDoor>
+  <EU.DowngradeDoor>降級:門</EU.DowngradeDoor>
+  <EU.Settings.CurrentModVersion>模組版本：{0}</EU.Settings.CurrentModVersion>
+  <EU.Settings.Title>輕鬆升級設置</EU.Settings.Title>
+  <EU.Settings.SuccessTitle>基礎成功機率</EU.Settings.SuccessTitle>
+  <EU.Settings.FailTitle>基礎失敗機率</EU.Settings.FailTitle>
+  <EU.Settings.MaterialsTitle>材料乘數</EU.Settings.MaterialsTitle>
+  <EU.Settings.IncreaseItemQualityTooltip>以建築技能修改 - 將物品品質從{0}提升到{1}的基本機率。\n\n在LV為{2}時，這將是成功機率；低於{2}時會導致機率降低，高於時則會更高。</EU.Settings.IncreaseItemQualityTooltip>
+  <EU.Settings.DecreaseItemQualityTooltip>品質從{0}降低到{1}的基本機率。\n\n這是由單位的技能修改的。</EU.Settings.DecreaseItemQualityTooltip>
+  <EU.Settings.XtoY>{0} 到 {1}：{2}</EU.Settings.XtoY>
+  <EU.Settings.MaterialsNeededFor>{0} 品質：{1}</EU.Settings.MaterialsNeededFor>
+  <EU.Settings.MaterialsNeededTooltip>相對於物品的原始資源成本需要收集的材料量。\n\n例：此物品材料需要100個木頭來製作，此為初始值，那麼10個木頭將是用於當前品質水平的品質提升所需材料。</EU.Settings.MaterialsNeededTooltip>
+
+</LanguageData>
