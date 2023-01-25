@@ -65,7 +65,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         modify.tickAction = delegate
         {
             workLeft -= modify.actor.GetStatValue(StatDefOf.ConstructionSpeed) * 1.3f;
-            modify.actor.skills.Learn(SkillDefOf.Construction,
+            modify.actor.skills?.Learn(SkillDefOf.Construction,
                 0.08f * modify.actor.GetStatValue(StatDefOf.GlobalLearningFactor));
             if (workLeft <= 0f)
             {

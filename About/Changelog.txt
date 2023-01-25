@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.4.5 - Fixed mechs upgrading stuff, also updated chinese translation via shiuanyue
+
+
 1.4.4 - Should now handle unupgradable things better
 
 

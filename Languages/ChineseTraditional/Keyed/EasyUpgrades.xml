@@ -37,5 +37,4 @@
   <EU.Settings.XtoY>{0} 到 {1}：{2}</EU.Settings.XtoY>
   <EU.Settings.MaterialsNeededFor>{0} 品質：{1}</EU.Settings.MaterialsNeededFor>
   <EU.Settings.MaterialsNeededTooltip>相對於物品的原始資源成本需要收集的材料量。\n\n例：此物品材料需要100個木頭來製作，此為初始值，那麼10個木頭將是用於當前品質水平的品質提升所需材料。</EU.Settings.MaterialsNeededTooltip>
-
 </LanguageData>

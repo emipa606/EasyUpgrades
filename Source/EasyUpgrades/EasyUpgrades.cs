@@ -35,8 +35,19 @@ public class EasyUpgrades
                 return 0f;
         }
 
-        var num2 = pawn.skills.GetSkill(activeSkill).Level / 14f;
-        return num * num2;
+        var skill = 0;
+
+        if (pawn.RaceProps.mechFixedSkillLevel > 0)
+        {
+            skill = pawn.RaceProps.mechFixedSkillLevel;
+        }
+
+        if (pawn.skills != null)
+        {
+            skill = pawn.skills.GetSkill(activeSkill).Level;
+        }
+
+        return num * (skill / 14f);
     }
 
     public static float GetFailChance(Pawn pawn, SkillDef activeSkill, Thing thing)
@@ -64,8 +75,19 @@ public class EasyUpgrades
                 break;
         }
 
-        var level = pawn.skills.GetSkill(activeSkill).Level;
-        var num2 = (20 - level) / 20f;
+        var skill = 0;
+
+        if (pawn.RaceProps.mechFixedSkillLevel > 0)
+        {
+            skill = pawn.RaceProps.mechFixedSkillLevel;
+        }
+
+        if (pawn.skills != null)
+        {
+            skill = pawn.skills.GetSkill(activeSkill).Level;
+        }
+
+        var num2 = (20 - skill) / 20f;
         return num + (num2 * 0.15f);
     }
 }

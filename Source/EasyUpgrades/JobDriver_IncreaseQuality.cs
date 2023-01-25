@@ -46,14 +46,27 @@ internal class JobDriver_IncreaseQuality : JobDriver
     {
         get
         {
+            int skill;
             if (IsArtisticJob && thingToWorkOn is MinifiedThing)
             {
                 var innerThing = (thingToWorkOn as MinifiedThing)?.InnerThing;
                 if (innerThing != null)
                 {
+                    skill = 0;
+
+                    if (pawn.RaceProps.mechFixedSkillLevel > 0)
+                    {
+                        skill = pawn.RaceProps.mechFixedSkillLevel;
+                    }
+
+                    if (pawn.skills != null)
+                    {
+                        skill = pawn.skills.GetSkill(ActiveSkill).levelInt;
+                    }
+
                     return Mathf.Clamp(
                         innerThing.def.GetStatValueAbstract(StatDefOf.WorkToMake, innerThing.Stuff) /
-                        pawn.skills.GetSkill(ActiveSkill).levelInt, 1f, 200f);
+                        Math.Max(skill, 0.01f), 1f, 200f);
                 }
             }
 
@@ -67,9 +80,21 @@ internal class JobDriver_IncreaseQuality : JobDriver
                 return 0f;
             }
 
+            skill = 0;
+
+            if (pawn.RaceProps.mechFixedSkillLevel > 0)
+            {
+                skill = pawn.RaceProps.mechFixedSkillLevel;
+            }
+
+            if (pawn.skills != null)
+            {
+                skill = pawn.skills.GetSkill(ActiveSkill).levelInt;
+            }
+
             return Mathf.Clamp(
                 thingToWorkOn.def.GetStatValueAbstract(StatDefOf.WorkToMake, thingToWorkOn.Stuff) /
-                pawn.skills.GetSkill(ActiveSkill).levelInt, 1f, 200f);
+                Math.Max(skill, 0.01f), 1f, 200f);
         }
     }
 
@@ -103,8 +128,9 @@ internal class JobDriver_IncreaseQuality : JobDriver
         modify.tickAction = delegate
         {
             workLeft -= modify.actor.GetStatValue(ActiveStatDef) * 1.3f;
-            modify.actor.skills.Learn(ActiveSkillDef,
+            modify.actor.skills?.Learn(ActiveSkillDef,
                 0.08f * modify.actor.GetStatValue(StatDefOf.GlobalLearningFactor));
+
             if (workLeft <= 0f)
             {
                 modify.actor.jobs.curDriver.ReadyForNextToil();
@@ -329,7 +355,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
             def = MessageTypeDefOf.NeutralEvent;
         }
 
-        localPawn.skills.Learn(ActiveSkillDef, xp);
+        localPawn.skills?.Learn(ActiveSkillDef, xp);
         Messages.Message(
             key.Translate(localPawn.NameShortColored,
                 labelNoCount.Substring(0, labelNoCount.IndexOf("(", StringComparison.Ordinal) - 1),
