@@ -1,26 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
   <UpgradeThing.label>將指定項目升級為對應項目</UpgradeThing.label>
   <UpgradeThing.verb>升級</UpgradeThing.verb>
   <UpgradeThing.gerund>升級</UpgradeThing.gerund>
-  
   <DowngradeThing.label>將指定項目降級為對應項目</DowngradeThing.label>
   <DowngradeThing.verb>降級</DowngradeThing.verb>
   <DowngradeThing.gerund>降級</DowngradeThing.gerund>
-  
   <IncreaseQuality_Building.label>嘗試提升該建築的品質</IncreaseQuality_Building.label>
   <IncreaseQuality_Building.verb>提升品質</IncreaseQuality_Building.verb>
   <IncreaseQuality_Building.gerund>提升品質</IncreaseQuality_Building.gerund>
-  
   <IncreaseQuality_Apparel.label>嘗試提升該裝備的品質</IncreaseQuality_Apparel.label>
   <IncreaseQuality_Apparel.verb>提升品質</IncreaseQuality_Apparel.verb>
   <IncreaseQuality_Apparel.gerund>提升品質</IncreaseQuality_Apparel.gerund>
-  
   <IncreaseQuality_Item.label>嘗試提升該物品的品質</IncreaseQuality_Item.label>
   <IncreaseQuality_Item.verb>提升品質</IncreaseQuality_Item.verb>
   <IncreaseQuality_Item.gerund>提升品質</IncreaseQuality_Item.gerund>
-  
   <IncreaseQuality_Art.label>嘗試提升該雕像的品質</IncreaseQuality_Art.label>
   <IncreaseQuality_Art.verb>提升品質</IncreaseQuality_Art.verb>
   <IncreaseQuality_Art.gerund>提升品質</IncreaseQuality_Art.gerund>
