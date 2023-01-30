@@ -38,4 +38,7 @@
   <EU.Settings.MaterialsNeededFor>für {0} Qualität: {1}</EU.Settings.MaterialsNeededFor>
   <EU.Settings.MaterialsNeededTooltip>Die Menge an Material, die im Verhältnis zu den ursprünglichen Ressourcenkosten des Gegenstands gesammelt werden muss.\n\nWenn ein Gegenstand beispielsweise 100 Holz zum Herstellen benötigt und dieser Wert 0,1 beträgt, würden 10 Holz für die Qualitätsverbesserungsaufgabe auf der aktuellen Qualitätsstufe des Gegenstands verwendet werden.</EU.Settings.MaterialsNeededTooltip>
   <EU.IncreaseQualityMessage_Neutral_NoRepair>{0} hat versucht, die Qualität eines {1} zu erhöhen, ist aber gescheitert. ({2} Erfolgschance)</EU.IncreaseQualityMessage_Neutral_NoRepair>
+  <EU.CannotIncreaseQuality>Kann die Qualität dieses Artikels nicht erhöhen, die Qualität ist bereits zu hoch!</EU.CannotIncreaseQuality>
+  <EU.Settings.MaxQuality>Maximale Qualität: {0}</EU.Settings.MaxQuality>
+  <EU.Settings.MaxQualityTooltip>Maximale Qualität, die jedes Upgrade liefern kann</EU.Settings.MaxQualityTooltip>
 </LanguageData>

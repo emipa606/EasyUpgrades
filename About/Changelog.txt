@@ -1,5 +1,9 @@
 # Changelog for EasyUpgrades
 
+1.4.7 - Max quality to upgrade is now configurable in the mod settings.
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+
+
 1.4.6 - Improved chinese translation, via shiuanyue
 
 

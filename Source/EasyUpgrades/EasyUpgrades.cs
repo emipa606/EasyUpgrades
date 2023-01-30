@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RimWorld;
 using Verse;
 
@@ -7,9 +8,21 @@ public class EasyUpgrades
 {
     public static int baseLevel = 14;
 
+    public static List<QualityCategory> QualityArray =
+        new List<QualityCategory>
+        {
+            QualityCategory.Awful, QualityCategory.Poor, QualityCategory.Normal, QualityCategory.Good,
+            QualityCategory.Excellent, QualityCategory.Masterwork, QualityCategory.Legendary
+        };
+
     public static float GetSuccessChance(Pawn pawn, SkillDef activeSkill, Thing thing)
     {
         thing.TryGetQuality(out var qc);
+        if (QualityArray.IndexOf(qc) >= EasyUpgradesSettings.maxUpgradableQuality)
+        {
+            return 0f;
+        }
+
         float num;
         switch (qc)
         {
@@ -53,6 +66,11 @@ public class EasyUpgrades
     public static float GetFailChance(Pawn pawn, SkillDef activeSkill, Thing thing)
     {
         thing.TryGetQuality(out var qc);
+        if (QualityArray.IndexOf(qc) > EasyUpgradesSettings.maxUpgradableQuality)
+        {
+            return 1f;
+        }
+
         var num = 0f;
         switch (qc)
         {

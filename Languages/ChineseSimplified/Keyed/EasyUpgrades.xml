@@ -38,4 +38,7 @@
   <EU.Settings.MaterialsNeededFor>为{0}质量：{1}。</EU.Settings.MaterialsNeededFor>
   <EU.Settings.MaterialsNeededTooltip>与物品的原始资源成本相比，需要收集的材料数量。例如，如果一个物品需要100根木头来制作，而这个值是0.1，那么在物品当前的质量水平上，10根木头将被用于质量提高任务。</EU.Settings.MaterialsNeededTooltip>
   <EU.IncreaseQualityMessage_Neutral_NoRepair>{0}试图提高一个{1}的质量，但失败了。({2}的成功机会)</EU.IncreaseQualityMessage_Neutral_NoRepair>
+  <EU.CannotIncreaseQuality>不能提高这个项目的质量，质量已经很高了!</EU.CannotIncreaseQuality>
+  <EU.Settings.MaxQuality>最高质量：{0}。</EU.Settings.MaxQuality>
+  <EU.Settings.MaxQualityTooltip>任何升级能够产生的最大质量</EU.Settings.MaxQualityTooltip>
 </LanguageData>

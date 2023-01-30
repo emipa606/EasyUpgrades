@@ -5,6 +5,7 @@
   <EU.IncreaseQuality>Increase quality</EU.IncreaseQuality>
   <EU.TryIncreaseQualityTooltip>Attempt to increase the quality of this item</EU.TryIncreaseQualityTooltip>
   <EU.CannotIncreaseLegendaryQuality>Cannot increase the quality of a legendary item!</EU.CannotIncreaseLegendaryQuality>
+  <EU.CannotIncreaseQuality>Cannot increase the quality of this item, quality already to high!</EU.CannotIncreaseQuality>
   <EU.TryIncreaseQualityTooltipWithChance>Attempt to increase the quality of this item ({0}% chance)</EU.TryIncreaseQualityTooltipWithChance>
   <EU.LackingQualityResource>missing resource ({0})</EU.LackingQualityResource>
   <EU.MissingWorkStation>missing required work station ({0})</EU.MissingWorkStation>
@@ -34,6 +35,8 @@
   <EU.Settings.MaterialsTitle>Materials Multiplier</EU.Settings.MaterialsTitle>
   <EU.Settings.IncreaseItemQualityTooltip>The base chance to increase an item's quality from {0} to {1}.\n\nThis is modified by the pawn's skill - at skill level {2} this will be the success chance; below level {2} the chance will be lower, if above it'll be higher.</EU.Settings.IncreaseItemQualityTooltip>
   <EU.Settings.DecreaseItemQualityTooltip>The base chance to decrease an item's quality from {0} to {1}.\n\nThis is modified by the pawn's skill.</EU.Settings.DecreaseItemQualityTooltip>
+  <EU.Settings.MaxQuality>Maximum quality: {0}</EU.Settings.MaxQuality>
+  <EU.Settings.MaxQualityTooltip>Maximum quality any upgrade can yield</EU.Settings.MaxQualityTooltip>
   <EU.Settings.XtoY>{0} to {1}: {2}</EU.Settings.XtoY>
   <EU.Settings.MaterialsNeededFor>for {0} quality: {1}</EU.Settings.MaterialsNeededFor>
   <EU.Settings.MaterialsNeededTooltip>The amount of material needed to be gathered in relation to the item's original resource cost.\n\nFor example, if an item took 100 wood to craft and this value was .1, then 10 wood would be used for the quality increase task at the item's current quality level.</EU.Settings.MaterialsNeededTooltip>

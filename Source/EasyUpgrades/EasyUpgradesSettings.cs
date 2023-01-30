@@ -37,6 +37,7 @@ internal class EasyUpgradesSettings : ModSettings
     public static float neededMaterialsExcellentQuality = 2f;
 
     public static float neededMaterialsMasterworkQuality = 3f;
+    public static int maxUpgradableQuality = 6;
 
     public override void ExposeData()
     {
@@ -57,6 +58,7 @@ internal class EasyUpgradesSettings : ModSettings
         Scribe_Values.Look(ref neededMaterialsGoodQuality, "neededMaterialsGoodQuality", 1.25f);
         Scribe_Values.Look(ref neededMaterialsExcellentQuality, "neededMaterialsExcellentQuality", 2f);
         Scribe_Values.Look(ref neededMaterialsMasterworkQuality, "neededMaterialsMasterworkQuality", 3f);
+        Scribe_Values.Look(ref maxUpgradableQuality, "maxUpgradableQuality", 6);
         base.ExposeData();
     }
 }

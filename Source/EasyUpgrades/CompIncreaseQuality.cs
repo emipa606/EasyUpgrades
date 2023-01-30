@@ -59,8 +59,13 @@ internal class CompIncreaseQuality : ThingComp
             defaultDesc = "EU.TryIncreaseQualityTooltip".Translate()
         };
         var compQuality = parent.TryGetComp<CompQuality>();
-        obj.disabled = compQuality is { Quality: QualityCategory.Legendary };
-        obj.disabledReason = "EU.CannotIncreaseLegendaryQuality".Translate();
+        if (compQuality != null && EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >=
+            EasyUpgradesSettings.maxUpgradableQuality)
+        {
+            obj.disabled = true;
+            obj.disabledReason = "EU.CannotIncreaseQuality".Translate();
+        }
+
         obj.action = delegate { parent.Map.designationManager.AddDesignation(des); };
         return obj;
     }
