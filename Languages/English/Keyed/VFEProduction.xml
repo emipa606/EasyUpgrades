@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <EU.UpgradeTableButcher>Upgrade this to an electric butcher</EU.UpgradeTableButcher>
+  <EU.DowngradeTableButcher>Downgrade this to a manual butcher table</EU.DowngradeTableButcher>
+  <EU.UpgradeDrugLab>Upgrade this to an electric drug lab</EU.UpgradeDrugLab>
+  <EU.DowngradeDrugLab>Downgrade this to a manual drug lab</EU.DowngradeDrugLab>
+  <EU.UpgradeSmelter>Upgrade this to an electric smelter</EU.UpgradeSmelter>
+  <EU.DowngradeSmelter>Downgrade this to a fueled smelter</EU.DowngradeSmelter>
+  <EU.UpgradeTableStonecutter>Upgrade this to an electric stonecutter's table</EU.UpgradeTableStonecutter>
+  <EU.DowngradeTableStonecutter>Downgrade this to a manual stonecutter's table</EU.DowngradeTableStonecutter>
+</LanguageData>

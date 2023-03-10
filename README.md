@@ -8,6 +8,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 - Should now update graphics on update or downgrade to better work with mods like https://steamcommunity.com/sharedfiles/filedetails/?id=2101676323]Quality Of Building
 - Added support for the workbenches in https://steamcommunity.com/sharedfiles/filedetails/?id=2007062982]VGP Garden Gourmet and https://steamcommunity.com/sharedfiles/filedetails/?id=2007062162]VGP Garden Fabrics
 - Added possibility for multiple research requirements when upgrading.
+- Max quality to upgrade is now selectable in the mod-settings
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 
@@ -66,4 +67,4 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2023-01-30
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2023-03-10
