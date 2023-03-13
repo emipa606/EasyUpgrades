@@ -52,7 +52,7 @@ internal class CompIncreaseQuality : ThingComp
 
     private Command CreateCommandForDesignation(Designation des)
     {
-        var obj = new Command_Action
+        var gizmo = new Command_Action
         {
             icon = ContentFinder<Texture2D>.Get("UI/QualityUp"),
             defaultLabel = "EU.IncreaseQuality".Translate(),
@@ -62,11 +62,17 @@ internal class CompIncreaseQuality : ThingComp
         if (compQuality != null && EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >=
             EasyUpgradesSettings.maxUpgradableQuality)
         {
-            obj.disabled = true;
-            obj.disabledReason = "EU.CannotIncreaseQuality".Translate();
+            gizmo.disabled = true;
+            gizmo.disabledReason = "EU.CannotIncreaseQuality".Translate();
+        }
+        else
+        {
+            gizmo.defaultDesc += "\n" +
+                                 "EU.IncreaseQualityCost".Translate(WorkGiver_IncreaseQuality
+                                     .GetStuffNeededForQualityIncrease(parent).Summary);
         }
 
-        obj.action = delegate { parent.Map.designationManager.AddDesignation(des); };
-        return obj;
+        gizmo.action = delegate { parent.Map.designationManager.AddDesignation(des); };
+        return gizmo;
     }
 }

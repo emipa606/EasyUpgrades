@@ -41,4 +41,6 @@
   <EU.CannotIncreaseQuality>不能提高这个项目的质量，质量已经很高了!</EU.CannotIncreaseQuality>
   <EU.Settings.MaxQuality>最高质量：{0}。</EU.Settings.MaxQuality>
   <EU.Settings.MaxQualityTooltip>任何升级能够产生的最大质量</EU.Settings.MaxQualityTooltip>
+  <EU.IncreaseQualityCost>成本：{0}</EU.IncreaseQualityCost>
+  <EU.DecreaseQualityReturn>返回。{0}</EU.DecreaseQualityReturn>
 </LanguageData>

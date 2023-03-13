@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -51,7 +52,7 @@ internal class CompUpgrade : ThingComp
             }
         }
 
-        yield return new Command_ModifyThing
+        var command = new Command_ModifyThing
         {
             icon = ContentFinder<Texture2D>.Get("UI/Up"),
             defaultLabel = "EU.Upgrade".Translate(),
@@ -61,5 +62,13 @@ internal class CompUpgrade : ThingComp
             currentThing = parent,
             def = EasyUpgradesDesignationDefOf.Upgrade
         };
+
+        if (!disabled && additionalRequiredResources.Any())
+        {
+            command.defaultDesc += "\n" + "EU.IncreaseQualityCost".Translate(string.Join(", ",
+                additionalRequiredResources.Select(thingdefCount => thingdefCount.Summary)));
+        }
+
+        yield return command;
     }
 }

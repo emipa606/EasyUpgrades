@@ -41,4 +41,6 @@
   <EU.CannotIncreaseQuality>Невозможно повысить качество этого товара, качество и так на высоте!</EU.CannotIncreaseQuality>
   <EU.Settings.MaxQuality>Максимальное качество: {0}</EU.Settings.MaxQuality>
   <EU.Settings.MaxQualityTooltip>Максимальное качество, которое может обеспечить любая модернизация</EU.Settings.MaxQualityTooltip>
+  <EU.IncreaseQualityCost>Стоимость: {0}</EU.IncreaseQualityCost>
+  <EU.DecreaseQualityReturn>Возвращает: {0}</EU.DecreaseQualityReturn>
 </LanguageData>

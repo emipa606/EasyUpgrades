@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -27,7 +28,7 @@ internal class CompDowngrade : ThingComp
     {
         if (parent.Faction == Faction.OfPlayer && !HasDowngradeDesignation)
         {
-            yield return new Command_ModifyThing
+            var command = new Command_ModifyThing
             {
                 icon = ContentFinder<Texture2D>.Get("UI/Down"),
                 defaultLabel = "EU.Downgrade".Translate(),
@@ -35,6 +36,14 @@ internal class CompDowngrade : ThingComp
                 currentThing = parent,
                 def = EasyUpgradesDesignationDefOf.Downgrade
             };
+
+            if (refundedResources.Any())
+            {
+                command.defaultDesc += "\n" + "EU.DecreaseQualityReturn".Translate(string.Join(", ",
+                    refundedResources.Select(thingdefCount => thingdefCount.Summary)));
+            }
+
+            yield return command;
         }
     }
 }

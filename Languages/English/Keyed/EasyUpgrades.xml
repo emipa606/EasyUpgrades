@@ -4,6 +4,8 @@
   <EU.Downgrade>Downgrade</EU.Downgrade>
   <EU.IncreaseQuality>Increase quality</EU.IncreaseQuality>
   <EU.TryIncreaseQualityTooltip>Attempt to increase the quality of this item</EU.TryIncreaseQualityTooltip>
+  <EU.IncreaseQualityCost>Cost: {0}</EU.IncreaseQualityCost>
+  <EU.DecreaseQualityReturn>Returns: {0}</EU.DecreaseQualityReturn>
   <EU.CannotIncreaseLegendaryQuality>Cannot increase the quality of a legendary item!</EU.CannotIncreaseLegendaryQuality>
   <EU.CannotIncreaseQuality>Cannot increase the quality of this item, quality already to high!</EU.CannotIncreaseQuality>
   <EU.TryIncreaseQualityTooltipWithChance>Attempt to increase the quality of this item ({0}% chance)</EU.TryIncreaseQualityTooltipWithChance>
@@ -22,7 +24,7 @@
   <EU.DowngradeStove>Downgrade this to a fueled stove</EU.DowngradeStove>
   <EU.UpgradeSmithy>Upgrade this to an electric smithy</EU.UpgradeSmithy>
   <EU.DowngradeSmithy>Downgrade this to a fueled smithy</EU.DowngradeSmithy>
-  <EU.UpgradeTailoringBench>Upgrade this to an electric eailoring bench</EU.UpgradeTailoringBench>
+  <EU.UpgradeTailoringBench>Upgrade this to an electric tailoring bench</EU.UpgradeTailoringBench>
   <EU.DowngradeTailoringBench>Downgrade this to a hand tailoring bench</EU.DowngradeTailoringBench>
   <EU.UpgradeGenerator>Upgrade this to a chemfuel powered generator</EU.UpgradeGenerator>
   <EU.DowngradeGenerator>Downgrade this to a wood fired generator</EU.DowngradeGenerator>

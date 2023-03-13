@@ -18,6 +18,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 
 - Should now update graphics on update or downgrade to better work with mods like [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2101676323]Quality Of Building[/url]
 - Added support for the workbenches in [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2007062982]VGP Garden Gourmet[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2007062162]VGP Garden Fabrics[/url]
+- Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1880253632]Vanilla Furniture Expanded - Production[/url]
 - Added possibility for multiple research requirements when upgrading.
 - Max quality to upgrade is now selectable in the mod-settings
 
@@ -25,7 +26,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 
 [table]
     [tr]
-        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://dsc.gg/mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
         [td][url=https://github.com/emipa606/EasyUpgrades][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
     [/tr]
     [tr]
@@ -72,5 +73,5 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2023-03-10[/url]</description>
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2023-03-13[/url]</description>
 </ModMetaData>

@@ -41,4 +41,6 @@
   <EU.CannotIncreaseQuality>Impossible d'augmenter la qualité de cet article, qualité déjà trop élevée !</EU.CannotIncreaseQuality>
   <EU.Settings.MaxQuality>Qualité maximale : {0}</EU.Settings.MaxQuality>
   <EU.Settings.MaxQualityTooltip>Qualité maximale que toute mise à niveau peut apporter</EU.Settings.MaxQualityTooltip>
+  <EU.IncreaseQualityCost>Coût : {0}</EU.IncreaseQualityCost>
+  <EU.DecreaseQualityReturn>Retourne : {0}</EU.DecreaseQualityReturn>
 </LanguageData>

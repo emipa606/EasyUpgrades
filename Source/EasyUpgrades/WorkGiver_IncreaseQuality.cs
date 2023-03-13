@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -153,7 +154,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         return num >= count;
     }
 
-    private ThingDefCountClass GetStuffNeededForQualityIncrease(Thing t)
+    public static ThingDefCountClass GetStuffNeededForQualityIncrease(Thing t)
     {
         if (t is MinifiedThing thing)
         {
@@ -164,7 +165,24 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         var stuff = t.Stuff;
         if (!t.def.MadeFromStuff || stuff == null)
         {
-            return new ThingDefCountClass(ThingDefOf.WoodLog, 10);
+            var stuffToUse = ThingDefOf.WoodLog;
+
+            switch (t.def.techLevel)
+            {
+                case TechLevel.Industrial:
+                    stuffToUse = ThingDefOf.Steel;
+                    break;
+                case TechLevel.Spacer:
+                case TechLevel.Ultra:
+                case TechLevel.Archotech:
+                    stuffToUse = ThingDefOf.Plasteel;
+                    break;
+            }
+
+            var value = t.def.BaseMarketValue / 10;
+            var amountToUse = (int)Math.Max(10, Math.Round(value / stuffToUse.BaseMarketValue));
+
+            return new ThingDefCountClass(stuffToUse, amountToUse);
         }
 
         if (!t.TryGetQuality(out var qc))
