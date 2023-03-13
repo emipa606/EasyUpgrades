@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.4.10 - Added reset-button to settings
+
+
 1.4.9 - Generic upgrade costs is now dependent on tech-level and item value. Upgrade/downgrade gizmos tooltips now show cost and returns.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

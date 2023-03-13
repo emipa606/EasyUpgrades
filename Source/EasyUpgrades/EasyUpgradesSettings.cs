@@ -37,7 +37,32 @@ internal class EasyUpgradesSettings : ModSettings
     public static float neededMaterialsExcellentQuality = 2f;
 
     public static float neededMaterialsMasterworkQuality = 3f;
+
     public static int maxUpgradableQuality = 6;
+
+
+    public static void Reset()
+    {
+        increaseAwfulQualityChance = 0.95f;
+        increasePoorQualityChance = 0.9f;
+        increaseNormalQualityChance = 0.85f;
+        increaseGoodQualityChance = 0.6f;
+        increaseExcellentQualityChance = 0.25f;
+        increaseMasterworkQualityChance = 0.15f;
+        decreasePoorQualityChance = 0.02f;
+        decreaseNormalQualityChance = 0.07f;
+        decreaseGoodQualityChance = 0.12f;
+        decreaseExcellentQualityChance = 0.19f;
+        decreaseMasterworkQualityChance = 0.25f;
+        neededMaterialsAwfulQuality = 0.2f;
+        neededMaterialsPoorQuality = 0.6f;
+        neededMaterialsNormalQuality = 0.9f;
+        neededMaterialsGoodQuality = 1.25f;
+        neededMaterialsExcellentQuality = 2f;
+        neededMaterialsMasterworkQuality = 3f;
+        maxUpgradableQuality = 6;
+    }
+
 
     public override void ExposeData()
     {

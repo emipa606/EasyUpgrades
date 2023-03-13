@@ -26,24 +26,26 @@ internal class CompDowngrade : ThingComp
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        if (parent.Faction == Faction.OfPlayer && !HasDowngradeDesignation)
+        if (parent.Faction != Faction.OfPlayer || HasDowngradeDesignation)
         {
-            var command = new Command_ModifyThing
-            {
-                icon = ContentFinder<Texture2D>.Get("UI/Down"),
-                defaultLabel = "EU.Downgrade".Translate(),
-                defaultDesc = Props.keyedTooltipString.Translate(),
-                currentThing = parent,
-                def = EasyUpgradesDesignationDefOf.Downgrade
-            };
-
-            if (refundedResources.Any())
-            {
-                command.defaultDesc += "\n" + "EU.DecreaseQualityReturn".Translate(string.Join(", ",
-                    refundedResources.Select(thingdefCount => thingdefCount.Summary)));
-            }
-
-            yield return command;
+            yield break;
         }
+
+        var command = new Command_ModifyThing
+        {
+            icon = ContentFinder<Texture2D>.Get("UI/Down"),
+            defaultLabel = "EU.Downgrade".Translate(),
+            defaultDesc = Props.keyedTooltipString.Translate(),
+            currentThing = parent,
+            def = EasyUpgradesDesignationDefOf.Downgrade
+        };
+
+        if (refundedResources.Any())
+        {
+            command.defaultDesc += "\n" + "EU.DecreaseQualityReturn".Translate(string.Join(", ",
+                refundedResources.Select(thingdefCount => thingdefCount.Summary)));
+        }
+
+        yield return command;
     }
 }

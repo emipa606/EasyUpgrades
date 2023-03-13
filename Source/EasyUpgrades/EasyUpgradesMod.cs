@@ -30,7 +30,7 @@ internal class EasyUpgradesMod : Mod
         var listOfQualities = new[]
             { awfulLabel, poorLabel, normalLabel, goodLabel, excellentLabel, masterworkLabel, legendaryLabel };
         var listing_Standard = new Listing_Standard();
-        listing_Standard.Begin(new Rect(inRect.x, inRect.y, inRect.width / 2.15f, inRect.height / 1.5f));
+        listing_Standard.Begin(new Rect(inRect.x, inRect.y, inRect.width / 2.15f, inRect.height / 1.6f));
 
         listing_Standard.Label(
             "EU.Settings.MaxQuality".Translate(listOfQualities[EasyUpgradesSettings.maxUpgradableQuality]), -1f,
@@ -97,7 +97,7 @@ internal class EasyUpgradesMod : Mod
         }
 
         listing_Standard.End();
-        listing_Standard.Begin(new Rect(inRect.width / 2f, inRect.y, inRect.width / 2f, inRect.height / 1.5f));
+        listing_Standard.Begin(new Rect(inRect.width / 2f, inRect.y, inRect.width / 2f, inRect.height / 1.6f));
         if (EasyUpgradesSettings.maxUpgradableQuality > 0)
         {
             listing_Standard.Label("EU.Settings.SuccessTitle".Translate());
@@ -167,14 +167,14 @@ internal class EasyUpgradesMod : Mod
         }
 
         listing_Standard.End();
-        listing_Standard.Begin(new Rect(inRect.x, inRect.height / 1.5f, inRect.width, 35f));
+        listing_Standard.Begin(new Rect(inRect.x, inRect.height / 1.6f, inRect.width, 35f));
         if (EasyUpgradesSettings.maxUpgradableQuality > 0)
         {
             listing_Standard.Label("EU.Settings.MaterialsTitle".Translate());
             listing_Standard.GapLine(2f);
             listing_Standard.Gap(6f);
             listing_Standard.End();
-            listing_Standard.Begin(new Rect(inRect.x, (inRect.height / 1.5f) + 35f, inRect.width / 2.15f, 150f));
+            listing_Standard.Begin(new Rect(inRect.x, (inRect.height / 1.6f) + 35f, inRect.width / 2.15f, 180f));
             listing_Standard.Label(
                 "EU.Settings.MaterialsNeededFor".Translate(awfulLabel,
                     EasyUpgradesSettings.neededMaterialsAwfulQuality.ToString()), -1f,
@@ -205,9 +205,18 @@ internal class EasyUpgradesMod : Mod
                 listing_Standard.Slider(EasyUpgradesSettings.neededMaterialsNormalQuality, 0f, 10f);
         }
 
+        if (currentVersion != null)
+        {
+            listing_Standard.Gap(1f);
+            GUI.contentColor = Color.gray;
+            listing_Standard.Label("EU.Settings.CurrentModVersion".Translate(currentVersion));
+            GUI.contentColor = Color.white;
+        }
+
+
         listing_Standard.End();
         listing_Standard.Begin(
-            new Rect(inRect.width / 2f, (inRect.height / 1.5f) + 35f, inRect.width / 2.15f, 170f));
+            new Rect(inRect.width / 2f, (inRect.height / 1.6f) + 35f, inRect.width / 2.15f, 180f));
         if (EasyUpgradesSettings.maxUpgradableQuality > 3)
         {
             listing_Standard.Label(
@@ -240,12 +249,9 @@ internal class EasyUpgradesMod : Mod
                 listing_Standard.Slider(EasyUpgradesSettings.neededMaterialsMasterworkQuality, 0f, 10f);
         }
 
-        if (currentVersion != null)
+        if (listing_Standard.ButtonText("ResetButton".Translate()))
         {
-            listing_Standard.Gap(1f);
-            GUI.contentColor = Color.gray;
-            listing_Standard.Label("EU.Settings.CurrentModVersion".Translate(currentVersion));
-            GUI.contentColor = Color.white;
+            EasyUpgradesSettings.Reset();
         }
 
         listing_Standard.End();
