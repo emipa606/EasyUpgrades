@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.4.11 - Dubs Stuff has a qualitycomp but its dependent on a mod-option. So will check for quality comp when creating gizmos as well
+
+
 1.4.10 - Added reset-button to settings
 
 

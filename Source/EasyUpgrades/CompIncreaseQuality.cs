@@ -26,28 +26,44 @@ internal class CompIncreaseQuality : ThingComp
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
+        if (!parent.def.HasComp(typeof(CompQuality)))
+        {
+            yield break;
+        }
+
         if (parent.Faction == Faction.OfPlayer)
         {
             if (parent.def.IsArt && !HasIncreaseArtQualityDes)
             {
                 yield return CreateCommandForDesignation(new Designation(parent, artDes));
+                yield break;
             }
-            else if (parent is Building && !HasIncreaseBuildingQualityDes)
+
+            if (parent is Building && !HasIncreaseBuildingQualityDes)
             {
                 yield return CreateCommandForDesignation(new Designation(parent, buildingDes));
             }
+
+            yield break;
         }
-        else if (parent.Faction == null)
+
+        if (parent.Faction != null)
         {
-            if (parent.def.IsApparel && !HasIncreaseApparelQualityDes)
-            {
-                yield return CreateCommandForDesignation(new Designation(parent, apparelDes));
-            }
-            else if (parent.def.IsWeapon && !HasIncreaseItemQualityDes)
-            {
-                yield return CreateCommandForDesignation(new Designation(parent, itemDes));
-            }
+            yield break;
         }
+
+        if (parent.def.IsApparel && !HasIncreaseApparelQualityDes)
+        {
+            yield return CreateCommandForDesignation(new Designation(parent, apparelDes));
+            yield break;
+        }
+
+        if (!parent.def.IsWeapon || HasIncreaseItemQualityDes)
+        {
+            yield break;
+        }
+
+        yield return CreateCommandForDesignation(new Designation(parent, itemDes));
     }
 
     private Command CreateCommandForDesignation(Designation des)
@@ -59,17 +75,20 @@ internal class CompIncreaseQuality : ThingComp
             defaultDesc = "EU.TryIncreaseQualityTooltip".Translate()
         };
         var compQuality = parent.TryGetComp<CompQuality>();
-        if (compQuality != null && EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >=
-            EasyUpgradesSettings.maxUpgradableQuality)
+        if (compQuality != null)
         {
-            gizmo.disabled = true;
-            gizmo.disabledReason = "EU.CannotIncreaseQuality".Translate();
-        }
-        else
-        {
-            gizmo.defaultDesc += "\n" +
-                                 "EU.IncreaseQualityCost".Translate(WorkGiver_IncreaseQuality
-                                     .GetStuffNeededForQualityIncrease(parent).Summary);
+            if (EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >=
+                EasyUpgradesSettings.maxUpgradableQuality)
+            {
+                gizmo.disabled = true;
+                gizmo.disabledReason = "EU.CannotIncreaseQuality".Translate();
+            }
+            else
+            {
+                gizmo.defaultDesc += "\n" +
+                                     "EU.IncreaseQualityCost".Translate(WorkGiver_IncreaseQuality
+                                         .GetStuffNeededForQualityIncrease(parent).Summary);
+            }
         }
 
         gizmo.action = delegate { parent.Map.designationManager.AddDesignation(des); };

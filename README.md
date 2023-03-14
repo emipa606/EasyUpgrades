@@ -10,6 +10,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 - Added support for https://steamcommunity.com/sharedfiles/filedetails/?id=1880253632]Vanilla Furniture Expanded - Production
 - Added possibility for multiple research requirements when upgrading.
 - Max quality to upgrade is now selectable in the mod-settings
+- The cost for things not made of "stuff" is now based on tech-level and value of item. No longer 10x wood to upgrade a recon armor.
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 
@@ -68,4 +69,4 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2023-03-13
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2023-03-14
