@@ -305,14 +305,20 @@ internal class JobDriver_IncreaseQuality : JobDriver
         var failChance = EasyUpgrades.GetFailChance(localPawn, ActiveSkillDef, thing);
         var num = Random.Range(0f, 1f);
         var labelNoCount = thing.LabelNoCount;
+        var map = thing.Map;
         if (thing is MinifiedThing minifiedThing)
         {
             thing = minifiedThing.InnerThing;
+            if (map == null)
+            {
+                map = thing.Map;
+            }
         }
 
         string key;
         float xp;
         MessageTypeDef def;
+
         if (num < successChance)
         {
             key = "EU.IncreaseQualityMessage_Success";
@@ -322,7 +328,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
             def = MessageTypeDefOf.PositiveEvent;
             thing.graphicInt = null;
             thing.styleGraphicInt = null;
-            thing.DirtyMapMesh(thing.Map);
+            thing.DirtyMapMesh(map);
         }
         else if (num < successChance + failChance)
         {
@@ -333,7 +339,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
             def = MessageTypeDefOf.NegativeEvent;
             thing.graphicInt = null;
             thing.styleGraphicInt = null;
-            thing.DirtyMapMesh(thing.Map);
+            thing.DirtyMapMesh(map);
         }
         else
         {
