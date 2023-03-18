@@ -30,6 +30,8 @@
   <EU.DowngradeGenerator>Downgrade this to a wood fired generator</EU.DowngradeGenerator>
   <EU.UpgradeDoor>Upgrade this to an autodoor</EU.UpgradeDoor>
   <EU.DowngradeDoor>Downgrade this to a regular door</EU.DowngradeDoor>
+  <EU.UpgradeStool>Upgrade this to a dining chair</EU.UpgradeStool>
+  <EU.DowngradeDiningChair>Downgrade this to a stool</EU.DowngradeDiningChair>
   <EU.Settings.CurrentModVersion>Installed mod-version: {0}</EU.Settings.CurrentModVersion>
   <EU.Settings.Title>Easy Upgrades Settings</EU.Settings.Title>
   <EU.Settings.SuccessTitle>Base Success Chance</EU.Settings.SuccessTitle>

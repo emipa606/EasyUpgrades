@@ -43,4 +43,6 @@
   <EU.Settings.MaxQualityTooltip>任何升级能够产生的最大质量</EU.Settings.MaxQualityTooltip>
   <EU.IncreaseQualityCost>成本：{0}</EU.IncreaseQualityCost>
   <EU.DecreaseQualityReturn>返回。{0}</EU.DecreaseQualityReturn>
+  <EU.UpgradeStool>将其升级为餐椅</EU.UpgradeStool>
+  <EU.DowngradeDiningChair>把这个降级为一个凳子</EU.DowngradeDiningChair>
 </LanguageData>

@@ -43,4 +43,6 @@
   <EU.Settings.MaxQualityTooltip>Qualité maximale que toute mise à niveau peut apporter</EU.Settings.MaxQualityTooltip>
   <EU.IncreaseQualityCost>Coût : {0}</EU.IncreaseQualityCost>
   <EU.DecreaseQualityReturn>Retourne : {0}</EU.DecreaseQualityReturn>
+  <EU.UpgradeStool>Chaise de salle à manger</EU.UpgradeStool>
+  <EU.DowngradeDiningChair>Rétrogradez ce tabouret en tabouret</EU.DowngradeDiningChair>
 </LanguageData>

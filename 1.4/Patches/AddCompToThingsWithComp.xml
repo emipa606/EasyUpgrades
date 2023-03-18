@@ -178,47 +178,70 @@
       </li>
     </value>
   </Operation>
-  <!-- Add the Upgrade comp to ResearchBench -->
-  <!--
+  <!-- Add the Upgrade comp to stool -->
   <Operation Class="PatchOperationConditional">
-    <xpath>/Defs/ThingDef[defName="SimpleResearchBench"]/comps</xpath>
+    <xpath>/Defs/ThingDef[defName="Stool"]/comps</xpath>
     <nomatch Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="SimpleResearchBench"]</xpath>
+      <xpath>/Defs/ThingDef[defName="Stool"]</xpath>
       <value>
         <comps>
           <li Class="EasyUpgrades.CompProperties_Upgradable">
             <compClass>EasyUpgrades.CompUpgrade</compClass>
-            <linkedThing>HiTechResearchBench</linkedThing>
-            <keyedTooltipString>EU.UpgradeResearchBench</keyedTooltipString>
-            <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+            <linkedThing>DiningChair</linkedThing>
+            <keyedTooltipString>EU.UpgradeStool</keyedTooltipString>
+            <researchPrerequisite>ComplexFurniture</researchPrerequisite>
+            <additionalRequiredResources>
+              <WoodLog>20</WoodLog>
+            </additionalRequiredResources>
           </li>
         </comps>
       </value>
     </nomatch>
     <match Class="PatchOperationAdd">
-      <xpath>/Defs/ThingDef[defName="SimpleResearchBench"]/comps</xpath>
+      <xpath>/Defs/ThingDef[defName="Stool"]/comps</xpath>
       <value>
         <li Class="EasyUpgrades.CompProperties_Upgradable">
           <compClass>EasyUpgrades.CompUpgrade</compClass>
-          <linkedThing>HiTechResearchBench</linkedThing>
-          <keyedTooltipString>EU.UpgradeResearchBench</keyedTooltipString>
-          <researchPrerequisite>MicroelectronicsBasics</researchPrerequisite>
+          <linkedThing>DiningChair</linkedThing>
+          <keyedTooltipString>EU.UpgradeStool</keyedTooltipString>
+          <researchPrerequisite>ComplexFurniture</researchPrerequisite>
+          <additionalRequiredResources>
+            <WoodLog>20</WoodLog>
+          </additionalRequiredResources>
         </li>
       </value>
     </match>
   </Operation>
-
-  -->
-  <!--Add the Downgrade comp to HiTechResearchBench-->
-  <!--
-  <Operation Class="PatchOperationAdd">
-    <xpath>/Defs/ThingDef[defName="HiTechResearchBench"]/comps</xpath>
-    <value>
-      <li Class="EasyUpgrades.CompProperties_Upgradable">
-        <compClass>EasyUpgrades.CompDowngrade</compClass>
-        <linkedThing>SimpleResearchBench</linkedThing>
-        <keyedTooltipString>EU.DowngradeResearchBench</keyedTooltipString>
-      </li>
-    </value>
-  </Operation>-->
+  <!-- Add the Downgrade comp to DiningChair -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="DiningChair"]/comps</xpath>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="DiningChair"]</xpath>
+      <value>
+        <comps>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>Stool</linkedThing>
+            <keyedTooltipString>EU.DowngradeDiningChair</keyedTooltipString>
+            <refundedResources>
+              <WoodLog>20</WoodLog>
+            </refundedResources>
+          </li>
+        </comps>
+      </value>
+    </nomatch>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="DiningChair"]/comps</xpath>
+      <value>
+        <li Class="EasyUpgrades.CompProperties_Upgradable">
+          <compClass>EasyUpgrades.CompDowngrade</compClass>
+          <linkedThing>Stool</linkedThing>
+          <keyedTooltipString>EU.DowngradeDiningChair</keyedTooltipString>
+          <refundedResources>
+            <WoodLog>20</WoodLog>
+          </refundedResources>
+        </li>
+      </value>
+    </match>
+  </Operation>
 </Patch>

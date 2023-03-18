@@ -1,5 +1,9 @@
 # Changelog for EasyUpgrades
 
+1.4.13 - Added upgrade for stool to dining chair.
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+
+
 1.4.12 - Fixed increasing sculptures quality
 
 

@@ -43,4 +43,6 @@
   <EU.Settings.MaxQualityTooltip>Максимальное качество, которое может обеспечить любая модернизация</EU.Settings.MaxQualityTooltip>
   <EU.IncreaseQualityCost>Стоимость: {0}</EU.IncreaseQualityCost>
   <EU.DecreaseQualityReturn>Возвращает: {0}</EU.DecreaseQualityReturn>
+  <EU.UpgradeStool>Переделайте его в обеденный стул</EU.UpgradeStool>
+  <EU.DowngradeDiningChair>Понизить до табуретки</EU.DowngradeDiningChair>
 </LanguageData>
