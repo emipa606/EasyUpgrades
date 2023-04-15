@@ -247,6 +247,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
                 return null;
         }
 
+        thingDef2 = EasyUpgradesSettings.GetReplacementThingDef(thingDef2);
         return new ThingDefCountClass(thingDef2, Mathf.Max(1, Mathf.CeilToInt(num3 * num)));
     }
 }

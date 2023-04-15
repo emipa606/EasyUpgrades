@@ -86,4 +86,38 @@ internal class EasyUpgradesSettings : ModSettings
         Scribe_Values.Look(ref maxUpgradableQuality, "maxUpgradableQuality", 6);
         base.ExposeData();
     }
+
+
+    public static ThingDef GetReplacementThingDef(ThingDef def)
+    {
+        if (def.modExtensions == null)
+        {
+            return def;
+        }
+
+        if (!def.modExtensions.Any())
+        {
+            return def;
+        }
+
+        var possibleVFEExtension =
+            def.modExtensions.FirstOrDefault(
+                extension => extension.GetType().Name == "StuffExtension_Cost");
+
+        if (possibleVFEExtension == null)
+        {
+            return def;
+        }
+
+        try
+        {
+            var replacementDef = (ThingDef)possibleVFEExtension.GetType().GetField("thingDef")
+                ?.GetValue(possibleVFEExtension);
+            return replacementDef ?? def;
+        }
+        catch
+        {
+            return def;
+        }
+    }
 }
