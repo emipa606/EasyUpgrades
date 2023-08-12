@@ -86,33 +86,49 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
 
         var defNames = actualThing.def.recipeMaker?.recipeUsers?.ConvertAll(thingDef => thingDef.defName);
 
-        if (defNames == null)
+        Building firstAvailableBuilding;
+        if (defNames != null)
         {
-            return null;
+            firstAvailableBuilding = pawn.Map.listerBuildings.allBuildingsColonist.Where(building =>
+                    defNames.Contains(building.def.defName) && !building.IsForbidden(pawn) && !building.IsBurning())
+                .OrderBy(building => (building.Position - pawn.Position).LengthManhattan)
+                .FirstOrDefault();
+
+            if (firstAvailableBuilding != null)
+            {
+                return firstAvailableBuilding;
+            }
         }
 
-        return (from b in pawn.Map.listerBuildings.allBuildingsColonist
-            where defNames.Contains(b.def.defName) && !b.IsForbidden(pawn) && !b.IsBurning()
-            orderby (b.Position - pawn.Position).LengthManhattan
-            select b).FirstOrDefault();
+        firstAvailableBuilding = pawn.Map.listerBuildings.allBuildingsColonist
+            .Where(building => !building.IsForbidden(pawn) && !building.IsBurning() &&
+                               building.def.AllRecipes.Any(recipeDef => recipeDef.ProducedThingDef == actualThing.def))
+            .OrderBy(building => (building.Position - pawn.Position).LengthManhattan).FirstOrDefault();
+
+        return firstAvailableBuilding;
     }
 
     protected string GetNeededCraftingBenchName(Thing t)
     {
-        try
+        var actualThing = t;
+        if (t is MinifiedThing thing)
         {
-            if (t is MinifiedThing thing)
-            {
-                return thing.InnerThing.def.recipeMaker.recipeUsers.ConvertAll(thingDef => thingDef.label)
-                    .First();
-            }
+            actualThing = thing.InnerThing;
+        }
 
-            return t.def.recipeMaker.recipeUsers.ConvertAll(thingDef => thingDef.label).First();
-        }
-        catch
+        var possibleWorkstations = new HashSet<string>();
+        foreach (var building in actualThing.def.recipeMaker.recipeUsers)
         {
-            return "";
+            possibleWorkstations.Add(building.LabelCap);
         }
+
+        foreach (var building in DefDatabase<ThingDef>.AllDefsListForReading.Where(thingDef =>
+                     thingDef.AllRecipes.Any(recipeDef => recipeDef.ProducedThingDef == actualThing.def)))
+        {
+            possibleWorkstations.Add(building.LabelCap);
+        }
+
+        return possibleWorkstations.Any() ? string.Join(", ", possibleWorkstations.OrderBy(s => s)) : string.Empty;
     }
 
     private bool HasEnoughResourcesOfType(Pawn pawn, Thing t, ThingDefCountClass stuffDef,
