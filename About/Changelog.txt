@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.4.16 - Should now only show upgrade gizmo if the item can be built at all
+
+
 1.4.15 - Should now work with modded work-tables that do not add themselves to the item-recipe. For example the large machining table in VFE Production
 
 

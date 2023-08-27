@@ -108,7 +108,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         return firstAvailableBuilding;
     }
 
-    protected string GetNeededCraftingBenchName(Thing t)
+    public static string GetNeededCraftingBenchName(Thing t)
     {
         var actualThing = t;
         if (t is MinifiedThing thing)
@@ -117,9 +117,12 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         }
 
         var possibleWorkstations = new HashSet<string>();
-        foreach (var building in actualThing.def.recipeMaker.recipeUsers)
+        if (actualThing.def.recipeMaker != null)
         {
-            possibleWorkstations.Add(building.LabelCap);
+            foreach (var building in actualThing.def.recipeMaker.recipeUsers)
+            {
+                possibleWorkstations.Add(building.LabelCap);
+            }
         }
 
         foreach (var building in DefDatabase<ThingDef>.AllDefsListForReading.Where(thingDef =>

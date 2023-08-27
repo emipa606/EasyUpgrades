@@ -52,6 +52,12 @@ internal class CompIncreaseQuality : ThingComp
             yield break;
         }
 
+        if ((parent.def.IsApparel || parent.def.IsWeapon) &&
+            WorkGiver_IncreaseQuality.GetNeededCraftingBenchName(parent) == string.Empty)
+        {
+            yield break;
+        }
+
         if (parent.def.IsApparel && !HasIncreaseApparelQualityDes)
         {
             yield return CreateCommandForDesignation(new Designation(parent, apparelDes));
