@@ -326,7 +326,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
             thing.styleGraphicInt = null;
             thing.DirtyMapMesh(map);
         }
-        else if (num < successChance + failChance)
+        else if (num < successChance + failChance && (int)qc > 0)
         {
             key = "EU.IncreaseQualityMessage_Fail";
             xp = (int)qc * 40f;

@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.4.19 - Added check for quality in designator, fixed the patch for the designator as well as added a check to not try to lower the quality if its already the lowest
+
+
 1.4.18 - Added increase quality designator.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

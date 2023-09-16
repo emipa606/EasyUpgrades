@@ -40,11 +40,11 @@ public class Designator_IncreaseQuality : Designator
     public override void DesignateSingleCell(IntVec3 c)
     {
         var thingList = c.GetThingList(Map);
-        for (var i = 0; i < thingList.Count; i++)
+        foreach (var thing in thingList)
         {
-            if (CanDesignateThing(thingList[i]).Accepted)
+            if (CanDesignateThing(thing).Accepted)
             {
-                DesignateThing(thingList[i]);
+                DesignateThing(thing);
             }
         }
     }
@@ -52,6 +52,17 @@ public class Designator_IncreaseQuality : Designator
     public override AcceptanceReport CanDesignateThing(Thing t)
     {
         if (!t.def.HasComp(typeof(CompQuality)))
+        {
+            return false;
+        }
+
+        var compQuality = t.TryGetComp<CompQuality>();
+        if (compQuality == null)
+        {
+            return false;
+        }
+
+        if (EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >= EasyUpgradesSettings.maxUpgradableQuality)
         {
             return false;
         }
