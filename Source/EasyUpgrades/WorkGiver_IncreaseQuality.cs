@@ -84,13 +84,13 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
             actualThing = thing.InnerThing;
         }
 
-        var defNames = actualThing.def.recipeMaker?.recipeUsers?.ConvertAll(thingDef => thingDef.defName);
+        var recipeUsers = actualThing.def.recipeMaker?.recipeUsers?.ConvertAll(thingDef => thingDef.defName);
 
         Building firstAvailableBuilding;
-        if (defNames != null)
+        if (recipeUsers != null)
         {
             firstAvailableBuilding = pawn.Map.listerBuildings.allBuildingsColonist.Where(building =>
-                    defNames.Contains(building.def.defName) && !building.IsForbidden(pawn) && !building.IsBurning())
+                    recipeUsers.Contains(building.def.defName) && !building.IsForbidden(pawn) && !building.IsBurning())
                 .OrderBy(building => (building.Position - pawn.Position).LengthManhattan)
                 .FirstOrDefault();
 

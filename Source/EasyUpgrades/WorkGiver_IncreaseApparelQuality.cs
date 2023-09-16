@@ -33,6 +33,7 @@ internal class WorkGiver_IncreaseApparelQuality : WorkGiver_IncreaseQuality
         }
 
         job.haulMode = HaulMode.ToCellNonStorage;
+
         job.count = 1;
         return job;
     }

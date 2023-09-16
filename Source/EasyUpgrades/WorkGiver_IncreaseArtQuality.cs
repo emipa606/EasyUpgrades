@@ -31,7 +31,7 @@ internal class WorkGiver_IncreaseArtQuality : WorkGiver_IncreaseQuality
             return null;
         }
 
-        var job = JobMaker.MakeJob(EasyUpgradesJobDefOf.IncreaseQuality_Crafting, t, closestNeededCraftingBuilding);
+        var job = JobMaker.MakeJob(EasyUpgradesJobDefOf.IncreaseQuality_Artistic, t, closestNeededCraftingBuilding);
         job.targetQueueA = new List<LocalTargetInfo>();
         job.countQueue = new List<int>();
         foreach (var resource in resources)

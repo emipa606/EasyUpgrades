@@ -28,4 +28,11 @@
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
     <suspendable>false</suspendable>
   </JobDef>
+  <JobDef>
+    <defName>IncreaseQuality_Artistic</defName>
+    <driverClass>EasyUpgrades.JobDriver_IncreaseQuality</driverClass>
+    <reportString>attempting to increase the quality of an item</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    <suspendable>false</suspendable>
+  </JobDef>
 </Defs>

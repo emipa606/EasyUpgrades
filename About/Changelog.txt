@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.4.17 - Artistic quality upgrades should now work with any art-bench
+
+
 1.4.16 - Should now only show upgrade gizmo if the item can be built at all
 
 

@@ -18,9 +18,10 @@ internal class JobDriver_IncreaseQuality : JobDriver
 
     private float workLeft;
 
-    private bool IsCraftingJob => job.def == EasyUpgradesJobDefOf.IncreaseQuality_Crafting;
+    private bool IsCraftingJob => job.def != EasyUpgradesJobDefOf.IncreaseQuality_Building;
 
-    private bool IsArtisticJob => job.GetTarget(TargetIndex.B).Thing?.def?.defName == "TableSculpting";
+    private bool IsArtisticJob => job.GetTarget(TargetIndex.B).Thing?.def?.defName == "TableSculpting" ||
+                                  job.def == EasyUpgradesJobDefOf.IncreaseQuality_Artistic;
 
     private SkillDef ActiveSkillDef
     {
@@ -31,12 +32,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
                 return SkillDefOf.Artistic;
             }
 
-            if (!IsCraftingJob)
-            {
-                return SkillDefOf.Construction;
-            }
-
-            return SkillDefOf.Crafting;
+            return !IsCraftingJob ? SkillDefOf.Construction : SkillDefOf.Crafting;
         }
     }
 

@@ -70,4 +70,6 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]Last updated 2023-08-27
+
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]![Image](https://img.shields.io/github/v/release/emipa606/EasyUpgrades?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
+

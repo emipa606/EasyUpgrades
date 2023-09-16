@@ -14,6 +14,8 @@ public static class EasyUpgradesJobDefOf
 
     public static JobDef IncreaseQuality_Crafting;
 
+    public static JobDef IncreaseQuality_Artistic;
+
     static EasyUpgradesJobDefOf()
     {
         DefOfHelper.EnsureInitializedInCtor(typeof(EasyUpgradesJobDefOf));
