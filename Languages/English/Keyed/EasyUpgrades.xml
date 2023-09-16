@@ -2,7 +2,10 @@
 <LanguageData>
   <EU.Upgrade>Upgrade</EU.Upgrade>
   <EU.Downgrade>Downgrade</EU.Downgrade>
+  <EU.MustDesignateItemOfQuality>Must select things that has quality</EU.MustDesignateItemOfQuality>
   <EU.IncreaseQuality>Increase quality</EU.IncreaseQuality>
+  <EU.IncreaseQualityOfAll>Increase quality of all items</EU.IncreaseQualityOfAll>
+  <EU.IncreaseQualityTooltip>Attempt to increase the quality of items</EU.IncreaseQualityTooltip>
   <EU.TryIncreaseQualityTooltip>Attempt to increase the quality of this item</EU.TryIncreaseQualityTooltip>
   <EU.IncreaseQualityCost>Cost: {0}</EU.IncreaseQualityCost>
   <EU.DecreaseQualityReturn>Returns: {0}</EU.DecreaseQualityReturn>

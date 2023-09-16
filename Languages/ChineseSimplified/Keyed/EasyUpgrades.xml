@@ -45,4 +45,7 @@
   <EU.DecreaseQualityReturn>返回。{0}</EU.DecreaseQualityReturn>
   <EU.UpgradeStool>将其升级为餐椅</EU.UpgradeStool>
   <EU.DowngradeDiningChair>把这个降级为一个凳子</EU.DowngradeDiningChair>
+  <EU.MustDesignateItemOfQuality>必须选择有质量的东西</EU.MustDesignateItemOfQuality>
+  <EU.IncreaseQualityOfAll>提高所有项目的质量</EU.IncreaseQualityOfAll>
+  <EU.IncreaseQualityTooltip>尝试提高物品质量</EU.IncreaseQualityTooltip>
 </LanguageData>

@@ -45,4 +45,7 @@
   <EU.DecreaseQualityReturn>Gibt zurück: {0}</EU.DecreaseQualityReturn>
   <EU.UpgradeStool>Diesen zu einem Esszimmerstuhl aufrüsten</EU.UpgradeStool>
   <EU.DowngradeDiningChair>Herabstufung zu einem Hocker</EU.DowngradeDiningChair>
+  <EU.MustDesignateItemOfQuality>Muss Dinge auswählen, die Qualität haben</EU.MustDesignateItemOfQuality>
+  <EU.IncreaseQualityOfAll>Verbesserung der Qualität aller Artikel</EU.IncreaseQualityOfAll>
+  <EU.IncreaseQualityTooltip>Versuch, die Qualität der Artikel zu verbessern</EU.IncreaseQualityTooltip>
 </LanguageData>

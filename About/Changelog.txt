@@ -1,5 +1,9 @@
 # Changelog for EasyUpgrades
 
+1.4.18 - Added increase quality designator.
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+
+
 1.4.17 - Artistic quality upgrades should now work with any art-bench
 
 

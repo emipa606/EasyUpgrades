@@ -45,4 +45,7 @@
   <EU.DecreaseQualityReturn>Возвращает: {0}</EU.DecreaseQualityReturn>
   <EU.UpgradeStool>Переделайте его в обеденный стул</EU.UpgradeStool>
   <EU.DowngradeDiningChair>Понизить до табуретки</EU.DowngradeDiningChair>
+  <EU.MustDesignateItemOfQuality>Необходимо выбирать вещи, обладающие качеством</EU.MustDesignateItemOfQuality>
+  <EU.IncreaseQualityOfAll>Повышение качества всех изделий</EU.IncreaseQualityOfAll>
+  <EU.IncreaseQualityTooltip>Попытка повысить качество изделий</EU.IncreaseQualityTooltip>
 </LanguageData>
