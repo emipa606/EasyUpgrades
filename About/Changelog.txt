@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.4.20 - Pawns will now check if workbenches are reachable and reservable when starting upgrade-jobs
+
+
 1.4.19 - Added check for quality in designator, fixed the patch for the designator as well as added a check to not try to lower the quality if its already the lowest
 
 

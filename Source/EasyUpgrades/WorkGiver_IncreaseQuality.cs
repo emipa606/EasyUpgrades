@@ -90,7 +90,9 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         if (recipeUsers != null)
         {
             firstAvailableBuilding = pawn.Map.listerBuildings.allBuildingsColonist.Where(building =>
-                    recipeUsers.Contains(building.def.defName) && !building.IsForbidden(pawn) && !building.IsBurning())
+                    recipeUsers.Contains(building.def.defName) && !building.IsForbidden(pawn) &&
+                    !building.IsBurning() &&
+                    pawn.CanReserveAndReach(building, PathEndMode.InteractionCell, Danger.Some))
                 .OrderBy(building => (building.Position - pawn.Position).LengthManhattan)
                 .FirstOrDefault();
 
@@ -102,6 +104,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
 
         firstAvailableBuilding = pawn.Map.listerBuildings.allBuildingsColonist
             .Where(building => !building.IsForbidden(pawn) && !building.IsBurning() &&
+                               pawn.CanReserveAndReach(building, PathEndMode.InteractionCell, Danger.Some) &&
                                building.def.AllRecipes.Any(recipeDef => recipeDef.ProducedThingDef == actualThing.def))
             .OrderBy(building => (building.Position - pawn.Position).LengthManhattan).FirstOrDefault();
 
