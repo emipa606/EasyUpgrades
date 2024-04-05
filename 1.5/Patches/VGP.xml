@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence" MayRequire="dismarzero.VGP.VGPGardenFabrics">
+    <success>Always</success>
+    <operations>
+      <!-- Add the Upgrade comp to tailor's loom -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenFabrics">
+        <xpath>/Defs/ThingDef[defName="TableLoom"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>TableElecLoom</linkedThing>
+            <keyedTooltipString>EU.UpgradeLoom</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+              <li>ComplexClothing</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>55</Steel>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to electric loom -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenFabrics">
+        <xpath>/Defs/ThingDef[defName="TableElecLoom"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>TableLoom</linkedThing>
+            <keyedTooltipString>EU.DowngradeLoom</keyedTooltipString>
+            <refundedResources>
+              <Steel>55</Steel>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+  <Operation Class="PatchOperationSequence" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+    <success>Always</success>
+    <operations>
+      <!-- Add the Upgrade comp to Oven -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="Oven"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>ElectricOven</linkedThing>
+            <keyedTooltipString>EU.UpgradeOven</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+              <li>CookingII</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>65</Steel>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to electric oven -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="ElectricOven"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>Oven</linkedThing>
+            <keyedTooltipString>EU.DowngradeOven</keyedTooltipString>
+            <refundedResources>
+              <Steel>65</Steel>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to prep table -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="HandCanningstove"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>Canningstove</linkedThing>
+            <keyedTooltipString>EU.UpgradePrepTable</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>20</Steel>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to electric prep table -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="Canningstove"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>HandCanningstove</linkedThing>
+            <keyedTooltipString>EU.DowngradePrepTable</keyedTooltipString>
+            <refundedResources>
+              <Steel>20</Steel>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to Sweets Table -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="FueledCandyTable"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>CandyTable</linkedThing>
+            <keyedTooltipString>EU.UpgradeCandyTable</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+              <li>CookingI</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>20</Steel>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to electric Sweets Table -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="CandyTable"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>FueledCandyTable</linkedThing>
+            <keyedTooltipString>EU.DowngradeCandyTable</keyedTooltipString>
+            <refundedResources>
+              <Steel>20</Steel>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to Milling Stone -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="GrindStone"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>ElectricGrindStone</linkedThing>
+            <keyedTooltipString>EU.UpgradeGrindStone</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <ComponentIndustrial>2</ComponentIndustrial>
+              <Steel>40</Steel>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to electric Milling Stone -->
+      <li Class="PatchOperationAdd" MayRequire="dismarzero.VGP.VGPGardenGourmet">
+        <xpath>/Defs/ThingDef[defName="ElectricGrindStone"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>GrindStone</linkedThing>
+            <keyedTooltipString>EU.DowngradeGrindStone</keyedTooltipString>
+            <refundedResources>
+              <ComponentIndustrial>2</ComponentIndustrial>
+              <Steel>40</Steel>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

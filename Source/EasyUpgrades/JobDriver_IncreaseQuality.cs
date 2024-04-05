@@ -107,7 +107,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
 
     public override IEnumerable<Toil> MakeNewToils()
     {
-        resourcesPlaced = new List<Thing>();
+        resourcesPlaced = [];
         var enumerable = IsCraftingJob ? MakeToilsForCrafting() : MakeToilsForBuilding();
         foreach (var item in enumerable)
         {

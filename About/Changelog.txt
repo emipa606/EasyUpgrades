@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.5.0 - Updated for 1.5
+
+
 1.4.20 - Pawns will now check if workbenches are reachable and reservable when starting upgrade-jobs
 
 

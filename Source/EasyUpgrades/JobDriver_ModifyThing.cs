@@ -32,7 +32,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         this.FailOnForbidden(TargetIndex.A);
         var gotoThingToUpgrade = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A);
-        resourcesPlaced = new List<Thing>();
+        resourcesPlaced = [];
         if (getAdditionalRequiredResources(Target) != null)
         {
             yield return Toils_Jump.JumpIf(gotoThingToUpgrade,
@@ -194,8 +194,8 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
                     FleckMaker.ThrowMetaPuff(position.ToVector3Shifted(), Map);
                 }
 
-                Map.mapDrawer.MapMeshDirty(position, MapMeshFlag.PowerGrid);
-                Map.mapDrawer.MapMeshDirty(position, MapMeshFlag.Things);
+                Map.mapDrawer.MapMeshDirty(position, MapMeshFlagDefOf.PowerGrid);
+                Map.mapDrawer.MapMeshDirty(position, MapMeshFlagDefOf.Things);
             }
         }
 

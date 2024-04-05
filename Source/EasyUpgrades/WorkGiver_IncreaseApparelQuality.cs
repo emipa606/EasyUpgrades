@@ -24,8 +24,8 @@ internal class WorkGiver_IncreaseApparelQuality : WorkGiver_IncreaseQuality
         }
 
         var job = JobMaker.MakeJob(EasyUpgradesJobDefOf.IncreaseQuality_Crafting, t, closestNeededCraftingBuilding);
-        job.targetQueueA = new List<LocalTargetInfo>();
-        job.countQueue = new List<int>();
+        job.targetQueueA = [];
+        job.countQueue = [];
         foreach (var resource in resources)
         {
             job.targetQueueA.Add(resource.thing);

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence" MayRequire="VanillaExpanded.VFEProduction">
+    <success>Always</success>
+    <operations>
+      <!-- Add the Upgrade comp to TableButcher -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="TableButcher"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>VFE_TableButcherElectric</linkedThing>
+            <keyedTooltipString>EU.UpgradeTableButcher</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>60</Steel>
+              <ComponentIndustrial>4</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to VFE_TableButcherElectric -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="VFE_TableButcherElectric"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>TableButcher</linkedThing>
+            <keyedTooltipString>EU.DowngradeTableButcher</keyedTooltipString>
+            <refundedResources>
+              <Steel>60</Steel>
+              <ComponentIndustrial>4</ComponentIndustrial>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to DrugLab -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="DrugLab"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>VFE_TableDrugLabElectric</linkedThing>
+            <keyedTooltipString>EU.UpgradeDrugLab</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+              <li>DrugProduction</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>100</Steel>
+              <ComponentIndustrial>6</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to VFE_TableDrugLabElectric -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="VFE_TableDrugLabElectric"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>DrugLab</linkedThing>
+            <keyedTooltipString>EU.DowngradeDrugLab</keyedTooltipString>
+            <refundedResources>
+              <Steel>100</Steel>
+              <ComponentIndustrial>6</ComponentIndustrial>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to VFE_FueledSmelter -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="VFE_FueledSmelter"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>ElectricSmelter</linkedThing>
+            <keyedTooltipString>EU.UpgradeSmelter</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+              <li>Smithing</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to ElectricSmelter -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="ElectricSmelter"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>VFE_FueledSmelter</linkedThing>
+            <keyedTooltipString>EU.DowngradeSmelter</keyedTooltipString>
+            <refundedResources>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to TableStonecutter -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="TableStonecutter"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>VFE_TableStonecutterElectric</linkedThing>
+            <keyedTooltipString>EU.UpgradeTableStonecutter</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+              <li>Stonecutting</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>105</Steel>
+              <ComponentIndustrial>6</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Downgrade comp to VFE_TableStonecutterElectric -->
+      <li Class="PatchOperationAdd" MayRequire="VanillaExpanded.VFEProduction">
+        <xpath>/Defs/ThingDef[defName="VFE_TableStonecutterElectric"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompDowngrade</compClass>
+            <linkedThing>TableStonecutter</linkedThing>
+            <keyedTooltipString>EU.DowngradeTableStonecutter</keyedTooltipString>
+            <refundedResources>
+              <Steel>105</Steel>
+              <ComponentIndustrial>6</ComponentIndustrial>
+            </refundedResources>
+          </li>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>

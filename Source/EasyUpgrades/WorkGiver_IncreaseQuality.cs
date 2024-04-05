@@ -140,7 +140,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
     private bool HasEnoughResourcesOfType(Pawn pawn, Thing t, ThingDefCountClass stuffDef,
         out List<ThingCountClass> resources)
     {
-        resources = new List<ThingCountClass>();
+        resources = [];
         if (stuffDef == null)
         {
             return false;
@@ -149,7 +149,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         var num = 0;
         var count = stuffDef.count;
         var thingDef = stuffDef.thingDef;
-        if (!pawn.Map.itemAvailability.ThingsAvailableAnywhere(stuffDef, pawn))
+        if (!pawn.Map.itemAvailability.ThingsAvailableAnywhere(thingDef, count, pawn))
         {
             return false;
         }

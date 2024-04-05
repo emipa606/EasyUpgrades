@@ -81,7 +81,7 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
 
         var dictionary = new Dictionary<ThingDef, int>();
         var job = JobMaker.MakeJob(JobUpgrade, thingToUpgrade);
-        job.targetQueueB = new List<LocalTargetInfo>();
+        job.targetQueueB = [];
         job.countQueue = new List<int>(foundResources.Count);
         int i;
         for (i = 0; i < foundResources.Count; i++)
@@ -111,7 +111,7 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
     private List<Thing> FindAvailableResources(Pawn pawn, Thing thingToUpgrade,
         List<ThingDefCountClass> neededResources, out List<ThingDef> missingResources)
     {
-        missingResources = new List<ThingDef>();
+        missingResources = [];
         var list = new List<Thing>();
         foreach (var neededResource in neededResources)
         {
@@ -119,7 +119,7 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
             var thingDef = neededResource.thingDef;
             var num = 0;
             var hasEnough = false;
-            if (!pawn.Map.itemAvailability.ThingsAvailableAnywhere(neededResource, pawn))
+            if (!pawn.Map.itemAvailability.ThingsAvailableAnywhere(thingDef, count, pawn))
             {
                 missingResources.Add(thingDef);
                 continue;

@@ -6,14 +6,13 @@ namespace EasyUpgrades;
 
 public class EasyUpgrades
 {
-    public static int baseLevel = 14;
+    public static readonly int baseLevel = 14;
 
-    public static List<QualityCategory> QualityArray =
-        new List<QualityCategory>
-        {
-            QualityCategory.Awful, QualityCategory.Poor, QualityCategory.Normal, QualityCategory.Good,
-            QualityCategory.Excellent, QualityCategory.Masterwork, QualityCategory.Legendary
-        };
+    public static readonly List<QualityCategory> QualityArray =
+    [
+        QualityCategory.Awful, QualityCategory.Poor, QualityCategory.Normal, QualityCategory.Good,
+        QualityCategory.Excellent, QualityCategory.Masterwork, QualityCategory.Legendary
+    ];
 
     public static float GetSuccessChance(Pawn pawn, SkillDef activeSkill, Thing thing)
     {
