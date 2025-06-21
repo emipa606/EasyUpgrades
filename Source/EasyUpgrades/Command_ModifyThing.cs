@@ -7,22 +7,22 @@ namespace EasyUpgrades;
 
 public class Command_ModifyThing : Command
 {
-    public ThingWithComps currentThing;
+    public ThingWithComps CurrentThing;
 
-    public DesignationDef def;
+    public DesignationDef Def;
 
-    private DesignationDef uninstallDef => DesignationDefOf.Uninstall;
+    private static DesignationDef UninstallDef => DesignationDefOf.Uninstall;
 
-    private DesignationDef deconstructDef => DesignationDefOf.Deconstruct;
+    private static DesignationDef DeconstructDef => DesignationDefOf.Deconstruct;
 
     public override void ProcessInput(Event ev)
     {
         base.ProcessInput(ev);
         SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-        var designationManager = currentThing.Map.designationManager;
-        var designation = designationManager.DesignationOn(currentThing, def);
-        var designation2 = designationManager.DesignationOn(currentThing, uninstallDef);
-        var designation3 = designationManager.DesignationOn(currentThing, deconstructDef);
+        var designationManager = CurrentThing.Map.designationManager;
+        var designation = designationManager.DesignationOn(CurrentThing, Def);
+        var designation2 = designationManager.DesignationOn(CurrentThing, UninstallDef);
+        var designation3 = designationManager.DesignationOn(CurrentThing, DeconstructDef);
         if (designation != null)
         {
             return;
@@ -30,14 +30,14 @@ public class Command_ModifyThing : Command
 
         if (designation2 != null)
         {
-            designationManager.TryRemoveDesignationOn(currentThing, uninstallDef);
+            designationManager.TryRemoveDesignationOn(CurrentThing, UninstallDef);
         }
 
         if (designation3 != null)
         {
-            designationManager.TryRemoveDesignationOn(currentThing, deconstructDef);
+            designationManager.TryRemoveDesignationOn(CurrentThing, DeconstructDef);
         }
 
-        designationManager.AddDesignation(new Designation(currentThing, def));
+        designationManager.AddDesignation(new Designation(CurrentThing, Def));
     }
 }

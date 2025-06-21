@@ -6,7 +6,7 @@ namespace EasyUpgrades;
 
 public class EasyUpgrades
 {
-    public static readonly int baseLevel = 14;
+    public const int BaseLevel = 14;
 
     public static readonly List<QualityCategory> QualityArray =
     [
@@ -17,7 +17,7 @@ public class EasyUpgrades
     public static float GetSuccessChance(Pawn pawn, SkillDef activeSkill, Thing thing)
     {
         thing.TryGetQuality(out var qc);
-        if (QualityArray.IndexOf(qc) >= EasyUpgradesSettings.maxUpgradableQuality)
+        if (QualityArray.IndexOf(qc) >= EasyUpgradesSettings.MaxUpgradableQuality)
         {
             return 0f;
         }
@@ -26,22 +26,22 @@ public class EasyUpgrades
         switch (qc)
         {
             case QualityCategory.Awful:
-                num = EasyUpgradesSettings.increaseAwfulQualityChance;
+                num = EasyUpgradesSettings.IncreaseAwfulQualityChance;
                 break;
             case QualityCategory.Poor:
-                num = EasyUpgradesSettings.increasePoorQualityChance;
+                num = EasyUpgradesSettings.IncreasePoorQualityChance;
                 break;
             case QualityCategory.Normal:
-                num = EasyUpgradesSettings.increaseNormalQualityChance;
+                num = EasyUpgradesSettings.IncreaseNormalQualityChance;
                 break;
             case QualityCategory.Good:
-                num = EasyUpgradesSettings.increaseGoodQualityChance;
+                num = EasyUpgradesSettings.IncreaseGoodQualityChance;
                 break;
             case QualityCategory.Excellent:
-                num = EasyUpgradesSettings.increaseExcellentQualityChance;
+                num = EasyUpgradesSettings.IncreaseExcellentQualityChance;
                 break;
             case QualityCategory.Masterwork:
-                num = EasyUpgradesSettings.increaseMasterworkQualityChance;
+                num = EasyUpgradesSettings.IncreaseMasterworkQualityChance;
                 break;
             default:
                 return 0f;
@@ -65,7 +65,7 @@ public class EasyUpgrades
     public static float GetFailChance(Pawn pawn, SkillDef activeSkill, Thing thing)
     {
         thing.TryGetQuality(out var qc);
-        if (QualityArray.IndexOf(qc) > EasyUpgradesSettings.maxUpgradableQuality)
+        if (QualityArray.IndexOf(qc) > EasyUpgradesSettings.MaxUpgradableQuality)
         {
             return 1f;
         }
@@ -76,19 +76,19 @@ public class EasyUpgrades
             case QualityCategory.Awful:
                 return 0f;
             case QualityCategory.Poor:
-                num = EasyUpgradesSettings.decreasePoorQualityChance;
+                num = EasyUpgradesSettings.DecreasePoorQualityChance;
                 break;
             case QualityCategory.Normal:
-                num = EasyUpgradesSettings.decreaseNormalQualityChance;
+                num = EasyUpgradesSettings.DecreaseNormalQualityChance;
                 break;
             case QualityCategory.Good:
-                num = EasyUpgradesSettings.decreaseGoodQualityChance;
+                num = EasyUpgradesSettings.DecreaseGoodQualityChance;
                 break;
             case QualityCategory.Excellent:
-                num = EasyUpgradesSettings.decreaseExcellentQualityChance;
+                num = EasyUpgradesSettings.DecreaseExcellentQualityChance;
                 break;
             case QualityCategory.Masterwork:
-                num = EasyUpgradesSettings.decreaseMasterworkQualityChance;
+                num = EasyUpgradesSettings.DecreaseMasterworkQualityChance;
                 break;
         }
 

@@ -12,7 +12,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
 {
     protected virtual DesignationDef Designation => null;
 
-    protected bool HasIncreaseQualityDesignation(Designation des)
+    private bool HasIncreaseQualityDesignation(Designation des)
     {
         return des.def == Designation;
     }
@@ -59,7 +59,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
 
     protected abstract Job MakeIncreaseQualityJob(Thing t, Pawn pawn, List<ThingCountClass> resources);
 
-    protected bool CanDoWorkType(WorkTypeDef def, Pawn pawn)
+    protected static bool CanDoWorkType(WorkTypeDef def, Pawn pawn)
     {
         if (pawn.workSettings.GetPriority(def) != 0)
         {
@@ -76,7 +76,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         return false;
     }
 
-    protected Building GetClosestNeededCraftingBuilding(Pawn pawn, Thing t)
+    protected static Building GetClosestNeededCraftingBuilding(Pawn pawn, Thing t)
     {
         var actualThing = t;
         if (t is MinifiedThing thing)
@@ -248,22 +248,22 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         switch (qc)
         {
             case QualityCategory.Awful:
-                num3 *= EasyUpgradesSettings.neededMaterialsAwfulQuality;
+                num3 *= EasyUpgradesSettings.NeededMaterialsAwfulQuality;
                 break;
             case QualityCategory.Poor:
-                num3 *= EasyUpgradesSettings.neededMaterialsPoorQuality;
+                num3 *= EasyUpgradesSettings.NeededMaterialsPoorQuality;
                 break;
             case QualityCategory.Normal:
-                num3 *= EasyUpgradesSettings.neededMaterialsNormalQuality;
+                num3 *= EasyUpgradesSettings.NeededMaterialsNormalQuality;
                 break;
             case QualityCategory.Good:
-                num3 *= EasyUpgradesSettings.neededMaterialsGoodQuality;
+                num3 *= EasyUpgradesSettings.NeededMaterialsGoodQuality;
                 break;
             case QualityCategory.Excellent:
-                num3 *= EasyUpgradesSettings.neededMaterialsExcellentQuality;
+                num3 *= EasyUpgradesSettings.NeededMaterialsExcellentQuality;
                 break;
             case QualityCategory.Masterwork:
-                num3 *= EasyUpgradesSettings.neededMaterialsMasterworkQuality;
+                num3 *= EasyUpgradesSettings.NeededMaterialsMasterworkQuality;
                 break;
             default:
                 return null;

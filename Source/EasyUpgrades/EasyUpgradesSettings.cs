@@ -4,115 +4,109 @@ namespace EasyUpgrades;
 
 internal class EasyUpgradesSettings : ModSettings
 {
-    public static float increaseAwfulQualityChance = 0.95f;
+    public static float IncreaseAwfulQualityChance = 0.95f;
 
-    public static float increasePoorQualityChance = 0.9f;
+    public static float IncreasePoorQualityChance = 0.9f;
 
-    public static float increaseNormalQualityChance = 0.85f;
+    public static float IncreaseNormalQualityChance = 0.85f;
 
-    public static float increaseGoodQualityChance = 0.6f;
+    public static float IncreaseGoodQualityChance = 0.6f;
 
-    public static float increaseExcellentQualityChance = 0.25f;
+    public static float IncreaseExcellentQualityChance = 0.25f;
 
-    public static float increaseMasterworkQualityChance = 0.15f;
+    public static float IncreaseMasterworkQualityChance = 0.15f;
 
-    public static float decreasePoorQualityChance = 0.02f;
+    public static float DecreasePoorQualityChance = 0.02f;
 
-    public static float decreaseNormalQualityChance = 0.07f;
+    public static float DecreaseNormalQualityChance = 0.07f;
 
-    public static float decreaseGoodQualityChance = 0.12f;
+    public static float DecreaseGoodQualityChance = 0.12f;
 
-    public static float decreaseExcellentQualityChance = 0.19f;
+    public static float DecreaseExcellentQualityChance = 0.19f;
 
-    public static float decreaseMasterworkQualityChance = 0.25f;
+    public static float DecreaseMasterworkQualityChance = 0.25f;
 
-    public static float neededMaterialsAwfulQuality = 0.2f;
+    public static float NeededMaterialsAwfulQuality = 0.2f;
 
-    public static float neededMaterialsPoorQuality = 0.6f;
+    public static float NeededMaterialsPoorQuality = 0.6f;
 
-    public static float neededMaterialsNormalQuality = 0.9f;
+    public static float NeededMaterialsNormalQuality = 0.9f;
 
-    public static float neededMaterialsGoodQuality = 1.25f;
+    public static float NeededMaterialsGoodQuality = 1.25f;
 
-    public static float neededMaterialsExcellentQuality = 2f;
+    public static float NeededMaterialsExcellentQuality = 2f;
 
-    public static float neededMaterialsMasterworkQuality = 3f;
+    public static float NeededMaterialsMasterworkQuality = 3f;
 
-    public static int maxUpgradableQuality = 6;
+    public static int MaxUpgradableQuality = 6;
 
 
     public static void Reset()
     {
-        increaseAwfulQualityChance = 0.95f;
-        increasePoorQualityChance = 0.9f;
-        increaseNormalQualityChance = 0.85f;
-        increaseGoodQualityChance = 0.6f;
-        increaseExcellentQualityChance = 0.25f;
-        increaseMasterworkQualityChance = 0.15f;
-        decreasePoorQualityChance = 0.02f;
-        decreaseNormalQualityChance = 0.07f;
-        decreaseGoodQualityChance = 0.12f;
-        decreaseExcellentQualityChance = 0.19f;
-        decreaseMasterworkQualityChance = 0.25f;
-        neededMaterialsAwfulQuality = 0.2f;
-        neededMaterialsPoorQuality = 0.6f;
-        neededMaterialsNormalQuality = 0.9f;
-        neededMaterialsGoodQuality = 1.25f;
-        neededMaterialsExcellentQuality = 2f;
-        neededMaterialsMasterworkQuality = 3f;
-        maxUpgradableQuality = 6;
+        IncreaseAwfulQualityChance = 0.95f;
+        IncreasePoorQualityChance = 0.9f;
+        IncreaseNormalQualityChance = 0.85f;
+        IncreaseGoodQualityChance = 0.6f;
+        IncreaseExcellentQualityChance = 0.25f;
+        IncreaseMasterworkQualityChance = 0.15f;
+        DecreasePoorQualityChance = 0.02f;
+        DecreaseNormalQualityChance = 0.07f;
+        DecreaseGoodQualityChance = 0.12f;
+        DecreaseExcellentQualityChance = 0.19f;
+        DecreaseMasterworkQualityChance = 0.25f;
+        NeededMaterialsAwfulQuality = 0.2f;
+        NeededMaterialsPoorQuality = 0.6f;
+        NeededMaterialsNormalQuality = 0.9f;
+        NeededMaterialsGoodQuality = 1.25f;
+        NeededMaterialsExcellentQuality = 2f;
+        NeededMaterialsMasterworkQuality = 3f;
+        MaxUpgradableQuality = 6;
     }
 
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref increaseAwfulQualityChance, "increaseAwfulQualityChance", 0.95f);
-        Scribe_Values.Look(ref increasePoorQualityChance, "increasePoorQualityChance", 0.9f);
-        Scribe_Values.Look(ref increaseNormalQualityChance, "increaseNormalQualityChance", 0.85f);
-        Scribe_Values.Look(ref increaseGoodQualityChance, "increaseGoodQualityChance", 0.6f);
-        Scribe_Values.Look(ref increaseExcellentQualityChance, "increaseExcellentQualityChance", 0.25f);
-        Scribe_Values.Look(ref increaseMasterworkQualityChance, "increaseMasterworkQualityChance", 0.15f);
-        Scribe_Values.Look(ref decreasePoorQualityChance, "decreasePoorQualityChance", 0.02f);
-        Scribe_Values.Look(ref decreaseNormalQualityChance, "decreaseNormalQualityChance", 0.07f);
-        Scribe_Values.Look(ref decreaseGoodQualityChance, "decreaseGoodQualityChance", 0.12f);
-        Scribe_Values.Look(ref decreaseExcellentQualityChance, "decreaseExcellentQualityChance", 0.19f);
-        Scribe_Values.Look(ref decreaseMasterworkQualityChance, "decreaseMasterworkQualityChance", 0.25f);
-        Scribe_Values.Look(ref neededMaterialsAwfulQuality, "neededMaterialsAwfulQuality", 0.2f);
-        Scribe_Values.Look(ref neededMaterialsPoorQuality, "neededMaterialsPoorQuality", 0.6f);
-        Scribe_Values.Look(ref neededMaterialsNormalQuality, "neededMaterialsNormalQuality", 0.9f);
-        Scribe_Values.Look(ref neededMaterialsGoodQuality, "neededMaterialsGoodQuality", 1.25f);
-        Scribe_Values.Look(ref neededMaterialsExcellentQuality, "neededMaterialsExcellentQuality", 2f);
-        Scribe_Values.Look(ref neededMaterialsMasterworkQuality, "neededMaterialsMasterworkQuality", 3f);
-        Scribe_Values.Look(ref maxUpgradableQuality, "maxUpgradableQuality", 6);
+        Scribe_Values.Look(ref IncreaseAwfulQualityChance, "increaseAwfulQualityChance", 0.95f);
+        Scribe_Values.Look(ref IncreasePoorQualityChance, "increasePoorQualityChance", 0.9f);
+        Scribe_Values.Look(ref IncreaseNormalQualityChance, "increaseNormalQualityChance", 0.85f);
+        Scribe_Values.Look(ref IncreaseGoodQualityChance, "increaseGoodQualityChance", 0.6f);
+        Scribe_Values.Look(ref IncreaseExcellentQualityChance, "increaseExcellentQualityChance", 0.25f);
+        Scribe_Values.Look(ref IncreaseMasterworkQualityChance, "increaseMasterworkQualityChance", 0.15f);
+        Scribe_Values.Look(ref DecreasePoorQualityChance, "decreasePoorQualityChance", 0.02f);
+        Scribe_Values.Look(ref DecreaseNormalQualityChance, "decreaseNormalQualityChance", 0.07f);
+        Scribe_Values.Look(ref DecreaseGoodQualityChance, "decreaseGoodQualityChance", 0.12f);
+        Scribe_Values.Look(ref DecreaseExcellentQualityChance, "decreaseExcellentQualityChance", 0.19f);
+        Scribe_Values.Look(ref DecreaseMasterworkQualityChance, "decreaseMasterworkQualityChance", 0.25f);
+        Scribe_Values.Look(ref NeededMaterialsAwfulQuality, "neededMaterialsAwfulQuality", 0.2f);
+        Scribe_Values.Look(ref NeededMaterialsPoorQuality, "neededMaterialsPoorQuality", 0.6f);
+        Scribe_Values.Look(ref NeededMaterialsNormalQuality, "neededMaterialsNormalQuality", 0.9f);
+        Scribe_Values.Look(ref NeededMaterialsGoodQuality, "neededMaterialsGoodQuality", 1.25f);
+        Scribe_Values.Look(ref NeededMaterialsExcellentQuality, "neededMaterialsExcellentQuality", 2f);
+        Scribe_Values.Look(ref NeededMaterialsMasterworkQuality, "neededMaterialsMasterworkQuality", 3f);
+        Scribe_Values.Look(ref MaxUpgradableQuality, "maxUpgradableQuality", 6);
         base.ExposeData();
     }
 
 
     public static ThingDef GetReplacementThingDef(ThingDef def)
     {
-        if (def.modExtensions == null)
+        if (def.modExtensions == null || !def.modExtensions.Any())
         {
             return def;
         }
 
-        if (!def.modExtensions.Any())
-        {
-            return def;
-        }
+        var possibleVfeExtension =
+            def.modExtensions.FirstOrDefault(extension => extension.GetType().Name == "StuffExtension_Cost");
 
-        var possibleVFEExtension =
-            def.modExtensions.FirstOrDefault(
-                extension => extension.GetType().Name == "StuffExtension_Cost");
-
-        if (possibleVFEExtension == null)
+        if (possibleVfeExtension == null)
         {
             return def;
         }
 
         try
         {
-            var replacementDef = (ThingDef)possibleVFEExtension.GetType().GetField("thingDef")
-                ?.GetValue(possibleVFEExtension);
+            var replacementDef = (ThingDef)possibleVfeExtension.GetType().GetField("thingDef")
+                ?.GetValue(possibleVfeExtension);
             return replacementDef ?? def;
         }
         catch

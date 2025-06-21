@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Easy Upgrades</name>
   <author>ToyWalrus</author>
@@ -9,28 +9,28 @@
   </supportedVersions>
   <packageId>toywalrus.easyupgrades</packageId>
   <description>
-&lt;size=24&gt;What it do??&lt;/size&gt;
-&lt;size=12&gt;(a horrible misuse of the colloquial phrase, I know)&lt;/size&gt;
+&lt;size=24>What it do??&lt;/size>
+&lt;size=12>(a horrible misuse of the colloquial phrase, I know)&lt;/size>
 
-&lt;size=18&gt;With this mod, you can:&lt;/size&gt;
+&lt;size=18>With this mod, you can:&lt;/size>
 - Easily upgrade or downgrade buildings without needing to deconstruct them first. The resource cost remains the same. (e.g. a fueled stove normally takes 80 steel, while an electric stove takes 80 steel plus 2 components. So in order to upgrade from a fueled stove to an electric stove, all you need is the difference, which in this case is 2 components.) When downgrading a building, it refunds the difference. Additionally, if there's any remaining fuel left in a building when you upgrade it, that fuel will also be refunded.
 - Attempt to increase the quality of items, apparel, and sculptures. This will depend on the pawn's skill level in the given category. With every attempt there's a chance of success, failure, and nothing happening. These chance values can be modified in the mod settings.
 
-&lt;size=24&gt;What you can upgrade/downgrade&lt;/size&gt;
-- Fueled stove &lt;--&gt; Electric stove
-- Fueled smithy &lt;--&gt; Electric smithy
-- Hand tailoring bench &lt;--&gt; Electric tailoring bench
-- Wood generator &lt;--&gt; Chemfuel generator
-- Door &lt;--&gt; Autodoor
+&lt;size=24>What you can upgrade/downgrade&lt;/size>
+- Fueled stove &lt;--> Electric stove
+- Fueled smithy &lt;--> Electric smithy
+- Hand tailoring bench &lt;--> Electric tailoring bench
+- Wood generator &lt;--> Chemfuel generator
+- Door &lt;--> Autodoor
 - Possibly more in the future...
 
-&lt;size=20&gt;Things you can increase quality for&lt;/size&gt;
+&lt;size=20>Things you can increase quality for&lt;/size>
 - Weapons
 - Apparel
 - Sculptures
 - Buildings (like beds) that have a quality to them
 
-&lt;size=18&gt;Known bugs&lt;/size&gt;
+&lt;size=18>Known bugs&lt;/size>
 - Sometimes when increasing the quality of an item, the resources used don't actually get used. (I like to think of this as a "happy accident")
 
 </description>

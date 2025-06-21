@@ -24,7 +24,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
 
     public override IEnumerable<Toil> MakeNewToils()
     {
-        if (getModifyToThing(Target) == null)
+        if (GetModifyToThing(Target) == null)
         {
             yield break;
         }
@@ -33,7 +33,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         var gotoThingToUpgrade = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A);
         resourcesPlaced = [];
-        if (getAdditionalRequiredResources(Target) != null)
+        if (GetAdditionalRequiredResources(Target) != null)
         {
             yield return Toils_Jump.JumpIf(gotoThingToUpgrade,
                 () => job.GetTargetQueue(TargetIndex.B).NullOrEmpty());
@@ -43,14 +43,14 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
                 .FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnSomeonePhysicallyInteracting(TargetIndex.B);
             yield return gotoNextHaulThing;
             yield return Toils_Haul.StartCarryThing(TargetIndex.B, true, false, true);
-            yield return JumpToCollectNextThingForUpgrade(gotoNextHaulThing, TargetIndex.B);
+            yield return jumpToCollectNextThingForUpgrade(gotoNextHaulThing, TargetIndex.B);
             yield return gotoThingToUpgrade;
             yield return Toils_Jump.JumpIf(gotoNextHaulThing, () => pawn.carryTracker.CarriedThing == null);
             var findPlaceTarget =
                 Toils_JobTransforms.SetTargetToIngredientPlaceCell(TargetIndex.A, TargetIndex.B, TargetIndex.C);
             yield return findPlaceTarget;
             yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, findPlaceTarget, false);
-            yield return RecordPlacedResource();
+            yield return recordPlacedResource();
             yield return Toils_Jump.JumpIfHaveTargetInQueue(TargetIndex.B, extract);
         }
 
@@ -81,14 +81,14 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         {
             initAction = delegate
             {
-                DestroyPlacedResources();
-                RemoveAndReplace();
+                destroyPlacedResources();
+                removeAndReplace();
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
     }
 
-    private Toil JumpToCollectNextThingForUpgrade(Toil gotoGetTargetToil, TargetIndex targetIdx)
+    private static Toil jumpToCollectNextThingForUpgrade(Toil gotoGetTargetToil, TargetIndex targetIdx)
     {
         return Toils_General.Do(delegate
         {
@@ -143,13 +143,13 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         });
     }
 
-    private void RemoveAndReplace()
+    private void removeAndReplace()
     {
         var position = Building.Position;
         var rotation = Building.Rotation;
         BillStack billStack = null;
-        var refundedResources = getRefundedResources(Target);
-        var modifyToThing = getModifyToThing(Target);
+        var refundedResources = GetRefundedResources(Target);
+        var modifyToThing = GetModifyToThing(Target);
         var stuff = Target.Stuff;
         if (Building is Building_WorkTable)
         {
@@ -213,7 +213,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         }
     }
 
-    private void DestroyPlacedResources()
+    private void destroyPlacedResources()
     {
         foreach (var item in resourcesPlaced)
         {
@@ -224,7 +224,7 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         }
     }
 
-    private Toil RecordPlacedResource()
+    private Toil recordPlacedResource()
     {
         return Toils_General.Do(delegate { resourcesPlaced.Add(TargetB.Thing); });
     }
@@ -235,14 +235,14 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         Scribe_Collections.Look(ref resourcesPlaced, "resourcesPlaced", LookMode.Reference, new List<Thing>());
     }
 
-    protected abstract ThingDef getModifyToThing(Thing t);
+    protected abstract ThingDef GetModifyToThing(Thing t);
 
-    protected virtual List<ThingDefCountClass> getRefundedResources(Thing t)
+    protected virtual List<ThingDefCountClass> GetRefundedResources(Thing t)
     {
         return null;
     }
 
-    protected virtual List<ThingDefCountClass> getAdditionalRequiredResources(Thing t)
+    protected virtual List<ThingDefCountClass> GetAdditionalRequiredResources(Thing t)
     {
         return null;
     }

@@ -35,13 +35,13 @@ internal class CompIncreaseQuality : ThingComp
         {
             if (parent.def.IsArt && !HasIncreaseArtQualityDes)
             {
-                yield return CreateCommandForDesignation(new Designation(parent, artDes));
+                yield return createCommandForDesignation(new Designation(parent, artDes));
                 yield break;
             }
 
             if (parent is Building && !HasIncreaseBuildingQualityDes)
             {
-                yield return CreateCommandForDesignation(new Designation(parent, buildingDes));
+                yield return createCommandForDesignation(new Designation(parent, buildingDes));
             }
 
             yield break;
@@ -60,7 +60,7 @@ internal class CompIncreaseQuality : ThingComp
 
         if (parent.def.IsApparel && !HasIncreaseApparelQualityDes)
         {
-            yield return CreateCommandForDesignation(new Designation(parent, apparelDes));
+            yield return createCommandForDesignation(new Designation(parent, apparelDes));
             yield break;
         }
 
@@ -69,10 +69,10 @@ internal class CompIncreaseQuality : ThingComp
             yield break;
         }
 
-        yield return CreateCommandForDesignation(new Designation(parent, itemDes));
+        yield return createCommandForDesignation(new Designation(parent, itemDes));
     }
 
-    private Command CreateCommandForDesignation(Designation des)
+    private Command createCommandForDesignation(Designation des)
     {
         var gizmo = new Command_Action
         {
@@ -84,7 +84,7 @@ internal class CompIncreaseQuality : ThingComp
         if (compQuality != null)
         {
             if (EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >=
-                EasyUpgradesSettings.maxUpgradableQuality)
+                EasyUpgradesSettings.MaxUpgradableQuality)
             {
                 gizmo.disabled = true;
                 gizmo.disabledReason = "EU.CannotIncreaseQuality".Translate();

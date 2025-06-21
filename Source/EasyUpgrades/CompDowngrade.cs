@@ -8,11 +8,11 @@ namespace EasyUpgrades;
 
 internal class CompDowngrade : ThingComp
 {
-    public ThingDef downgradeTo;
+    public ThingDef DowngradeTo;
 
-    public List<ThingDefCountClass> refundedResources;
+    public List<ThingDefCountClass> RefundedResources;
 
-    public CompProperties_Upgradable Props => (CompProperties_Upgradable)props;
+    private CompProperties_Upgradable Props => (CompProperties_Upgradable)props;
 
     private bool HasDowngradeDesignation =>
         parent.Map.designationManager.DesignationOn(parent, EasyUpgradesDesignationDefOf.Downgrade) != null;
@@ -20,8 +20,8 @@ internal class CompDowngrade : ThingComp
     public override void Initialize(CompProperties props)
     {
         base.Initialize(props);
-        downgradeTo = Props.linkedThing;
-        refundedResources = Props.refundedResources;
+        DowngradeTo = Props.linkedThing;
+        RefundedResources = Props.refundedResources;
     }
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -36,14 +36,14 @@ internal class CompDowngrade : ThingComp
             icon = ContentFinder<Texture2D>.Get("UI/Down"),
             defaultLabel = "EU.Downgrade".Translate(),
             defaultDesc = Props.keyedTooltipString.Translate(),
-            currentThing = parent,
-            def = EasyUpgradesDesignationDefOf.Downgrade
+            CurrentThing = parent,
+            Def = EasyUpgradesDesignationDefOf.Downgrade
         };
 
-        if (refundedResources.Any())
+        if (RefundedResources.Any())
         {
             command.defaultDesc += "\n" + "EU.DecreaseQualityReturn".Translate(string.Join(", ",
-                refundedResources.Select(thingdefCount => thingdefCount.Summary)));
+                RefundedResources.Select(thingDefCount => thingDefCount.Summary)));
         }
 
         yield return command;

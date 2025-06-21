@@ -7,9 +7,9 @@ namespace EasyUpgrades;
 
 internal class WorkGiver_Downgrade : WorkGiver_Scanner
 {
-    private DesignationDef DesDown => EasyUpgradesDesignationDefOf.Downgrade;
+    private static DesignationDef DesDown => EasyUpgradesDesignationDefOf.Downgrade;
 
-    private JobDef JobDowngrade => EasyUpgradesJobDefOf.DowngradeThing;
+    private static JobDef JobDowngrade => EasyUpgradesJobDefOf.DowngradeThing;
 
     public override PathEndMode PathEndMode => PathEndMode.Touch;
 

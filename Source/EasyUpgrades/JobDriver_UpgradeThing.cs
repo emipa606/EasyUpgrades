@@ -8,12 +8,12 @@ internal class JobDriver_UpgradeThing : JobDriver_ModifyThing
     public override DesignationDef Designation => EasyUpgradesDesignationDefOf.Upgrade;
     public override EffecterDef WorkEffecter => null;
 
-    protected override ThingDef getModifyToThing(Thing t)
+    protected override ThingDef GetModifyToThing(Thing t)
     {
         return t.TryGetComp<CompUpgrade>()?.upgradeTo;
     }
 
-    protected override List<ThingDefCountClass> getAdditionalRequiredResources(Thing t)
+    protected override List<ThingDefCountClass> GetAdditionalRequiredResources(Thing t)
     {
         return t.TryGetComp<CompUpgrade>()?.additionalRequiredResources;
     }

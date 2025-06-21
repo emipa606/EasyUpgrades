@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: downgrade the designated item to its un-automated counterpart -->
+  <DowngradeThing.label>downgrade the designated item to its un-automated counterpart</DowngradeThing.label>
+  <!-- EN: downgrading -->
+  <DowngradeThing.gerund>downgrading</DowngradeThing.gerund>
+  <!-- EN: downgrade -->
+  <DowngradeThing.verb>downgrade</DowngradeThing.verb>
+  <!-- EN: attempt to increase the quality of this item -->
+  <IncreaseQuality_Apparel.label>attempt to increase the quality of this item</IncreaseQuality_Apparel.label>
+  <!-- EN: increasing quality for -->
+  <IncreaseQuality_Apparel.gerund>increasing quality for</IncreaseQuality_Apparel.gerund>
+  <!-- EN: increase quality -->
+  <IncreaseQuality_Apparel.verb>increase quality</IncreaseQuality_Apparel.verb>
+  <!-- EN: attempt to increase the quality of this item -->
+  <IncreaseQuality_Art.label>attempt to increase the quality of this item</IncreaseQuality_Art.label>
+  <!-- EN: increasing quality for -->
+  <IncreaseQuality_Art.gerund>increasing quality for</IncreaseQuality_Art.gerund>
+  <!-- EN: increase quality -->
+  <IncreaseQuality_Art.verb>increase quality</IncreaseQuality_Art.verb>
+  <!-- EN: attempt to increase the quality of this item -->
+  <IncreaseQuality_Building.label>attempt to increase the quality of this item</IncreaseQuality_Building.label>
+  <!-- EN: increasing quality for -->
+  <IncreaseQuality_Building.gerund>increasing quality for</IncreaseQuality_Building.gerund>
+  <!-- EN: increase quality -->
+  <IncreaseQuality_Building.verb>increase quality</IncreaseQuality_Building.verb>
+  <!-- EN: attempt to increase the quality of this item -->
+  <IncreaseQuality_Item.label>attempt to increase the quality of this item</IncreaseQuality_Item.label>
+  <!-- EN: increasing quality for -->
+  <IncreaseQuality_Item.gerund>increasing quality for</IncreaseQuality_Item.gerund>
+  <!-- EN: increase quality -->
+  <IncreaseQuality_Item.verb>increase quality</IncreaseQuality_Item.verb>
+  <!-- EN: upgrade the designated item to its automated counterpart -->
+  <UpgradeThing.label>upgrade the designated item to its automated counterpart</UpgradeThing.label>
+  <!-- EN: upgrading -->
+  <UpgradeThing.gerund>upgrading</UpgradeThing.gerund>
+  <!-- EN: upgrade -->
+  <UpgradeThing.verb>upgrade</UpgradeThing.verb>
+</LanguageData>

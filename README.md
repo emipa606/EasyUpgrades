@@ -1,21 +1,20 @@
-# EasyUpgrades
+# [Easy Upgrades (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2904429048)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
 Update of ToyWalruss mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 
-- Should now update graphics on update or downgrade to better work with mods like https://steamcommunity.com/sharedfiles/filedetails/?id=2101676323]Quality Of Building
-- Added support for the workbenches in https://steamcommunity.com/sharedfiles/filedetails/?id=2007062982]VGP Garden Gourmet and https://steamcommunity.com/sharedfiles/filedetails/?id=2007062162]VGP Garden Fabrics
-- Added support for https://steamcommunity.com/sharedfiles/filedetails/?id=1880253632]Vanilla Furniture Expanded - Production
-- Added support for https://steamcommunity.com/sharedfiles/filedetails/?id=2608762624]Vanilla Furniture Expanded - Architect
+- Should now update graphics on update or downgrade to better work with mods like [Quality Of Building](https://steamcommunity.com/sharedfiles/filedetails/?id=2101676323)
+- Added support for the workbenches in [VGP Garden Gourmet](https://steamcommunity.com/sharedfiles/filedetails/?id=2007062982) and [VGP Garden Fabrics](https://steamcommunity.com/sharedfiles/filedetails/?id=2007062162)
+- Added support for [Vanilla Furniture Expanded - Production](https://steamcommunity.com/sharedfiles/filedetails/?id=1880253632)
+- Added support for [Vanilla Furniture Expanded - Architect](https://steamcommunity.com/sharedfiles/filedetails/?id=2608762624)
 - Added possibility for multiple research requirements when upgrading.
 - Added increase quality-designator to designate multiple items at once
 - Max quality to upgrade is now selectable in the mod-settings
 - The cost for things not made of "stuff" is now based on tech-level and value of item. No longer 10x wood to upgrade a recon armor.
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
@@ -65,13 +64,12 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
-
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048]![Image](https://img.shields.io/github/v/release/emipa606/EasyUpgrades?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[![Image](https://img.shields.io/github/v/release/emipa606/EasyUpgrades?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048) | tags:  furniture,  quality

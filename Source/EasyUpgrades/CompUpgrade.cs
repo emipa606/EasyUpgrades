@@ -11,7 +11,7 @@ internal class CompUpgrade : ThingComp
     public List<ThingDefCountClass> additionalRequiredResources;
     public ThingDef upgradeTo;
 
-    public CompProperties_Upgradable Props => (CompProperties_Upgradable)props;
+    private CompProperties_Upgradable Props => (CompProperties_Upgradable)props;
 
     private bool HasUpgradeDesignation =>
         parent.Map.designationManager.DesignationOn(parent, EasyUpgradesDesignationDefOf.Upgrade) != null;
@@ -59,14 +59,14 @@ internal class CompUpgrade : ThingComp
             defaultDesc = Props.keyedTooltipString.Translate(),
             disabled = disabled,
             disabledReason = "EU.UnresearchedError".Translate(string.Join(", ", unfinishedRequirements)),
-            currentThing = parent,
-            def = EasyUpgradesDesignationDefOf.Upgrade
+            CurrentThing = parent,
+            Def = EasyUpgradesDesignationDefOf.Upgrade
         };
 
         if (!disabled && additionalRequiredResources.Any())
         {
             command.defaultDesc += "\n" + "EU.IncreaseQualityCost".Translate(string.Join(", ",
-                additionalRequiredResources.Select(thingdefCount => thingdefCount.Summary)));
+                additionalRequiredResources.Select(thingDefCountClass => thingDefCountClass.Summary)));
         }
 
         yield return command;

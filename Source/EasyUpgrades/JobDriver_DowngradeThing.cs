@@ -8,13 +8,13 @@ internal class JobDriver_DowngradeThing : JobDriver_ModifyThing
     public override DesignationDef Designation => EasyUpgradesDesignationDefOf.Downgrade;
     public override EffecterDef WorkEffecter => null;
 
-    protected override ThingDef getModifyToThing(Thing t)
+    protected override ThingDef GetModifyToThing(Thing t)
     {
-        return t.TryGetComp<CompDowngrade>()?.downgradeTo;
+        return t.TryGetComp<CompDowngrade>()?.DowngradeTo;
     }
 
-    protected override List<ThingDefCountClass> getRefundedResources(Thing t)
+    protected override List<ThingDefCountClass> GetRefundedResources(Thing t)
     {
-        return t.TryGetComp<CompDowngrade>()?.refundedResources;
+        return t.TryGetComp<CompDowngrade>()?.RefundedResources;
     }
 }

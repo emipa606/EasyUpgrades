@@ -141,13 +141,13 @@ internal class JobDriver_IncreaseQuality : JobDriver
         {
             initAction = delegate
             {
-                if (!NotifyQualityChanged(modify.actor))
+                if (!notifyQualityChanged(modify.actor))
                 {
                     return;
                 }
 
-                DestroyPlacedResources();
-                RemoveDesignationsForQualityUpgrade(IsCraftingJob ? thingToWorkOn : TargetA.Thing);
+                destroyPlacedResources();
+                removeDesignationsForQualityUpgrade(IsCraftingJob ? thingToWorkOn : TargetA.Thing);
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
@@ -177,11 +177,11 @@ internal class JobDriver_IncreaseQuality : JobDriver
         yield return extract;
         yield return gotoNextHaulThing;
         yield return Toils_Haul.StartCarryThing(TargetIndex.A);
-        yield return JumpToCollectNextThingForUpgrade(gotoNextHaulThing, TargetIndex.A);
+        yield return jumpToCollectNextThingForUpgrade(gotoNextHaulThing, TargetIndex.A);
         yield return gotoWorkbench;
         yield return findPlaceTarget;
         yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, findPlaceTarget, false);
-        yield return RecordPlacedResource(TargetIndex.A);
+        yield return recordPlacedResource(TargetIndex.A);
         yield return Toils_Jump.JumpIfHaveTargetInQueue(TargetIndex.A, extract);
         yield return endGathering;
     }
@@ -198,14 +198,14 @@ internal class JobDriver_IncreaseQuality : JobDriver
             .FailOnDespawnedNullOrForbidden(TargetIndex.B).FailOnSomeonePhysicallyInteracting(TargetIndex.B);
         yield return gotoNextHaulThing;
         yield return Toils_Haul.StartCarryThing(TargetIndex.B, true, false, true);
-        yield return JumpToCollectNextThingForUpgrade(gotoNextHaulThing, TargetIndex.B);
+        yield return jumpToCollectNextThingForUpgrade(gotoNextHaulThing, TargetIndex.B);
         yield return gotoThingToWorkOn;
         yield return Toils_Jump.JumpIf(gotoNextHaulThing, () => pawn.carryTracker.CarriedThing == null);
         var findPlaceTarget =
             Toils_JobTransforms.SetTargetToIngredientPlaceCell(TargetIndex.A, TargetIndex.B, TargetIndex.C);
         yield return findPlaceTarget;
         yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, findPlaceTarget, false);
-        yield return RecordPlacedResource(TargetIndex.B);
+        yield return recordPlacedResource(TargetIndex.B);
         yield return Toils_Jump.JumpIfHaveTargetInQueue(TargetIndex.B, extract);
         yield return gotoThingToWorkOn;
     }
@@ -238,7 +238,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
         });
     }
 
-    private Toil JumpToCollectNextThingForUpgrade(Toil gotoGetTargetToil, TargetIndex targetIdx)
+    private static Toil jumpToCollectNextThingForUpgrade(Toil gotoGetTargetToil, TargetIndex targetIdx)
     {
         return Toils_General.Do(delegate
         {
@@ -289,7 +289,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
         });
     }
 
-    private bool NotifyQualityChanged(Pawn localPawn)
+    private bool notifyQualityChanged(Pawn localPawn)
     {
         var thing = IsCraftingJob ? thingToWorkOn : TargetA.Thing;
         if (!thing.TryGetQuality(out var qc))
@@ -305,10 +305,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
         if (thing is MinifiedThing minifiedThing)
         {
             thing = minifiedThing.InnerThing;
-            if (map == null)
-            {
-                map = thing.Map;
-            }
+            map ??= thing.Map;
         }
 
         string key;
@@ -360,12 +357,12 @@ internal class JobDriver_IncreaseQuality : JobDriver
         localPawn.skills?.Learn(ActiveSkillDef, xp);
         Messages.Message(
             key.Translate(localPawn.NameShortColored,
-                labelNoCount.Substring(0, labelNoCount.IndexOf("(", StringComparison.Ordinal) - 1),
+                labelNoCount[..(labelNoCount.IndexOf("(", StringComparison.Ordinal) - 1)],
                 Mathf.Clamp(successChance, 0f, 1f).ToStringPercent()), localPawn, def);
         return true;
     }
 
-    private void DestroyPlacedResources()
+    private void destroyPlacedResources()
     {
         foreach (var item in resourcesPlaced)
         {
@@ -376,12 +373,12 @@ internal class JobDriver_IncreaseQuality : JobDriver
         }
     }
 
-    private Toil RecordPlacedResource(TargetIndex index)
+    private Toil recordPlacedResource(TargetIndex index)
     {
         return Toils_General.Do(delegate { resourcesPlaced.Add(job.GetTarget(index).Thing); });
     }
 
-    private void RemoveDesignationsForQualityUpgrade(Thing t)
+    private void removeDesignationsForQualityUpgrade(Thing t)
     {
         Map.designationManager.RemoveAllDesignationsOn(t);
     }

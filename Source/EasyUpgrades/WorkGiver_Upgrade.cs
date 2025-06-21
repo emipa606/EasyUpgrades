@@ -9,9 +9,9 @@ namespace EasyUpgrades;
 
 internal class WorkGiver_Upgrade : WorkGiver_Scanner
 {
-    private DesignationDef DesUp => EasyUpgradesDesignationDefOf.Upgrade;
+    private static DesignationDef DesUp => EasyUpgradesDesignationDefOf.Upgrade;
 
-    private JobDef JobUpgrade => EasyUpgradesJobDefOf.UpgradeThing;
+    private static JobDef JobUpgrade => EasyUpgradesJobDefOf.UpgradeThing;
 
     public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForGroup(ThingRequestGroup.Plant);
 
@@ -45,7 +45,7 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
             var construction = WorkTypeDefOf.Construction;
             if (pawn.workSettings.GetPriority(construction) != 0)
             {
-                return MakeUpgradeJob(t, pawn);
+                return makeUpgradeJob(t, pawn);
             }
 
             if (pawn.WorkTypeIsDisabled(construction))
@@ -61,22 +61,20 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
         return null;
     }
 
-    private Job MakeUpgradeJob(Thing thingToUpgrade, Pawn pawn)
+    private Job makeUpgradeJob(Thing thingToUpgrade, Pawn pawn)
     {
         var additionalRequiredResources = thingToUpgrade.TryGetComp<CompUpgrade>().additionalRequiredResources;
         var foundResources =
-            FindAvailableResources(pawn, thingToUpgrade, additionalRequiredResources, out var missingResources);
-        if (missingResources.Count == 1)
+            findAvailableResources(pawn, thingToUpgrade, additionalRequiredResources, out var missingResources);
+        switch (missingResources.Count)
         {
-            JobFailReason.Is("EU.LackingResourcesError_1".Translate(missingResources[0].label));
-            return null;
-        }
-
-        if (missingResources.Count > 0)
-        {
-            JobFailReason.Is(
-                "EU.LackingResourcesError_2".Translate(missingResources[0].label, missingResources[1].label));
-            return null;
+            case 1:
+                JobFailReason.Is("EU.LackingResourcesError_1".Translate(missingResources[0].label));
+                return null;
+            case > 0:
+                JobFailReason.Is(
+                    "EU.LackingResourcesError_2".Translate(missingResources[0].label, missingResources[1].label));
+                return null;
         }
 
         var dictionary = new Dictionary<ThingDef, int>();
@@ -108,7 +106,7 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
         return job;
     }
 
-    private List<Thing> FindAvailableResources(Pawn pawn, Thing thingToUpgrade,
+    private static List<Thing> findAvailableResources(Pawn pawn, Thing thingToUpgrade,
         List<ThingDefCountClass> neededResources, out List<ThingDef> missingResources)
     {
         missingResources = [];

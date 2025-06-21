@@ -20,7 +20,7 @@ public class Designator_IncreaseQuality : Designator
         designateAllLabel = "EU.IncreaseQualityOfAll".Translate();
     }
 
-    public override int DraggableDimensions => 2;
+    public override DrawStyleCategoryDef DrawStyleCategory => DrawStyleCategoryDefOf.Orders;
 
     public override AcceptanceReport CanDesignateCell(IntVec3 c)
     {
@@ -62,7 +62,7 @@ public class Designator_IncreaseQuality : Designator
             return false;
         }
 
-        if (EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >= EasyUpgradesSettings.maxUpgradableQuality)
+        if (EasyUpgrades.QualityArray.IndexOf(compQuality.Quality) >= EasyUpgradesSettings.MaxUpgradableQuality)
         {
             return false;
         }
