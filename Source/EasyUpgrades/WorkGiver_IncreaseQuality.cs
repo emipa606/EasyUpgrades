@@ -183,36 +183,14 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
             t = thing.InnerThing;
         }
 
-        var num = 1;
-        var stuff = t.Stuff;
-        if (!t.def.MadeFromStuff || stuff == null)
-        {
-            var stuffToUse = ThingDefOf.WoodLog;
-
-            switch (t.def.techLevel)
-            {
-                case TechLevel.Industrial:
-                    stuffToUse = ThingDefOf.Steel;
-                    break;
-                case TechLevel.Spacer:
-                case TechLevel.Ultra:
-                case TechLevel.Archotech:
-                    stuffToUse = ThingDefOf.Plasteel;
-                    break;
-            }
-
-            var value = t.def.BaseMarketValue / 10;
-            var amountToUse = (int)Math.Max(10, Math.Round(value / stuffToUse.BaseMarketValue));
-
-            return new ThingDefCountClass(stuffToUse, amountToUse);
-        }
-
         if (!t.TryGetQuality(out var qc))
         {
             Log.Error($"Couldn't get quality for {t.Label}");
             return null;
         }
 
+        var num = 1;
+        var stuff = t.Stuff;
         var recipeMaker = t.def.recipeMaker;
         if (recipeMaker is { bulkRecipeCount: > 0 })
         {
@@ -221,7 +199,25 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
 
         ThingDef thingDef2;
         float num3;
-        if (t.def.costList is { Count: > 0 })
+        if (!t.def.MadeFromStuff || stuff == null)
+        {
+            thingDef2 = ThingDefOf.WoodLog;
+            switch (t.def.techLevel)
+            {
+                case TechLevel.Industrial:
+                    thingDef2 = ThingDefOf.Steel;
+                    break;
+                case TechLevel.Spacer:
+                case TechLevel.Ultra:
+                case TechLevel.Archotech:
+                    thingDef2 = ThingDefOf.Plasteel;
+                    break;
+            }
+
+            var value = t.def.BaseMarketValue / 10;
+            num3 = (float)Math.Max(10, Math.Round(value / thingDef2.BaseMarketValue));
+        }
+        else if (t.def.costList is { Count: > 0 })
         {
             ThingDef thingDef = null;
             var num2 = 0;

@@ -3,4 +3,26 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="EasyUpgrades/EasyUpgrades.csproj" />
+  <Folder Name="/.github/">
+    <File Path="../.github/copilot-instructions.md" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/">
+    <File Path="../1.6/Defs/DesignationDefs.xml" />
+    <File Path="../1.6/Defs/JobDefs.xml" />
+    <File Path="../1.6/Defs/WorkGiverDefs.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/">
+    <File Path="../1.6/Patches/AddCompToThingsWithComp.xml" />
+    <File Path="../1.6/Patches/AddDesignator.xml" />
+    <File Path="../1.6/Patches/VFEProduction.xml" />
+    <File Path="../1.6/Patches/VGP.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/EasyUpgrades.xml" />
+    <File Path="../Languages/English/Keyed/VFEProduction.xml" />
+    <File Path="../Languages/English/Keyed/VGP.xml" />
+  </Folder>
 </Solution>

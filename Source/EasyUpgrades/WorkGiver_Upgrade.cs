@@ -63,7 +63,13 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
 
     private Job makeUpgradeJob(Thing thingToUpgrade, Pawn pawn)
     {
-        var additionalRequiredResources = thingToUpgrade.TryGetComp<CompUpgrade>().additionalRequiredResources;
+        var compUpgrade = thingToUpgrade.TryGetComp<CompUpgrade>();
+        if (compUpgrade == null)
+        {
+            return null;
+        }
+
+        var additionalRequiredResources = compUpgrade.GetAdditionalRequiredResources(thingToUpgrade) ?? [];
         var foundResources =
             findAvailableResources(pawn, thingToUpgrade, additionalRequiredResources, out var missingResources);
         switch (missingResources.Count)
@@ -78,16 +84,16 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
         }
 
         var dictionary = new Dictionary<ThingDef, int>();
+        var requiredCountByDef = additionalRequiredResources.ToDictionary(resource => resource.thingDef, resource => resource.count);
         var job = JobMaker.MakeJob(JobUpgrade, thingToUpgrade);
         job.targetQueueB = [];
         job.countQueue = new List<int>(foundResources.Count);
-        int i;
-        for (i = 0; i < foundResources.Count; i++)
+        for (var i = 0; i < foundResources.Count; i++)
         {
             job.targetQueueB.Add(foundResources[i]);
             var key = foundResources[i].def;
-            var i1 = i;
-            var count = additionalRequiredResources.FirstOrDefault(t => t.thingDef == foundResources[i1].def).count;
+            var count = requiredCountByDef[key];
+
             int num2;
             if (dictionary.TryGetValue(key, out var value))
             {

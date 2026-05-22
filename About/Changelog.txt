@@ -1,5 +1,8 @@
 # Changelog for EasyUpgrades
 
+1.6.1 - Should now respect the stuff is made of regarding upgrades/downgrades as well as quality mod-options
+
+
 1.6.0 - Mod updated for 1.6 and passed autotests
 
 

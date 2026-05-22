@@ -24,6 +24,28 @@ internal class CompDowngrade : ThingComp
         RefundedResources = Props.refundedResources;
     }
 
+    public List<ThingDefCountClass> GetRefundedResources(Thing thing)
+    {
+        if (RefundedResources.NullOrEmpty())
+        {
+            return RefundedResources;
+        }
+
+        if (thing?.Stuff == null || DowngradeTo == null || !thing.def.MadeFromStuff || !DowngradeTo.MadeFromStuff)
+        {
+            return RefundedResources;
+        }
+
+        var resolvedResources = new List<ThingDefCountClass>(RefundedResources.Count);
+        foreach (var resource in RefundedResources)
+        {
+            var resourceDef = resource.thingDef == ThingDefOf.WoodLog ? thing.Stuff : resource.thingDef;
+            resolvedResources.Add(new ThingDefCountClass(resourceDef, resource.count));
+        }
+
+        return resolvedResources;
+    }
+
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
         if (parent.Faction != Faction.OfPlayer || HasDowngradeDesignation)
@@ -40,10 +62,11 @@ internal class CompDowngrade : ThingComp
             Def = EasyUpgradesDesignationDefOf.Downgrade
         };
 
-        if (RefundedResources.Any())
+        var refundedResources = GetRefundedResources(parent);
+        if (refundedResources.Any())
         {
             command.defaultDesc += "\n" + "EU.DecreaseQualityReturn".Translate(string.Join(", ",
-                RefundedResources.Select(thingDefCount => thingDefCount.Summary)));
+                refundedResources.Select(thingDefCount => thingDefCount.Summary)));
         }
 
         yield return command;

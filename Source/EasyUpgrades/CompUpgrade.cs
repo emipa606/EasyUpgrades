@@ -23,6 +23,28 @@ internal class CompUpgrade : ThingComp
         additionalRequiredResources = Props.additionalRequiredResources;
     }
 
+    public List<ThingDefCountClass> GetAdditionalRequiredResources(Thing thing)
+    {
+        if (additionalRequiredResources.NullOrEmpty())
+        {
+            return additionalRequiredResources;
+        }
+
+        if (thing?.Stuff == null || upgradeTo == null || !thing.def.MadeFromStuff || !upgradeTo.MadeFromStuff)
+        {
+            return additionalRequiredResources;
+        }
+
+        var resolvedResources = new List<ThingDefCountClass>(additionalRequiredResources.Count);
+        foreach (var resource in additionalRequiredResources)
+        {
+            var resourceDef = resource.thingDef == ThingDefOf.WoodLog ? thing.Stuff : resource.thingDef;
+            resolvedResources.Add(new ThingDefCountClass(resourceDef, resource.count));
+        }
+
+        return resolvedResources;
+    }
+
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
         if (parent.Faction != Faction.OfPlayer || HasUpgradeDesignation)
@@ -63,10 +85,11 @@ internal class CompUpgrade : ThingComp
             Def = EasyUpgradesDesignationDefOf.Upgrade
         };
 
-        if (!disabled && additionalRequiredResources.Any())
+        var requiredResources = GetAdditionalRequiredResources(parent);
+        if (!disabled && requiredResources.Any())
         {
             command.defaultDesc += "\n" + "EU.IncreaseQualityCost".Translate(string.Join(", ",
-                additionalRequiredResources.Select(thingDefCountClass => thingDefCountClass.Summary)));
+                requiredResources.Select(thingDefCountClass => thingDefCountClass.Summary)));
         }
 
         yield return command;

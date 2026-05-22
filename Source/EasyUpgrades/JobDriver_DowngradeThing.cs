@@ -15,6 +15,6 @@ internal class JobDriver_DowngradeThing : JobDriver_ModifyThing
 
     protected override List<ThingDefCountClass> GetRefundedResources(Thing t)
     {
-        return t.TryGetComp<CompDowngrade>()?.RefundedResources;
+        return t.TryGetComp<CompDowngrade>()?.GetRefundedResources(t);
     }
 }
