@@ -72,4 +72,4 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/EasyUpgrades?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048) | tags: quality, furniture
+[![Image](https://img.shields.io/github/v/release/emipa606/EasyUpgrades?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048) | quality, furniture

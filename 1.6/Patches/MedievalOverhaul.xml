@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationSequence" MayRequire="DankPyon.Medieval.Overhaul">
+    <success>Always</success>
+    <operations>
+      <!-- Add the Upgrade comp to DankPyon_BedLog -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="DankPyon_BedLog"]</xpath>
+        <value>
+          <comps>
+            <li Class="EasyUpgrades.CompProperties_Upgradable">
+              <compClass>EasyUpgrades.CompUpgrade</compClass>
+              <linkedThing>DankPyon_StrawBed</linkedThing>
+              <keyedTooltipString>EU.UpgradeDankPyon_BedLog</keyedTooltipString>
+              <additionalRequiredResources>
+                <DankPyon_Straw>5</DankPyon_Straw>
+              </additionalRequiredResources>
+            </li>
+          </comps>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to DankPyon_StrawBed -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="DankPyon_StrawBed"]</xpath>
+        <value>
+          <comps>
+            <li Class="EasyUpgrades.CompProperties_Upgradable">
+              <compClass>EasyUpgrades.CompUpgrade</compClass>
+              <linkedThing>DankPyon_Bed_Rustic_Green</linkedThing>
+              <keyedTooltipString>EU.UpgradeDankPyon_StrawBed</keyedTooltipString>
+              <additionalRequiredResources>
+                <DankPyon_Linen>5</DankPyon_Linen>
+              </additionalRequiredResources>
+            </li>
+          </comps>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to DankPyon_BedLogDouble -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="DankPyon_BedLogDouble"]</xpath>
+        <value>
+          <comps>
+            <li Class="EasyUpgrades.CompProperties_Upgradable">
+              <compClass>EasyUpgrades.CompUpgrade</compClass>
+              <linkedThing>DankPyon_StrawBedDouble</linkedThing>
+              <keyedTooltipString>EU.UpgradeDankPyon_BedLog</keyedTooltipString>
+              <additionalRequiredResources>
+                <DankPyon_Straw>10</DankPyon_Straw>
+              </additionalRequiredResources>
+            </li>
+          </comps>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to DankPyon_StrawBedDouble -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="DankPyon_StrawBedDouble"]</xpath>
+        <value>
+          <comps>
+            <li Class="EasyUpgrades.CompProperties_Upgradable">
+              <compClass>EasyUpgrades.CompUpgrade</compClass>
+              <linkedThing>DankPyon_Bed_RusticDouble_Green</linkedThing>
+              <keyedTooltipString>EU.UpgradeDankPyon_StrawBed</keyedTooltipString>
+              <additionalRequiredResources>
+                <DankPyon_Linen>10</DankPyon_Linen>
+              </additionalRequiredResources>
+            </li>
+          </comps>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to DankPyon_Trestle -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="DankPyon_Trestle"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>DankPyon_SawTable</linkedThing>
+            <keyedTooltipString>EU.UpgradeDankPyon_Trestle</keyedTooltipString>
+            <researchPrerequisites>
+              <li>DankPyon_Lumber</li>
+              <li>Electricity</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>10</Steel>
+              <ComponentIndustrial>1</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to DankPyon_SpinningWheel -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="DankPyon_SpinningWheel"]</xpath>
+        <value>
+          <comps>
+            <li Class="EasyUpgrades.CompProperties_Upgradable">
+              <compClass>EasyUpgrades.CompUpgrade</compClass>
+              <linkedThing>DankPyon_ClothSpinner</linkedThing>
+              <keyedTooltipString>EU.UpgradeDankPyon_SpinningWheel</keyedTooltipString>
+              <researchPrerequisites>
+                <li>ComplexClothing</li>
+                <li>Electricity</li>
+              </researchPrerequisites>
+              <additionalRequiredResources>
+                <Steel>65</Steel>
+                <ComponentIndustrial>2</ComponentIndustrial>
+              </additionalRequiredResources>
+            </li>
+          </comps>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to DankPyon_Furnace -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="DankPyon_Furnace"]/comps</xpath>
+        <value>
+          <li Class="EasyUpgrades.CompProperties_Upgradable">
+            <compClass>EasyUpgrades.CompUpgrade</compClass>
+            <linkedThing>DankPyon_BlastFurnace</linkedThing>
+            <keyedTooltipString>EU.UpgradeDankPyon_Furnace</keyedTooltipString>
+            <researchPrerequisites>
+              <li>Electricity</li>
+            </researchPrerequisites>
+            <additionalRequiredResources>
+              <Steel>100</Steel>
+              <ComponentIndustrial>2</ComponentIndustrial>
+            </additionalRequiredResources>
+          </li>
+        </value>
+      </li>
+      <!-- Add the Upgrade comp to SimpleResearchBench -->
+      <li Class="PatchOperationAdd" MayRequire="DankPyon.Medieval.Overhaul">
+        <xpath>/Defs/ThingDef[defName="SimpleResearchBench"]</xpath>
+        <value>
+          <comps>
+            <li Class="EasyUpgrades.CompProperties_Upgradable">
+              <compClass>EasyUpgrades.CompUpgrade</compClass>
+              <linkedThing>DankPyon_AdvancedResearchBench</linkedThing>
+              <keyedTooltipString>EU.UpgradeSimpleResearchBench</keyedTooltipString>
+              <researchPrerequisites>
+                <li>DankPyon_Engineering</li>
+                <li>DankPyon_Alchemy</li>
+              </researchPrerequisites>
+              <additionalRequiredResources>
+                <DankPyon_IronIngot>15</DankPyon_IronIngot>
+                <DankPyon_ComponentBasic>25</DankPyon_ComponentBasic>
+              </additionalRequiredResources>
+            </li>
+          </comps>
+        </value>
+      </li>
+    </operations>
+  </Operation>
+</Patch>
