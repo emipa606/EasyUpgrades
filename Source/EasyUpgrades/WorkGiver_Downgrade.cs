@@ -53,9 +53,9 @@ internal class WorkGiver_Downgrade : WorkGiver_Scanner
         return null;
     }
 
-    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn p)
+    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawm)
     {
-        foreach (var item in p.Map.designationManager.SpawnedDesignationsOfDef(EasyUpgradesDesignationDefOf
+        foreach (var item in pawm.Map.designationManager.SpawnedDesignationsOfDef(EasyUpgradesDesignationDefOf
                      .Downgrade))
         {
             yield return item.target.Thing;

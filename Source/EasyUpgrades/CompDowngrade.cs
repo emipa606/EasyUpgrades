@@ -10,7 +10,7 @@ internal class CompDowngrade : ThingComp
 {
     public ThingDef DowngradeTo;
 
-    public List<ThingDefCountClass> RefundedResources;
+    private List<ThingDefCountClass> RefundedResources;
 
     private CompProperties_Upgradable Props => (CompProperties_Upgradable)props;
 
@@ -26,12 +26,8 @@ internal class CompDowngrade : ThingComp
 
     public List<ThingDefCountClass> GetRefundedResources(Thing thing)
     {
-        if (RefundedResources.NullOrEmpty())
-        {
-            return RefundedResources;
-        }
-
-        if (thing?.Stuff == null || DowngradeTo == null || !thing.def.MadeFromStuff || !DowngradeTo.MadeFromStuff)
+        if (RefundedResources.NullOrEmpty() || thing?.Stuff == null || DowngradeTo == null ||
+            !thing.def.MadeFromStuff || !DowngradeTo.MadeFromStuff)
         {
             return RefundedResources;
         }

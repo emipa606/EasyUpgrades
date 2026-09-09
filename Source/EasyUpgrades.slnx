@@ -19,10 +19,12 @@
     <File Path="../1.6/Patches/AddDesignator.xml" />
     <File Path="../1.6/Patches/VFEProduction.xml" />
     <File Path="../1.6/Patches/VGP.xml" />
+    <File Path="../1.6/Patches/MedievalOverhaul.xml" />
   </Folder>
   <Folder Name="/XML/Languages/English/Keyed/">
     <File Path="../Languages/English/Keyed/EasyUpgrades.xml" />
     <File Path="../Languages/English/Keyed/VFEProduction.xml" />
     <File Path="../Languages/English/Keyed/VGP.xml" />
+    <File Path="../Languages/English/Keyed/MedievalOverhaul.xml" />
   </Folder>
 </Solution>

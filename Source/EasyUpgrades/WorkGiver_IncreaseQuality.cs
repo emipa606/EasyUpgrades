@@ -17,9 +17,9 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         return des.def == Designation;
     }
 
-    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn p)
+    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
     {
-        foreach (var item in p.Map.designationManager.SpawnedDesignationsOfDef(Designation))
+        foreach (var item in pawn.Map.designationManager.SpawnedDesignationsOfDef(Designation))
         {
             yield return item.target.Thing;
         }
@@ -137,7 +137,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         return possibleWorkstations.Any() ? string.Join(", ", possibleWorkstations.OrderBy(s => s)) : string.Empty;
     }
 
-    private bool HasEnoughResourcesOfType(Pawn pawn, Thing t, ThingDefCountClass stuffDef,
+    private static bool HasEnoughResourcesOfType(Pawn pawn, Thing t, ThingDefCountClass stuffDef,
         out List<ThingCountClass> resources)
     {
         resources = [];

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  <!--Add the increase quality designator-->
+  <!--Add the upgrade and increase quality designators-->
   <Operation Class="PatchOperationAdd">
     <xpath>/Defs/DesignationCategoryDef[defName="Orders"]/specialDesignatorClasses</xpath>
     <value>
+      <li>EasyUpgrades.Designator_Upgrade</li>
       <li>EasyUpgrades.Designator_IncreaseQuality</li>
     </value>
   </Operation>

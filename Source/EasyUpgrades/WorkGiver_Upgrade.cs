@@ -15,9 +15,9 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
 
     public override ThingRequest PotentialWorkThingRequest => ThingRequest.ForGroup(ThingRequestGroup.Plant);
 
-    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn p)
+    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
     {
-        foreach (var item in p.Map.designationManager.SpawnedDesignationsOfDef(DesUp))
+        foreach (var item in pawn.Map.designationManager.SpawnedDesignationsOfDef(DesUp))
         {
             yield return item.target.Thing;
         }
@@ -61,7 +61,7 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
         return null;
     }
 
-    private Job makeUpgradeJob(Thing thingToUpgrade, Pawn pawn)
+    private static Job makeUpgradeJob(Thing thingToUpgrade, Pawn pawn)
     {
         var compUpgrade = thingToUpgrade.TryGetComp<CompUpgrade>();
         if (compUpgrade == null)
@@ -84,24 +84,25 @@ internal class WorkGiver_Upgrade : WorkGiver_Scanner
         }
 
         var dictionary = new Dictionary<ThingDef, int>();
-        var requiredCountByDef = additionalRequiredResources.ToDictionary(resource => resource.thingDef, resource => resource.count);
+        var requiredCountByDef =
+            additionalRequiredResources.ToDictionary(resource => resource.thingDef, resource => resource.count);
         var job = JobMaker.MakeJob(JobUpgrade, thingToUpgrade);
         job.targetQueueB = [];
         job.countQueue = new List<int>(foundResources.Count);
-        for (var i = 0; i < foundResources.Count; i++)
+        foreach (var thing in foundResources)
         {
-            job.targetQueueB.Add(foundResources[i]);
-            var key = foundResources[i].def;
+            job.targetQueueB.Add(thing);
+            var key = thing.def;
             var count = requiredCountByDef[key];
 
             int num2;
             if (dictionary.TryGetValue(key, out var value))
             {
-                num2 = dictionary[key] = Mathf.Min(foundResources[i].stackCount, count - value);
+                num2 = dictionary[key] = Mathf.Min(thing.stackCount, count - value);
             }
             else
             {
-                num2 = Mathf.Min(foundResources[i].stackCount, count);
+                num2 = Mathf.Min(thing.stackCount, count);
                 dictionary.Add(key, num2);
             }
 

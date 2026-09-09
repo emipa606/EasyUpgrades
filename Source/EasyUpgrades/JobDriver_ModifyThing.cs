@@ -151,9 +151,9 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
         var refundedResources = GetRefundedResources(Target);
         var modifyToThing = GetModifyToThing(Target);
         var stuff = Target.Stuff;
-        if (Building is Building_WorkTable)
+        if (Building is Building_WorkTable table)
         {
-            billStack = (Building as Building_WorkTable)?.BillStack;
+            billStack = table.BillStack;
         }
 
         var compRefuelable = Building.TryGetComp<CompRefuelable>();
@@ -239,11 +239,11 @@ public abstract class JobDriver_ModifyThing : JobDriver_RemoveBuilding
 
     protected virtual List<ThingDefCountClass> GetRefundedResources(Thing t)
     {
-        return null;
+        return [];
     }
 
     protected virtual List<ThingDefCountClass> GetAdditionalRequiredResources(Thing t)
     {
-        return null;
+        return [];
     }
 }

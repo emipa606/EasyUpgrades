@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <EU.Upgrade>Upgrade</EU.Upgrade>
+  <EU.UpgradeOfAll>Upgrade all designated items</EU.UpgradeOfAll>
+  <EU.UpgradeTooltip>Designate upgradeable things for upgrading</EU.UpgradeTooltip>
   <EU.Downgrade>Downgrade</EU.Downgrade>
+  <EU.MustDesignateUpgradeableThing>Must select upgradeable things</EU.MustDesignateUpgradeableThing>
   <EU.MustDesignateItemOfQuality>Must select things that has quality</EU.MustDesignateItemOfQuality>
   <EU.IncreaseQuality>Increase quality</EU.IncreaseQuality>
   <EU.IncreaseQualityOfAll>Increase quality of all items</EU.IncreaseQualityOfAll>

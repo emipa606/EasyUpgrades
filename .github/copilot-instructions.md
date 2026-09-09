@@ -1,53 +1,46 @@
-# Copilot Instructions for Easy Upgrades (Continued)
+# Easy Upgrades (Continued) Copilot Instructions
 
 ## Mod Overview and Purpose
-
-Easy Upgrades (Continued) is a RimWorld mod that allows players to upgrade or downgrade buildings, items, clothing, and sculptures in their colonies without needing to deconstruct them first. The mod figures out the cost based on the resource difference between the old and new objects. This streamlined process reduces resource waste and adjusts the mod compatibility to enhance gameplay for more complex modded environments.
+The "Easy Upgrades (Continued)" mod for RimWorld is designed to streamline and enhance the upgrading process of various in-game structures and items. This mod allows players to upgrade or downgrade their buildings without the need to deconstruct them, retaining resource costs only for the upgrades or downgrades differences. It is particularly useful for players who want more control over their colony's buildings and want to integrate seamlessly with other mods enhancing the building or upgrading processes.
 
 ## Key Features and Systems
-
-- **Upgrade/Downgrade Functionality**: Enables players to upgrade certain buildings like stoves and generators with only the difference in resources required.
-- **Quality Manipulation**: Allows players to attempt to increase the quality of items, weapons, apparel, and sculptures, depending on pawn skills.
-- **Mod Compatibility**: Provides support for multiple popular mods like VGP Garden series and Vanilla Furniture Expanded.
-- **Dynamic Settings**: Features mod settings that let players choose max quality levels and modify upgrade chance values.
-- **Refund System**: Includes logic to refund resources appropriately, including fuel, during upgrades or downgrades.
+- **Dynamic Upgrading:** Upgrade buildings directly without deconstruction. Only the difference in resource costs is needed for upgrading or refunded for downgrading.
+- **Upgrade Designation:** Provide an Orders designator so players can queue upgrades on multiple upgradeable things at once.
+- **Multiple Mod Integration:** Includes supports for workbenches from VGP Garden Gourmet and VGP Garden Fabrics, and several Vanilla Furniture Expanded mods.
+- **Complex Research Requirements:** Incorporate multiple research requirements for specific upgrades.
+- **Quality Designation:** Introduce a quality-designator system to designate multiple items for quality upgrades at once.
+- **Configurable Settings:** The maximum quality for upgrades and success probabilities can be modified in mod settings.
+- **Contextual Upgrading:** Upgrade options are available depending on the item type and current state (e.g., a sculpture needs to be uninstalled before upgrading its quality).
+- **Material-Sensitive Costs:** Resource costs for non-stuff items are calculated based on tech-level and item value, allowing more fair and logical resource management.
 
 ## Coding Patterns and Conventions
-
-The mod uses several key patterns to ensure maintainability and integration with RimWorld:
-
-- **Component-Based Design**: Utilizes `ThingComp` to extend functionality of in-game objects without invasive changes.
-- **Defining Extensions**: Employs definition classes like `EasyUpgradesDesignationDefOf` for custom designator identification.
-- **Mod Settings Management**: Implements `ModSettings` through `EasyUpgradesSettings` for customizable player options.
-- **Job Drivers and WorkGivers**: Leverages custom job drivers and work givers for organizing upgrade tasks and other interactions.
+- Follow standard C# conventions, including meaningful class and method names.
+- Use `PascalCase` for class and method names, and `camelCase` for local variables.
+- Keep code documentation and comments up-to-date to aid future maintenance or updates.
+- Adhere to high modularization standards, separating different functionalities into well-defined classes and methods.
 
 ## XML Integration
-
-XML definitions play a substantial role in organizing mod elements:
-
-- XML is used for defining `ThingDefs` and integrating new functionalities with pre-existing or new objects in the game.
-- `CompProperties` are harnessed to connect C# logic with XML definitions for easy customization and extension.
+- Utilize XML definitions for integrating new components and designators, such as `DesignationDefs`, `JobDefs`, and `WorkGiverDefs`.
+- Maintain clean separation of logic within XML files for easy identification and modification.
+- Ensure XML files have correctly defined hierarchy and references to prevent run-time errors.
 
 ## Harmony Patching
-
-The mod uses Harmony for runtime patching:
-
-- **Patch Methods**: Patching methods involve replacing parts of existing game logic to add or modify functionality without altering the base game code.
-- Ensure that patches are conditionally applied to reduce performance overhead and maximize compatibility.
+- Use Harmony to patch existing game methods for customized behavior, ensuring compatibility with other mods.
+- Implement patches with the goal of minimizing performance overhead.
+- Apply conditional checks within patch methods to cater to specific scenarios such as resource calculations or interface updates.
 
 ## Suggestions for Copilot
+- **Enhanced Suggestions:** Use Copilot to generate method stubs or XML structures, prompting consistency across similar operations involved in upgrading systems.
+- **Code Completion Plugins:** Encourage using code completion for developing routine actions like logging, exception handling, or data calculations.
+- **Automated Refactoring:** Leverage Copilot to provide refactoring suggestions for optimizing existing code or identifying redundant parts.
+- **Documentation Updates:** Assist in generating consistent code documentation or updating class/file summaries according to changes.
+- **Debugging Enhancements:** Provide debugging assistance, especially related to intricate mod compatibility issues or error logging improvements.
 
-When developing with GitHub Copilot in this project, consider the following guidelines:
+## Known Issues
+- Occasionally, resources might not get deducted when increasing the quality of an item. Monitor player reports for insights into possible fixes.
+- Encourage users to isolate the mod during error occurrence tests and report problems through the appropriate channels, primarily the Discord-error-reporting channel.
 
-1. **Component Integration**: Suggest proper usage of `ThingComp` to non-invasively add behavior to in-game objects.
-2. **Job Management**: Offer auto-completions or refactoring suggestions around job handlers like `JobDriver_ModifyThing`.
-3. **Resource Calculation**: Aid in formulating logic for difference calculations between resources during upgrades.
-4. **Error Handling**: Prompt best practices for try-catch blocks, especially around quality upgrade failures or resources refunds.
-5. **Modular Function Design**: Encourage patterns where behaviors are split into modular functions for reuse and clarity.
-6. **XML-C# Sync**: Ensure integration between XML values and C# logic is transparent and maintainable.
-7. **Documentation Hints**: Include suggestions for inline comments to maintain code clarity and aid future development.
-
-By adhering to the above guidelines, Copilot can both assist in development and help ensure that any new modifications remain consistent with the existing codebase's structure and design ethos.
+Thank you for using Easy Upgrades, and feel free to contribute solutions or improvements to the GitHub repository.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -56,3 +49,9 @@ By adhering to the above guidelines, Copilot can both assist in development and 
 - When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
 - In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
 - For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+

@@ -4,7 +4,7 @@ using Verse;
 
 namespace EasyUpgrades;
 
-public class EasyUpgrades
+public static class EasyUpgrades
 {
     public const int BaseLevel = 14;
 

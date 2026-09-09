@@ -25,12 +25,8 @@ internal class CompUpgrade : ThingComp
 
     public List<ThingDefCountClass> GetAdditionalRequiredResources(Thing thing)
     {
-        if (additionalRequiredResources.NullOrEmpty())
-        {
-            return additionalRequiredResources;
-        }
-
-        if (thing?.Stuff == null || upgradeTo == null || !thing.def.MadeFromStuff || !upgradeTo.MadeFromStuff)
+        if (additionalRequiredResources.NullOrEmpty() || thing?.Stuff == null || upgradeTo == null ||
+            !thing.def.MadeFromStuff || !upgradeTo.MadeFromStuff)
         {
             return additionalRequiredResources;
         }

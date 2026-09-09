@@ -22,6 +22,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 - Added support for the workbenches in [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2007062982]VGP Garden Gourmet[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2007062162]VGP Garden Fabrics[/url]
 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1880253632]Vanilla Furniture Expanded - Production[/url]
 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2608762624]Vanilla Furniture Expanded - Architect[/url]
+- Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926]Medieval Overhaul[/url]
 - Added possibility for multiple research requirements when upgrading.
 - Added increase quality-designator to designate multiple items at once
 - Max quality to upgrade is now selectable in the mod-settings
@@ -81,5 +82,5 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2134505728
 [/list] 
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2904429048][img]https://img.shields.io/github/v/release/emipa606/EasyUpgrades?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | quality, furniture</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.6.2</modVersion>
+  <modVersion IgnoreIfNoMatchingField="True">1.6.3</modVersion>
 </ModMetaData>

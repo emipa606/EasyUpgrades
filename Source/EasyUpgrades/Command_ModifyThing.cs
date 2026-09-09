@@ -19,25 +19,29 @@ public class Command_ModifyThing : Command
     {
         base.ProcessInput(ev);
         SoundDefOf.Tick_Tiny.PlayOneShotOnCamera();
-        var designationManager = CurrentThing.Map.designationManager;
-        var designation = designationManager.DesignationOn(CurrentThing, Def);
-        var designation2 = designationManager.DesignationOn(CurrentThing, UninstallDef);
-        var designation3 = designationManager.DesignationOn(CurrentThing, DeconstructDef);
-        if (designation != null)
+        ApplyDesignation(CurrentThing, Def);
+    }
+
+    public static void ApplyDesignation(Thing thing, DesignationDef designationDef)
+    {
+        var designationManager = thing.Map.designationManager;
+        if (designationManager.DesignationOn(thing, designationDef) != null)
         {
             return;
         }
 
-        if (designation2 != null)
+        designationManager.TryRemoveDesignationOn(thing, UninstallDef);
+        designationManager.TryRemoveDesignationOn(thing, DeconstructDef);
+
+        if (designationDef == EasyUpgradesDesignationDefOf.Upgrade)
         {
-            designationManager.TryRemoveDesignationOn(CurrentThing, UninstallDef);
+            designationManager.TryRemoveDesignationOn(thing, EasyUpgradesDesignationDefOf.Downgrade);
+        }
+        else if (designationDef == EasyUpgradesDesignationDefOf.Downgrade)
+        {
+            designationManager.TryRemoveDesignationOn(thing, EasyUpgradesDesignationDefOf.Upgrade);
         }
 
-        if (designation3 != null)
-        {
-            designationManager.TryRemoveDesignationOn(CurrentThing, DeconstructDef);
-        }
-
-        designationManager.AddDesignation(new Designation(CurrentThing, Def));
+        designationManager.AddDesignation(new Designation(thing, designationDef));
     }
 }

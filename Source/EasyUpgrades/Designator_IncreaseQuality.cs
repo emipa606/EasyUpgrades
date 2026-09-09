@@ -22,14 +22,14 @@ public class Designator_IncreaseQuality : Designator
 
     public override DrawStyleCategoryDef DrawStyleCategory => DrawStyleCategoryDefOf.Orders;
 
-    public override AcceptanceReport CanDesignateCell(IntVec3 c)
+    public override AcceptanceReport CanDesignateCell(IntVec3 loc)
     {
-        if (!c.InBounds(Map) || c.Fogged(Map))
+        if (!loc.InBounds(Map) || loc.Fogged(Map))
         {
             return false;
         }
 
-        if (!c.GetThingList(Map).Any(t => CanDesignateThing(t).Accepted))
+        if (!loc.GetThingList(Map).Any(t => CanDesignateThing(t).Accepted))
         {
             return "EU.MustDesignateItemOfQuality".Translate();
         }
@@ -67,12 +67,9 @@ public class Designator_IncreaseQuality : Designator
             return false;
         }
 
-        if (t.Faction == Faction.OfPlayer)
+        if (t.Faction == Faction.OfPlayer && (t.def.IsArt || t is Building))
         {
-            if (t.def.IsArt || t is Building)
-            {
-                return true;
-            }
+            return true;
         }
 
         if (t.Faction != null)
