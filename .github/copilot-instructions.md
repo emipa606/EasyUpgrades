@@ -1,46 +1,95 @@
-# Easy Upgrades (Continued) Copilot Instructions
+# GitHub Copilot Instructions for Easy Upgrades (Continued) Mod
 
 ## Mod Overview and Purpose
-The "Easy Upgrades (Continued)" mod for RimWorld is designed to streamline and enhance the upgrading process of various in-game structures and items. This mod allows players to upgrade or downgrade their buildings without the need to deconstruct them, retaining resource costs only for the upgrades or downgrades differences. It is particularly useful for players who want more control over their colony's buildings and want to integrate seamlessly with other mods enhancing the building or upgrading processes.
+Easy Upgrades (Continued) is a mod for the popular RimWorld game. It is an update of the ToyWalrus mod, designed to provide an easier way to upgrade or downgrade buildings without needing to deconstruct them first. The resource cost remains the same, and the mod also allows players to increase the quality of items, apparel, and sculptures. This mod supports various other mods, including Quality Of Building, VGP Garden Gourmet, VGP Garden Fabrics, Vanilla Furniture Expanded - Production, Vanilla Furniture Expanded - Architect, and Medieval Overhaul.
 
 ## Key Features and Systems
-- **Dynamic Upgrading:** Upgrade buildings directly without deconstruction. Only the difference in resource costs is needed for upgrading or refunded for downgrading.
-- **Upgrade Designation:** Provide an Orders designator so players can queue upgrades on multiple upgradeable things at once.
-- **Multiple Mod Integration:** Includes supports for workbenches from VGP Garden Gourmet and VGP Garden Fabrics, and several Vanilla Furniture Expanded mods.
-- **Complex Research Requirements:** Incorporate multiple research requirements for specific upgrades.
-- **Quality Designation:** Introduce a quality-designator system to designate multiple items for quality upgrades at once.
-- **Configurable Settings:** The maximum quality for upgrades and success probabilities can be modified in mod settings.
-- **Contextual Upgrading:** Upgrade options are available depending on the item type and current state (e.g., a sculpture needs to be uninstalled before upgrading its quality).
-- **Material-Sensitive Costs:** Resource costs for non-stuff items are calculated based on tech-level and item value, allowing more fair and logical resource management.
+- **Building Upgrades and Downgrades**: Players can upgrade or downgrade buildings without deconstructing them, using only the difference in resources.
+- **Quality Increase Designator**: Players can attempt to increase the quality of items, apparel, and sculptures. Success, failure, or no change can occur, with customizable chances.
+- **Multiple Research Requirements**: Players can have multiple research requirements when upgrading items.
+- **Selectable Max Quality**: The maximum quality to upgrade is selectable in the mod settings.
+- **Cost Calculation**: Quality upgrades require each original material, including stuff and fixed costs, scaled by the quality multiplier. Items without defined costs use a tech-level and item-value fallback.
+- **Quality Upgrade Work**: Work has no upper time cap. Pawns must meet the original building and applicable crafting recipe skill requirements.
+- **Support for Multiple Mods**: The mod integrates with various other mods, enhancing compatibility and functionality.
 
 ## Coding Patterns and Conventions
-- Follow standard C# conventions, including meaningful class and method names.
-- Use `PascalCase` for class and method names, and `camelCase` for local variables.
-- Keep code documentation and comments up-to-date to aid future maintenance or updates.
-- Adhere to high modularization standards, separating different functionalities into well-defined classes and methods.
+- **Designators**: Custom designators like `Designator_Upgrade` and `Designator_IncreaseQuality` are used to handle upgrade and quality increase actions.
+- **Comps**: Custom components like `CompUpgrade` and `CompProperties_Upgradable` are used to manage upgrade properties and behaviors.
+- **Harmony Patches**: Harmony is extensively used to patch vanilla and third-party code to integrate new features.
+- **XML Definitions**: XML files are used to define new designations, jobs, work givers, and patches.
 
 ## XML Integration
-- Utilize XML definitions for integrating new components and designators, such as `DesignationDefs`, `JobDefs`, and `WorkGiverDefs`.
-- Maintain clean separation of logic within XML files for easy identification and modification.
-- Ensure XML files have correctly defined hierarchy and references to prevent run-time errors.
+The mod uses XML files to define new game elements such as designations, jobs, and work givers. Key XML files include:
+
+- **DesignationDefs.xml**: Defines new designations like "Upgrade" and "Increase Quality".
+- **JobDefs.xml**: Defines new jobs related to upgrading and quality increasing.
+- **WorkGiverDefs.xml**: Defines new work givers for the designated actions.
+- **Patches**: XML files that define Harmony patches to modify vanilla behavior.
 
 ## Harmony Patching
-- Use Harmony to patch existing game methods for customized behavior, ensuring compatibility with other mods.
-- Implement patches with the goal of minimizing performance overhead.
-- Apply conditional checks within patch methods to cater to specific scenarios such as resource calculations or interface updates.
+Harmony is used to patch vanilla and third-party code to integrate new features. Key patches include:
+
+- **AddCompToThingsWithComp.xml**: Adds custom components to things that already have a specific component.
+- **AddDesignator.xml**: Adds new designators to the game.
 
 ## Suggestions for Copilot
-- **Enhanced Suggestions:** Use Copilot to generate method stubs or XML structures, prompting consistency across similar operations involved in upgrading systems.
-- **Code Completion Plugins:** Encourage using code completion for developing routine actions like logging, exception handling, or data calculations.
-- **Automated Refactoring:** Leverage Copilot to provide refactoring suggestions for optimizing existing code or identifying redundant parts.
-- **Documentation Updates:** Assist in generating consistent code documentation or updating class/file summaries according to changes.
-- **Debugging Enhancements:** Provide debugging assistance, especially related to intricate mod compatibility issues or error logging improvements.
+1. **Code Snippets**: Provide code snippets for creating custom designators, components, and Harmony patches.
+2. **XML Templates**: Provide XML templates for defining new designations, jobs, and work givers.
+3. **Debugging Tips**: Provide tips and tricks for debugging Harmony patches and XML definitions.
+4. **Integration Examples**: Provide examples of how to integrate the mod with other mods like Quality Of Building and VGP Garden Gourmet.
 
-## Known Issues
-- Occasionally, resources might not get deducted when increasing the quality of an item. Monitor player reports for insights into possible fixes.
-- Encourage users to isolate the mod during error occurrence tests and report problems through the appropriate channels, primarily the Discord-error-reporting channel.
+## Example C# Code Snippet
+Here is an example of a custom designator for increasing quality:
 
-Thank you for using Easy Upgrades, and feel free to contribute solutions or improvements to the GitHub repository.
+csharp
+public class Designator_IncreaseQuality : Designator
+{
+    public Designator_IncreaseQuality()
+    {
+        defaultLabel = "Increase Quality";
+        defaultDesc = "Attempt to increase the quality of this item.";
+        icon = ContentFinder<Texture2D>.Get("Designators/IncreaseQuality");
+        soundDrag = SoundDef.Named("DesignateDragStandard");
+        useMouseIconWhenDragging = true;
+        soundSucceeded = SoundDef.Named("Click");
+        hotkey = KeyBindingDefOf.Misc1;
+        this.tutorTag = "IncreaseQuality";
+    }
+
+    public override bool CanDesignateCell(IntVec3 c)
+    {
+        return false;
+    }
+
+    public override bool CanDesignateThing(Thing t)
+    {
+        return t is ThingWithComps thingWithComps && thingWithComps.GetComp<CompUpgrade>() != null;
+    }
+
+    public override void DesignateThing(Thing t)
+    {
+        base.DesignateThing(t);
+        t.Map.designationManager.AddDesignation(new Designation(t, DesignationDefOf.IncreaseQuality));
+    }
+}
+
+
+## Example XML Template
+Here is an example of an XML template for a new designation:
+
+xml
+<DesignationDef>
+    <defName>Upgrade</defName>
+    <label>Upgrade</label>
+    <description>Upgrade this building.</description>
+    <hotKey>M</hotKey>
+    <iconPath>Designators/Upgrade</iconPath>
+    <workGiverClass>WorkGiver_Upgrade</workGiverClass>
+    <jobClass>JobDriver_Upgrade</jobClass>
+</DesignationDef>
+
+
+By following these guidelines and using the provided code snippets and XML templates, you can effectively contribute to the Easy Upgrades (Continued) mod and enhance its functionality.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -54,4 +103,6 @@ Thank you for using Easy Upgrades, and feel free to contribute solutions or impr
 ## Hard rules (must follow)
 - Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
 - Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
 

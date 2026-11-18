@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -89,9 +90,12 @@ internal class CompIncreaseQuality : ThingComp
             }
             else
             {
-                gizmo.defaultDesc += "\n" +
-                                     "EU.IncreaseQualityCost".Translate(WorkGiver_IncreaseQuality
-                                         .GetStuffNeededForQualityIncrease(parent).Summary);
+                var resources = WorkGiver_IncreaseQuality.GetStuffNeededForQualityIncrease(parent);
+                if (resources != null)
+                {
+                    gizmo.defaultDesc += "\n" + "EU.IncreaseQualityCost".Translate(
+                        string.Join(", ", resources.Select(resource => resource.Summary)));
+                }
             }
         }
 

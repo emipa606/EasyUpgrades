@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -10,7 +11,7 @@ namespace EasyUpgrades;
 
 internal class JobDriver_IncreaseQuality : JobDriver
 {
-    private List<Thing> resourcesPlaced;
+    private List<ThingCountClass> resourcesPlaced = [];
 
     private Thing thingToWorkOn;
 
@@ -42,33 +43,9 @@ internal class JobDriver_IncreaseQuality : JobDriver
     {
         get
         {
-            int skill;
-            if (IsArtisticJob && thingToWorkOn is MinifiedThing)
-            {
-                var innerThing = (thingToWorkOn as MinifiedThing)?.InnerThing;
-                if (innerThing != null)
-                {
-                    skill = 0;
-
-                    if (pawn.RaceProps.mechFixedSkillLevel > 0)
-                    {
-                        skill = pawn.RaceProps.mechFixedSkillLevel;
-                    }
-
-                    if (pawn.skills != null)
-                    {
-                        skill = pawn.skills.GetSkill(ActiveSkill).levelInt;
-                    }
-
-                    return Mathf.Clamp(
-                        innerThing.def.GetStatValueAbstract(StatDefOf.WorkToMake, innerThing.Stuff) /
-                        Math.Max(skill, 0.01f), 1f, 200f);
-                }
-            }
-
             if (!IsCraftingJob)
             {
-                return Mathf.Clamp((TargetA.Thing as Building).GetStatValue(StatDefOf.WorkToBuild), 20f, 200f);
+                return Mathf.Max(20f, (TargetA.Thing as Building).GetStatValue(StatDefOf.WorkToBuild));
             }
 
             if (thingToWorkOn == null)
@@ -76,7 +53,8 @@ internal class JobDriver_IncreaseQuality : JobDriver
                 return 0f;
             }
 
-            skill = 0;
+            var actualThing = thingToWorkOn is MinifiedThing minified ? minified.InnerThing : thingToWorkOn;
+            var skill = 0;
 
             if (pawn.RaceProps.mechFixedSkillLevel > 0)
             {
@@ -88,9 +66,9 @@ internal class JobDriver_IncreaseQuality : JobDriver
                 skill = pawn.skills.GetSkill(ActiveSkill).levelInt;
             }
 
-            return Mathf.Clamp(
-                thingToWorkOn.def.GetStatValueAbstract(StatDefOf.WorkToMake, thingToWorkOn.Stuff) /
-                Math.Max(skill, 0.01f), 1f, 200f);
+            return Mathf.Max(1f,
+                actualThing.def.GetStatValueAbstract(StatDefOf.WorkToMake, actualThing.Stuff) /
+                Math.Max(skill, 0.01f));
         }
     }
 
@@ -107,7 +85,6 @@ internal class JobDriver_IncreaseQuality : JobDriver
 
     public override IEnumerable<Toil> MakeNewToils()
     {
-        resourcesPlaced = [];
         var enumerable = IsCraftingJob ? MakeToilsForCrafting() : MakeToilsForBuilding();
         foreach (var item in enumerable)
         {
@@ -141,13 +118,22 @@ internal class JobDriver_IncreaseQuality : JobDriver
         {
             initAction = delegate
             {
+                var target = IsCraftingJob ? thingToWorkOn : TargetA.Thing;
+                if (!HasAllPlacedResources(target))
+                {
+                    JobFailReason.Is("EU.LackingQualityResource".Translate(target.LabelShort));
+                    EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
+
                 if (!notifyQualityChanged(modify.actor))
                 {
+                    EndJobWith(JobCondition.Incompletable);
                     return;
                 }
 
                 destroyPlacedResources();
-                removeDesignationsForQualityUpgrade(IsCraftingJob ? thingToWorkOn : TargetA.Thing);
+                removeDesignationsForQualityUpgrade(target);
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
@@ -158,30 +144,33 @@ internal class JobDriver_IncreaseQuality : JobDriver
         this.FailOnForbidden(TargetIndex.A);
         this.FailOnForbidden(TargetIndex.B);
         this.FailOnSomeonePhysicallyInteracting(TargetIndex.B);
-        var gotoWorkbench = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell)
-            .FailOnDestroyedNullOrForbidden(TargetIndex.B);
-        var endGathering = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell)
-            .FailOnDestroyedNullOrForbidden(TargetIndex.B);
-        var gotoNextHaulThing = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch)
+        yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch)
             .FailOnDespawnedNullOrForbidden(TargetIndex.A).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
-        yield return gotoNextHaulThing;
         yield return SetThingToWorkOn();
         yield return Toils_Haul.StartCarryThing(TargetIndex.A);
-        yield return gotoWorkbench;
-        var findPlaceTarget =
+        yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell)
+            .FailOnDestroyedNullOrForbidden(TargetIndex.B);
+        var findItemPlace =
             Toils_JobTransforms.SetTargetToIngredientPlaceCell(TargetIndex.B, TargetIndex.A, TargetIndex.C);
-        yield return findPlaceTarget;
-        yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, findPlaceTarget, false);
+        yield return findItemPlace;
+        yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, findItemPlace, false);
+
+        var endGathering = Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell)
+            .FailOnDestroyedNullOrForbidden(TargetIndex.B);
         yield return Toils_Jump.JumpIf(endGathering, () => job.GetTargetQueue(TargetIndex.A).NullOrEmpty());
         var extract = Toils_JobTransforms.ExtractNextTargetFromQueue(TargetIndex.A);
         yield return extract;
+        var gotoNextHaulThing = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.ClosestTouch)
+            .FailOnDespawnedNullOrForbidden(TargetIndex.A).FailOnSomeonePhysicallyInteracting(TargetIndex.A);
         yield return gotoNextHaulThing;
-        yield return Toils_Haul.StartCarryThing(TargetIndex.A);
+        yield return Toils_Haul.StartCarryThing(TargetIndex.A, true, false, true);
         yield return jumpToCollectNextThingForUpgrade(gotoNextHaulThing, TargetIndex.A);
-        yield return gotoWorkbench;
-        yield return findPlaceTarget;
-        yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, findPlaceTarget, false);
-        yield return recordPlacedResource(TargetIndex.A);
+        yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.InteractionCell)
+            .FailOnDestroyedNullOrForbidden(TargetIndex.B);
+        var findResourcePlace =
+            Toils_JobTransforms.SetTargetToIngredientPlaceCell(TargetIndex.B, TargetIndex.A, TargetIndex.C);
+        yield return findResourcePlace;
+        yield return PlaceResource(findResourcePlace);
         yield return Toils_Jump.JumpIfHaveTargetInQueue(TargetIndex.A, extract);
         yield return endGathering;
     }
@@ -204,8 +193,7 @@ internal class JobDriver_IncreaseQuality : JobDriver
         var findPlaceTarget =
             Toils_JobTransforms.SetTargetToIngredientPlaceCell(TargetIndex.A, TargetIndex.B, TargetIndex.C);
         yield return findPlaceTarget;
-        yield return Toils_Haul.PlaceHauledThingInCell(TargetIndex.C, findPlaceTarget, false);
-        yield return recordPlacedResource(TargetIndex.B);
+        yield return PlaceResource(findPlaceTarget);
         yield return Toils_Jump.JumpIfHaveTargetInQueue(TargetIndex.B, extract);
         yield return gotoThingToWorkOn;
     }
@@ -301,6 +289,12 @@ internal class JobDriver_IncreaseQuality : JobDriver
         var failChance = EasyUpgrades.GetFailChance(localPawn, ActiveSkillDef, thing);
         var num = Random.Range(0f, 1f);
         var labelNoCount = thing.LabelNoCount;
+        var qualitySuffix = labelNoCount.IndexOf("(", StringComparison.Ordinal);
+        if (qualitySuffix > 0)
+        {
+            labelNoCount = labelNoCount[..qualitySuffix].TrimEnd();
+        }
+
         var map = thing.Map;
         if (thing is MinifiedThing minifiedThing)
         {
@@ -356,26 +350,57 @@ internal class JobDriver_IncreaseQuality : JobDriver
 
         localPawn.skills?.Learn(ActiveSkillDef, xp);
         Messages.Message(
-            key.Translate(localPawn.NameShortColored,
-                labelNoCount[..(labelNoCount.IndexOf("(", StringComparison.Ordinal) - 1)],
+            key.Translate(localPawn.NameShortColored, labelNoCount,
                 Mathf.Clamp(successChance, 0f, 1f).ToStringPercent()), localPawn, def);
         return true;
     }
 
-    private void destroyPlacedResources()
+    private Toil PlaceResource(Toil retry)
     {
-        foreach (var item in resourcesPlaced)
+        return Toils_General.Do(delegate
         {
-            if (!item.Destroyed)
+            if (pawn.carryTracker.CarriedThing == null)
             {
-                item.Destroy();
+                Log.Error($"{pawn} is not carrying a quality upgrade resource");
+                EndJobWith(JobCondition.Incompletable);
+                return;
             }
-        }
+
+            if (!pawn.carryTracker.TryDropCarriedThing(job.GetTarget(TargetIndex.C).Cell, ThingPlaceMode.Direct,
+                    out _, (thing, count) =>
+                    {
+                        var existing = resourcesPlaced.FirstOrDefault(resource => resource.thing == thing);
+                        if (existing == null)
+                        {
+                            resourcesPlaced.Add(new ThingCountClass(thing, count));
+                        }
+                        else
+                        {
+                            existing.Count += count;
+                        }
+                    }))
+            {
+                JumpToToil(retry);
+            }
+        });
     }
 
-    private Toil recordPlacedResource(TargetIndex index)
+    private bool HasAllPlacedResources(Thing target)
     {
-        return Toils_General.Do(delegate { resourcesPlaced.Add(job.GetTarget(index).Thing); });
+        var required = WorkGiver_IncreaseQuality.GetStuffNeededForQualityIncrease(target);
+        return required != null && resourcesPlaced.All(resource =>
+                   resource.thing is { Destroyed: false, Spawned: true } &&
+                   resource.thing.stackCount >= resource.Count) &&
+               required.All(cost => resourcesPlaced.Where(resource => resource.thing.def == cost.thingDef)
+                   .Sum(resource => resource.Count) >= cost.count);
+    }
+
+    private void destroyPlacedResources()
+    {
+        foreach (var resource in resourcesPlaced)
+        {
+            resource.thing.SplitOff(resource.Count).Destroy();
+        }
     }
 
     private void removeDesignationsForQualityUpgrade(Thing t)
@@ -387,5 +412,12 @@ internal class JobDriver_IncreaseQuality : JobDriver
     {
         base.ExposeData();
         Scribe_References.Look(ref thingToWorkOn, "thingToWorkOn");
+        Scribe_Collections.Look(ref resourcesPlaced, "resourcesPlaced", LookMode.Deep);
+        Scribe_Values.Look(ref totalWorkNeeded, "totalWorkNeeded");
+        Scribe_Values.Look(ref workLeft, "workLeft");
+        if (Scribe.mode == LoadSaveMode.PostLoadInit)
+        {
+            resourcesPlaced ??= [];
+        }
     }
 }

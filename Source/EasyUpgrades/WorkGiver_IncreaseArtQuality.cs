@@ -9,9 +9,9 @@ internal class WorkGiver_IncreaseArtQuality : WorkGiver_IncreaseQuality
 {
     protected override DesignationDef Designation => EasyUpgradesDesignationDefOf.IncreaseQuality_Art;
 
-    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn p)
+    public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
     {
-        foreach (var item in p.Map.designationManager.SpawnedDesignationsOfDef(Designation))
+        foreach (var item in pawn.Map.designationManager.SpawnedDesignationsOfDef(Designation))
         {
             yield return item.target.Thing;
         }
@@ -27,7 +27,6 @@ internal class WorkGiver_IncreaseArtQuality : WorkGiver_IncreaseQuality
         var closestNeededCraftingBuilding = GetClosestNeededCraftingBuilding(pawn, t);
         if (closestNeededCraftingBuilding == null)
         {
-            JobFailReason.Is("EU.MissingWorkStation".Translate(GetNeededCraftingBenchName(t)));
             return null;
         }
 

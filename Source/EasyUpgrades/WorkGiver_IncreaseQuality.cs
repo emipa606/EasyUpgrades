@@ -44,14 +44,30 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
                 continue;
             }
 
-            var stuffNeededForQualityIncrease = GetStuffNeededForQualityIncrease(t);
-            if (HasEnoughResourcesOfType(pawn, t, stuffNeededForQualityIncrease, out var resources))
+            if (!HasRequiredSkills(pawn, t))
             {
-                return MakeIncreaseQualityJob(t, pawn, resources);
+                return null;
             }
 
-            JobFailReason.Is("EU.LackingQualityResource".Translate(stuffNeededForQualityIncrease.Label));
-            return null;
+            var requiredResources = GetStuffNeededForQualityIncrease(t);
+            if (requiredResources == null)
+            {
+                return null;
+            }
+
+            var resources = new List<ThingCountClass>();
+            foreach (var requiredResource in requiredResources)
+            {
+                if (!HasEnoughResourcesOfType(pawn, t, requiredResource, out var foundResources))
+                {
+                    JobFailReason.Is("EU.LackingQualityResource".Translate(requiredResource.Label));
+                    return null;
+                }
+
+                resources.AddRange(foundResources);
+            }
+
+            return MakeIncreaseQualityJob(t, pawn, resources);
         }
 
         return null;
@@ -76,39 +92,94 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         return false;
     }
 
-    protected static Building GetClosestNeededCraftingBuilding(Pawn pawn, Thing t)
+    private static bool HasRequiredSkills(Pawn pawn, Thing t)
     {
-        var actualThing = t;
-        if (t is MinifiedThing thing)
+        var actualThing = t is MinifiedThing minified ? minified.InnerThing : t;
+        if (actualThing is Building)
         {
-            actualThing = thing.InnerThing;
-        }
-
-        var recipeUsers = actualThing.def.recipeMaker?.recipeUsers?.ConvertAll(thingDef => thingDef.defName);
-
-        Building firstAvailableBuilding;
-        if (recipeUsers != null)
-        {
-            firstAvailableBuilding = pawn.Map.listerBuildings.allBuildingsColonist.Where(building =>
-                    recipeUsers.Contains(building.def.defName) && !building.IsForbidden(pawn) &&
-                    !building.IsBurning() &&
-                    pawn.CanReserveAndReach(building, PathEndMode.InteractionCell, Danger.Some))
-                .OrderBy(building => (building.Position - pawn.Position).LengthManhattan)
-                .FirstOrDefault();
-
-            if (firstAvailableBuilding != null)
+            foreach (var requirement in new[]
+                     {
+                         new SkillRequirement
+                         {
+                             skill = SkillDefOf.Construction, minLevel = actualThing.def.constructionSkillPrerequisite
+                         },
+                         new SkillRequirement
+                             { skill = SkillDefOf.Artistic, minLevel = actualThing.def.artisticSkillPrerequisite }
+                     })
             {
-                return firstAvailableBuilding;
+                if (requirement.minLevel <= 0 || requirement.PawnSatisfies(pawn))
+                {
+                    continue;
+                }
+
+                JobFailReason.Is("SkillTooLowForConstruction".Translate(requirement.skill.LabelCap));
+                return false;
             }
         }
 
-        firstAvailableBuilding = pawn.Map.listerBuildings.allBuildingsColonist
-            .Where(building => !building.IsForbidden(pawn) && !building.IsBurning() &&
-                               pawn.CanReserveAndReach(building, PathEndMode.InteractionCell, Danger.Some) &&
-                               building.def.AllRecipes.Any(recipeDef => recipeDef.ProducedThingDef == actualThing.def))
-            .OrderBy(building => (building.Position - pawn.Position).LengthManhattan).FirstOrDefault();
+        var requirements = actualThing.def.recipeMaker?.skillRequirements;
+        if (requirements == null)
+        {
+            return true;
+        }
 
-        return firstAvailableBuilding;
+        foreach (var requirement in requirements)
+        {
+            if (requirement.PawnSatisfies(pawn))
+            {
+                continue;
+            }
+
+            JobFailReason.Is("UnderRequiredSkill".Translate(requirement.minLevel), actualThing.LabelShort);
+            return false;
+        }
+
+        return true;
+    }
+
+    protected static Building GetClosestNeededCraftingBuilding(Pawn pawn, Thing t)
+    {
+        var actualThing = t is MinifiedThing minified ? minified.InnerThing : t;
+        var recipeUsers = actualThing.def.recipeMaker?.recipeUsers;
+        SkillRequirement missingSkill = null;
+        foreach (var building in pawn.Map.listerBuildings.allBuildingsColonist
+                     .Where(building => !building.IsForbidden(pawn) && !building.IsBurning() &&
+                                        pawn.CanReserveAndReach(building, PathEndMode.InteractionCell, Danger.Some))
+                     .OrderBy(building => (building.Position - pawn.Position).LengthManhattan))
+        {
+            var recipes = building.def.AllRecipes.Where(recipe => recipe.ProducedThingDef == actualThing.def).ToList();
+            if (recipes.Count == 0)
+            {
+                if (recipeUsers?.Contains(building.def) == true)
+                {
+                    return building;
+                }
+
+                continue;
+            }
+
+            foreach (var recipe in recipes)
+            {
+                var requirement = recipe.FirstSkillRequirementPawnDoesntSatisfy(pawn);
+                if (requirement == null)
+                {
+                    return building;
+                }
+
+                missingSkill ??= requirement;
+            }
+        }
+
+        if (missingSkill != null)
+        {
+            JobFailReason.Is("UnderRequiredSkill".Translate(missingSkill.minLevel), actualThing.LabelShort);
+        }
+        else
+        {
+            JobFailReason.Is("EU.MissingWorkStation".Translate(GetNeededCraftingBenchName(t)));
+        }
+
+        return null;
     }
 
     public static string GetNeededCraftingBenchName(Thing t)
@@ -120,7 +191,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         }
 
         var possibleWorkstations = new HashSet<string>();
-        if (actualThing.def.recipeMaker != null)
+        if (actualThing.def.recipeMaker?.recipeUsers != null)
         {
             foreach (var building in actualThing.def.recipeMaker.recipeUsers)
             {
@@ -176,7 +247,7 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
         return num >= count;
     }
 
-    public static ThingDefCountClass GetStuffNeededForQualityIncrease(Thing t)
+    public static List<ThingDefCountClass> GetStuffNeededForQualityIncrease(Thing t)
     {
         if (t is MinifiedThing thing)
         {
@@ -189,83 +260,80 @@ internal abstract class WorkGiver_IncreaseQuality : WorkGiver_Scanner
             return null;
         }
 
-        var num = 1;
-        var stuff = t.Stuff;
-        var recipeMaker = t.def.recipeMaker;
-        if (recipeMaker is { bulkRecipeCount: > 0 })
-        {
-            num = recipeMaker.bulkRecipeCount;
-        }
-
-        ThingDef thingDef2;
-        float num3;
-        if (!t.def.MadeFromStuff || stuff == null)
-        {
-            thingDef2 = ThingDefOf.WoodLog;
-            switch (t.def.techLevel)
-            {
-                case TechLevel.Industrial:
-                    thingDef2 = ThingDefOf.Steel;
-                    break;
-                case TechLevel.Spacer:
-                case TechLevel.Ultra:
-                case TechLevel.Archotech:
-                    thingDef2 = ThingDefOf.Plasteel;
-                    break;
-            }
-
-            var value = t.def.BaseMarketValue / 10;
-            num3 = (float)Math.Max(10, Math.Round(value / thingDef2.BaseMarketValue));
-        }
-        else if (t.def.costList is { Count: > 0 })
-        {
-            ThingDef thingDef = null;
-            var num2 = 0;
-            foreach (var cost in t.def.costList)
-            {
-                if (cost.count <= num2)
-                {
-                    continue;
-                }
-
-                num2 = cost.count;
-                thingDef = cost.thingDef;
-            }
-
-            thingDef2 = thingDef;
-            num3 = num2;
-        }
-        else
-        {
-            thingDef2 = stuff;
-            num3 = t.def.costStuffCount;
-        }
-
+        float multiplier;
         switch (qc)
         {
             case QualityCategory.Awful:
-                num3 *= EasyUpgradesSettings.NeededMaterialsAwfulQuality;
+                multiplier = EasyUpgradesSettings.NeededMaterialsAwfulQuality;
                 break;
             case QualityCategory.Poor:
-                num3 *= EasyUpgradesSettings.NeededMaterialsPoorQuality;
+                multiplier = EasyUpgradesSettings.NeededMaterialsPoorQuality;
                 break;
             case QualityCategory.Normal:
-                num3 *= EasyUpgradesSettings.NeededMaterialsNormalQuality;
+                multiplier = EasyUpgradesSettings.NeededMaterialsNormalQuality;
                 break;
             case QualityCategory.Good:
-                num3 *= EasyUpgradesSettings.NeededMaterialsGoodQuality;
+                multiplier = EasyUpgradesSettings.NeededMaterialsGoodQuality;
                 break;
             case QualityCategory.Excellent:
-                num3 *= EasyUpgradesSettings.NeededMaterialsExcellentQuality;
+                multiplier = EasyUpgradesSettings.NeededMaterialsExcellentQuality;
                 break;
             case QualityCategory.Masterwork:
-                num3 *= EasyUpgradesSettings.NeededMaterialsMasterworkQuality;
+                multiplier = EasyUpgradesSettings.NeededMaterialsMasterworkQuality;
                 break;
             default:
+                Log.Error($"Cannot calculate quality upgrade resources for {t.Label} at quality {qc}");
                 return null;
         }
 
-        thingDef2 = EasyUpgradesSettings.GetReplacementThingDef(thingDef2);
-        return new ThingDefCountClass(thingDef2, Mathf.Max(1, Mathf.CeilToInt(num3 * num)));
+        var costs = new Dictionary<ThingDef, float>();
+
+        if (t.def.MadeFromStuff)
+        {
+            if (t.Stuff == null)
+            {
+                Log.Error($"Cannot calculate quality upgrade resources for {t.Label}: missing stuff");
+                return null;
+            }
+
+            AddCost(t.Stuff, t.def.CostStuffCount);
+        }
+
+        if (t.def.CostList != null)
+        {
+            foreach (var cost in t.def.CostList)
+            {
+                AddCost(cost.thingDef, cost.count);
+            }
+        }
+
+        if (costs.Count != 0)
+        {
+            return costs.Select(cost => new ThingDefCountClass(cost.Key,
+                Mathf.Max(1, Mathf.CeilToInt(cost.Value * multiplier)))).ToList();
+        }
+
+        var fallback = t.def.techLevel switch
+        {
+            TechLevel.Industrial => ThingDefOf.Steel,
+            TechLevel.Spacer or TechLevel.Ultra or TechLevel.Archotech => ThingDefOf.Plasteel,
+            _ => ThingDefOf.WoodLog
+        };
+        AddCost(fallback, (float)Math.Max(10, Math.Round(t.def.BaseMarketValue / 10 / fallback.BaseMarketValue)));
+
+        return costs.Select(cost => new ThingDefCountClass(cost.Key,
+            Mathf.Max(1, Mathf.CeilToInt(cost.Value * multiplier)))).ToList();
+
+        void AddCost(ThingDef def, float count)
+        {
+            if (count <= 0)
+            {
+                return;
+            }
+
+            def = EasyUpgradesSettings.GetReplacementThingDef(def);
+            costs.TryGetValue(def, out var existing);
+            costs[def] = existing + count;
+        }
     }
 }

@@ -19,7 +19,6 @@ internal class WorkGiver_IncreaseItemQuality : WorkGiver_IncreaseQuality
         var closestNeededCraftingBuilding = GetClosestNeededCraftingBuilding(pawn, t);
         if (closestNeededCraftingBuilding == null)
         {
-            JobFailReason.Is("EU.MissingWorkStation".Translate(GetNeededCraftingBenchName(t)));
             return null;
         }
 

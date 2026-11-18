@@ -21,14 +21,14 @@ public class Designator_Upgrade : Designator
 
     public override DrawStyleCategoryDef DrawStyleCategory => DrawStyleCategoryDefOf.Orders;
 
-    public override AcceptanceReport CanDesignateCell(IntVec3 c)
+    public override AcceptanceReport CanDesignateCell(IntVec3 loc)
     {
-        if (!c.InBounds(Map) || c.Fogged(Map))
+        if (!loc.InBounds(Map) || loc.Fogged(Map))
         {
             return false;
         }
 
-        if (!c.GetThingList(Map).Any(t => CanDesignateThing(t).Accepted))
+        if (!loc.GetThingList(Map).Any(t => CanDesignateThing(t).Accepted))
         {
             return "EU.MustDesignateUpgradeableThing".Translate();
         }
